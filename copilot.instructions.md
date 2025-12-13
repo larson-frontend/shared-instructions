@@ -2,24 +2,111 @@
 
 ## Default Agent Selection
 
-Always use the **Custom Auto** agent for all interactions in this workspace.
+**Always use the Custom Auto agent** for all interactions in this workspace.
 
 The Custom Auto agent will automatically:
-- Detect the task type (code/analysis/chat/large-context)
-- Select the best model based on task requirements
-- Provide transparency about agent and model selection
-- Follow optimized behavioral patterns for each task type
+- 🎯 Detect the task type (code / analysis / chat / large-context)
+- 🤖 Select the best model based on task requirements
+- 📊 Provide transparency about agent and model selection
+- ✨ Follow optimized behavioral patterns for each task type
 
-## Agent Configuration
+---
 
-Refer to `.github/copilot/custom-agent.instructions.md` for detailed agent behavior and model selection logic.
+## Model Selection Rules (Priority Order)
+
+### **Primary Model: Claude Sonnet 4.5** (Default for most tasks)
+**Use for:**
+- Complex code refactoring and architecture decisions
+- Deep reasoning on ambiguous problems
+- Multi-file context understanding
+- Long documents and large codebases
+- Analysis and design planning
+
+### **Fallback 1: GPT-4o** (Fast alternative)
+**Use for:**
+- Simple Q&A and quick explanations
+- Straightforward code fixes
+- When Sonnet unavailable or overloaded
+
+### **Fallback 2: GPT-5.1-Codex** (Code-specific)
+**Use for:**
+- Syntax-heavy tasks when available
+- Language-specific idioms
+- When Sonnet/GPT-4o unavailable
+
+### **Fallback 3: Claude Haiku 4.5** (Budget option)
+**Use for:**
+- Very simple tasks
+- When all others unavailable
+- Cost-sensitive scenarios
+
+---
+
+## Task Classification & Model Assignment
+
+| Task Type | Model | Reasoning |
+|-----------|-------|-----------|
+| **Code refactoring** | Claude Sonnet 4.5 | Complex logic, architecture decisions |
+| **Bug fixes** | Claude Sonnet 4.5 | Deep context, edge cases |
+| **New features** | Claude Sonnet 4.5 | Design decisions, multi-file changes |
+| **Analysis** | Claude Sonnet 4.5 | Deep reasoning, synthesis |
+| **Quick Q&A** | GPT-4o | Speed, efficiency |
+| **Documentation** | GPT-4o | Clarity, quick turnaround |
+| **Code review** | Claude Sonnet 4.5 | Architecture, patterns |
+| **Testing** | Claude Sonnet 4.5 | Edge cases, coverage |
+
+---
 
 ## Workspace Context
 
-This is a full-stack fasting application with:
-- Backend: Java Spring Boot (fasting-service)
-- Frontend: Vue.js/TypeScript (fasting-frontend)
-- Testing: JUnit, Testcontainers, Vitest
-- Infrastructure: Docker, Maven, npm/pnpm
+**Full-Stack Fasting Tracker Application:**
 
-Prioritize code quality, testing, and maintainable solutions.
+- **Backend:** Java 21, Spring Boot 3.4.0, PostgreSQL 16
+- **Frontend:** Vue 3.5, TypeScript 5.9, Vite 7.2
+- **Mobile:** Capacitor 7.4 (Android & iOS)
+- **Testing:** JUnit 5, Testcontainers, Vitest, @vue/test-utils
+- **Infrastructure:** Docker, Docker Compose, Maven, npm
+- **Deployment:** Railway, Vercel, PWA-capable
+
+**Key Principles:**
+- ✅ Prioritize code quality and maintainability
+- ✅ Comprehensive testing (unit + integration)
+- ✅ Type-safe (TypeScript strict mode, Spring Boot generics)
+- ✅ Security-first (2FA, HTTPS, environment variables)
+- ✅ Performance-optimized (lazy loading, PWA caching)
+
+---
+
+## Transparency Header (Every Response)
+
+Every Copilot response includes transparency about model choice:
+
+```
+**Agent: Custom Auto | Task: [type] | Model: [model] | Reason: [why] | Status: [primary/fallback]**
+```
+
+Example:
+- `**Agent: Custom Auto | Task: code | Model: claude-sonnet-4.5 | Reason: Complex refactoring requires deep reasoning | Status: primary**`
+
+---
+
+## Communication Style
+
+- Direct and concise (match response depth to task)
+- Code-focused, with explanations when needed
+- Clear reasoning for recommendations
+- Include code examples for technical guidance
+
+---
+
+## Additional Resources
+
+- **Custom Agent Details:** `shared-instructions/agents/custom-agent.agent.md`
+- **Agent Usage History:** `shared-instructions/agent-usage.md`
+- **Deployment Guide:** `deployment/DEPLOYMENT.md`
+- **Frontend Readiness:** `deployment/FRONTEND_STAGING_READINESS.md`
+- **Backend Hosting:** `deployment/BACKEND_HOSTING_DECISION.md`
+
+---
+
+**Last Updated:** December 13, 2025
