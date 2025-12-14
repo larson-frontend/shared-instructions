@@ -83,11 +83,11 @@ Repository Structure:
 
 ## 🔄 Team Workflow
 
-### For Team Members: First Time Setup
+### For Team Members: First Time Setup (SSH Recommended)
 
 **Step 1: Clone with Submodules**
 ```bash
-git clone --recurse-submodules https://github.com/larson-frontend/fasting-service
+git clone --recurse-submodules git@github.com:larson-frontend/fasting-service.git
 cd fasting-service
 ```
 
@@ -114,6 +114,11 @@ git submodule update --init --recursive
 # Get latest shared instructions:
 git pull origin
 git submodule update --remote
+
+# If you see username/password prompts (forcing SSH for the submodule):
+git config submodule.shared-instructions.url git@github.com:larson-frontend/shared-instructions.git
+git submodule sync --recursive
+git submodule update --init --recursive
 ```
 
 ---

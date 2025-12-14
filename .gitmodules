@@ -1,0 +1,2 @@
+[submodule "shared-instructions"]
+	url = git@github.com:larson-frontend/shared-instructions.git
