@@ -174,7 +174,7 @@ When issues arise, check your project's troubleshooting documentation:
 
 After each assistant response, log the usage to `shared-instructions/docs/agent-usage.md` using:
 
-- Command: `./shared-instructions/scripts/log-agent-usage.sh --agent "Custom Auto" --task <code|chat|analysis|large-context> --model <model> --status <primary|fallback-x> --desc "<short description>"`
+- Command: `./shared-instructions/scripts/log-agent-usage.sh --agent "Custom_Auto" --task <code|chat|analysis|large-context> --model <model> --status <primary|fallback-x> --lang <language> --desc "<short description>"`
 - Timestamp: Script records UTC time automatically.
 - Multiple models: If you switch models mid-task, run the script again for each switch.
 - Missing file: The script creates the file with header if absent.

@@ -48,12 +48,15 @@ extract_counts() {
   local key=$1
   awk -v key="$key" 'NR>0 {
     if ($0 ~ /^- \[/) {
+      found=0
       for (i = 1; i <= NF; i++) {
         if ($i ~ "^" key "=") {
           split($i, a, "=")
           print a[2]
+          found=1
         }
       }
+      if (found==0) { print "mixed" }
     }
   }' "$LOG_FILE" | sort | uniq -c
 }
@@ -82,6 +85,12 @@ render_section() {
   echo "└────────────────────────────────────────────────────────────────┘"
   echo ""
 }
+
+# By Agent (pie chart)
+render_section "Agent Distribution" "agent"
+
+# By Language (pie chart)
+render_section "Language Distribution" "lang"
 
 # By Model (pie chart)
 render_section "Model Distribution" "model"

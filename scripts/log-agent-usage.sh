@@ -19,6 +19,7 @@ TASK=""
 MODEL=""
 STATUS=""
 DESC=""
+LANG=""
 LOG_FILE="shared-instructions/docs/agent-usage.md"
 
 while [[ $# -gt 0 ]]; do
@@ -28,6 +29,7 @@ while [[ $# -gt 0 ]]; do
     --model) MODEL="$2"; shift 2;;
     --status) STATUS="$2"; shift 2;;
     --desc) DESC="$2"; shift 2;;
+    --lang) LANG="$2"; shift 2;;
     --file) LOG_FILE="$2"; shift 2;;
     -h|--help)
       grep '^# ' "$0" -n | sed -n '1,20p' | sed 's/^# //'
@@ -41,8 +43,64 @@ if [[ -z "$AGENT" || -z "$TASK" || -z "$MODEL" || -z "$STATUS" || -z "$DESC" ]];
   exit 1
 fi
 
+if [[ -z "$LANG" ]]; then
+  # Auto-detect language from agent name or repo indicators
+  case "$AGENT" in
+    React_Agent)
+      LANG="typescript";;
+    Vue_Agent)
+      LANG="vue";;
+    Java_Agent)
+      LANG="java";;
+    *)
+      # Detect from repo root
+      REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+      if [[ -f "$REPO_ROOT/pom.xml" ]]; then
+        LANG="java"
+      elif [[ -f "$REPO_ROOT/tsconfig.json" ]]; then
+        LANG="typescript"
+      elif [[ -n "$(git ls-files '*.vue' 2>/dev/null)" ]]; then
+        LANG="vue"
+      elif [[ -n "$(git ls-files '*.tsx' 2>/dev/null)" || -n "$(git ls-files '*.ts' 2>/dev/null)" ]]; then
+        LANG="typescript"
+      elif [[ -n "$(git ls-files '*.jsx' 2>/dev/null)" || -n "$(git ls-files '*.js' 2>/dev/null)" ]]; then
+        LANG="javascript"
+      elif [[ -n "$(git ls-files '*.go' 2>/dev/null)" ]]; then
+        LANG="go"
+      elif [[ -n "$(git ls-files '*.py' 2>/dev/null)" ]]; then
+        LANG="python"
+      elif [[ -n "$(git ls-files '*.rs' 2>/dev/null)" ]]; then
+        LANG="rust"
+      elif [[ -n "$(git ls-files '*.kt' 2>/dev/null)" || -n "$(git ls-files '*.kts' 2>/dev/null)" ]]; then
+        LANG="kotlin"
+      elif [[ -n "$(git ls-files '*.cs' 2>/dev/null)" ]]; then
+        LANG="csharp"
+      elif [[ -n "$(git ls-files '*.php' 2>/dev/null)" ]]; then
+        LANG="php"
+      elif [[ -n "$(git ls-files '*.swift' 2>/dev/null)" ]]; then
+        LANG="swift"
+      elif [[ -n "$(git ls-files '*.dart' 2>/dev/null)" ]]; then
+        LANG="dart"
+      elif [[ -n "$(git ls-files '*.c' 2>/dev/null)" || -n "$(git ls-files '*.h' 2>/dev/null)" ]]; then
+        LANG="c"
+      elif [[ -n "$(git ls-files '*.cpp' 2>/dev/null)" || -n "$(git ls-files '*.cc' 2>/dev/null)" || -n "$(git ls-files '*.cxx' 2>/dev/null)" ]]; then
+        LANG="cpp"
+      else
+        LANG="mixed"
+      fi
+      ;;
+  esac
+fi
+
+# Normalize values to avoid spaces breaking parsers
+AGENT=${AGENT// /_}
+TASK=${TASK// /_}
+MODEL=${MODEL// /_}
+STATUS=${STATUS// /_}
+LANG=${LANG// /_}
+
 TS=$(date -u +"%Y-%m-%d %H:%M")
-LINE="- [${TS}] agent=${AGENT} task=${TASK} model=${MODEL} status=${STATUS} desc=${DESC}"
+LINE="- [${TS}] agent=${AGENT} task=${TASK} model=${MODEL} status=${STATUS} lang=${LANG} desc=${DESC}"
 
 # Ensure file exists with header
 if [[ ! -f "$LOG_FILE" ]]; then

@@ -24,6 +24,30 @@ echo ""
 echo "Total Entries: $entries"
 echo ""
 
+echo "┌─ By Agent ─────────────────────────────────────────────────────┐"
+grep "^\- \[" "$LOG_FILE" | awk '{
+  agent="unknown"
+  for (i = 1; i <= NF; i++) {
+    if ($i ~ /^agent=/) { split($i,a,"="); agent=a[2] }
+  }
+  print agent
+}' | sort | uniq -c | \
+  awk '{printf "│  %-35s %6d uses\n", $2, $1}' | sort -t'|' -k3 -rn
+echo "└────────────────────────────────────────────────────────────────┘"
+echo ""
+
+echo "┌─ By Language ─────────────────────────────────────────────────┐"
+grep "^\- \[" "$LOG_FILE" | awk '{
+  lang="mixed"
+  for (i = 1; i <= NF; i++) {
+    if ($i ~ /^lang=/) { split($i,a,"="); lang=a[2] }
+  }
+  print lang
+}' | sort | uniq -c | \
+  awk '{printf "│  %-35s %6d uses\n", $2, $1}' | sort -t'|' -k3 -rn
+echo "└────────────────────────────────────────────────────────────────┘"
+echo ""
+
 echo "┌─ By Model ─────────────────────────────────────────────────────┐"
 grep "^\- \[" "$LOG_FILE" | grep -o "model=[^ ]*" | cut -d= -f2 | sort | uniq -c | \
   awk '{printf "│  %-35s %6d uses\n", $2, $1}' | sort -t'|' -k3 -rn
