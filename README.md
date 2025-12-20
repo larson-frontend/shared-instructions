@@ -13,6 +13,7 @@
 | **docs/GETTING_STARTED.md** | Complete setup from clone to running | 15-20 min | New developers, onboarding |
 | **docs/TEAM_SETUP_GUIDE.md** | Team workflows, standards, collaboration | 10-15 min | All team members |
 | **instructions/copilot.instructions.md** | AI agent instructions & behavior | 5 min | Developers using agents |
+| **instructions/test.instructions.md** | Unit testing best practices (Java/TS) | 10 min | All developers |
 | **docs/agent-usage.md** | Agent usage history & patterns | 5-10 min | Reference for past solutions |
 
 **Total onboarding time: ~30-50 minutes** (depending on experience)
@@ -151,7 +152,9 @@ workspace/
 │   │   ├── TEAM_SETUP_GUIDE.md
 │   │   └── agent-usage.md
 │   ├── instructions/
-│   │   └── copilot.instructions.md
+│   │   ├── copilot.instructions.md
+│   │   ├── custom-agent.agent.md
+│   │   └── test.instructions.md
 │   ├── scripts/
 │   └── README.md            ← This file
 ├── <project-1>/
