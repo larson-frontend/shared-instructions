@@ -12,7 +12,7 @@
 |----------|---------|-----------|----------|
 | **docs/GETTING_STARTED.md** | Complete setup from clone to running | 15-20 min | New developers, onboarding |
 | **docs/TEAM_SETUP_GUIDE.md** | Team workflows, standards, collaboration | 10-15 min | All team members |
-| **copilot.instructions.md** | AI agent instructions & behavior | 5 min | Developers using agents |
+| **instructions/copilot.instructions.md** | AI agent instructions & behavior | 5 min | Developers using agents |
 | **docs/agent-usage.md** | Agent usage history & patterns | 5-10 min | Reference for past solutions |
 
 **Total onboarding time: ~30-50 minutes** (depending on experience)
@@ -47,12 +47,14 @@ This repository uses **symlinks** for shared documentation:
 ```
 root/
 ├── shared-instructions/          ← Central source of truth
-│   ├── docs/
+│   ├── docs/                     ← Human-readable guides
 │   │   ├── GETTING_STARTED.md
 │   │   ├── TEAM_SETUP_GUIDE.md
 │   │   └── agent-usage.md
-│   ├── copilot.instructions.md (symlink to docs/copilot.instructions.md)
-│   └── README.md (index)
+│   ├── instructions/             ← Tool consumption files
+│   │   └── copilot.instructions.md
+│   ├── scripts/                  ← Setup automation
+│   └── README.md                 ← This index
 ├── project-1/
 │   └── shared-instructions/ → ../shared-instructions  (symlink)
 └── project-2/
@@ -81,7 +83,7 @@ Each project includes `.vscode/settings.json` that configures AI agents:
 ```json
 {
   "copilot.instructions": [
-    "shared-instructions/copilot.instructions.md"
+    "shared-instructions/instructions/copilot.instructions.md"
   ]
 }
 ```
@@ -90,12 +92,12 @@ Each project includes `.vscode/settings.json` that configures AI agents:
 1. Open any file in your project
 2. Press `⌘ + I` (Mac) or `Ctrl + I` (Linux/Windows)
 3. Ask a question about your code
-4. Agent reads instructions from `shared-instructions/copilot.instructions.md`
+4. Agent reads instructions from `shared-instructions/instructions/copilot.instructions.md`
 
 **Agent context:**
-- Reads all `copilot.instructions.md` files
-- Understands team standards from `TEAM_SETUP_GUIDE.md`
-- References usage patterns from `agent-usage.md`
+- Reads all `instructions/copilot.instructions.md` files
+- Understands team standards from `docs/TEAM_SETUP_GUIDE.md`
+- References usage patterns from `docs/agent-usage.md`
 - Provides consistent guidance across team
 
 ---
@@ -117,7 +119,7 @@ git checkout -b feature/description-of-change
 ```bash
 git add .
 git commit -m "type: short description"
-# See TEAM_SETUP_GUIDE.md for commit conventions
+# See docs/TEAM_SETUP_GUIDE.md for commit conventions
 ```
 
 ### 4. Push & Create Pull Request
@@ -144,9 +146,13 @@ Your projects are organized as submodules or separate directories:
 ```
 workspace/
 ├── shared-instructions/     ← You are here
-│   ├── GETTING_STARTED.md   ← START HERE
-│   ├── TEAM_SETUP_GUIDE.md
-│   ├── copilot.instructions.md
+│   ├── docs/
+│   │   ├── GETTING_STARTED.md   ← START HERE
+│   │   ├── TEAM_SETUP_GUIDE.md
+│   │   └── agent-usage.md
+│   ├── instructions/
+│   │   └── copilot.instructions.md
+│   ├── scripts/
 │   └── README.md            ← This file
 ├── <project-1>/
 │   ├── src/
@@ -165,13 +171,13 @@ Replace `<project-1>` and `<project-2>` with your actual project names.
 ## 📚 Detailed Guides Index
 
 ### For New Team Members
-1. **GETTING_STARTED.md** - Complete setup guide (15-20 min)
-2. **TEAM_SETUP_GUIDE.md** - Team standards and workflow (10 min)
-3. **copilot.instructions.md** - How to use AI agent effectively (5 min)
+1. **docs/GETTING_STARTED.md** - Complete setup guide (15-20 min)
+2. **docs/TEAM_SETUP_GUIDE.md** - Team standards and workflow (10 min)
+3. **instructions/copilot.instructions.md** - How to use AI agent effectively (5 min)
 
 ### For Ongoing Development
-- **TEAM_SETUP_GUIDE.md** - Git workflow, commit conventions, PR process
-- **agent-usage.md** - Reference previous solutions and patterns
+- **docs/TEAM_SETUP_GUIDE.md** - Git workflow, commit conventions, PR process
+- **docs/agent-usage.md** - Reference previous solutions and patterns
 - Project-specific README - Check your project's README for tech-specific details
 
 ### For Different Roles
@@ -185,13 +191,13 @@ Replace `<project-1>` and `<project-2>` with your actual project names.
 ## ❓ FAQ
 
 ### Q: Where do I start?
-**A:** Read `GETTING_STARTED.md` (15-20 minutes) for complete setup from scratch.
+**A:** Read `docs/GETTING_STARTED.md` (15-20 minutes) for complete setup from scratch.
 
 ### Q: How do I get AI agent help?
 **A:** Press `⌘ + I` (Mac) or `Ctrl + I` (Windows/Linux) in VS Code.
 
 ### Q: What are the team coding standards?
-**A:** See `TEAM_SETUP_GUIDE.md` for conventions, commit messages, and PR workflow.
+**A:** See `docs/TEAM_SETUP_GUIDE.md` for conventions, commit messages, and PR workflow.
 
 ### Q: I'm working on X, where's the documentation?
 **A:** Check the README.md in your specific project directory for tech-specific guides.
@@ -206,7 +212,10 @@ Replace `<project-1>` and `<project-2>` with your actual project names.
 **A:** Run tests: `npm test` (frontend) or `mvn test` (backend/maven projects).
 
 ### Q: Where's the agent instruction file?
-**A:** `shared-instructions/copilot.instructions.md` - automatically referenced by `.vscode/settings.json`
+**A:** `instructions/copilot.instructions.md` - automatically referenced by `.vscode/settings.json`
+
+### Q: How do I add more tool instructions?
+**A:** Create new files in `instructions/` (e.g., `test.instructions.md`, `deployment.instructions.md`) and reference them from your project configs.
 
 ---
 

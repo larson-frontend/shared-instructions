@@ -111,10 +111,10 @@ if os.path.exists(src):
 instructions = existing.get('copilot.instructions')
 if isinstance(instructions, list):
     paths = set(instructions)
-    paths.add('shared-instructions/copilot.instructions.md')
+    paths.add('shared-instructions/instructions/copilot.instructions.md')
     existing['copilot.instructions'] = list(paths)
 else:
-    existing['copilot.instructions'] = ['shared-instructions/copilot.instructions.md']
+    existing['copilot.instructions'] = ['shared-instructions/instructions/copilot.instructions.md']
 
 with open(dst, 'w', encoding='utf-8') as f:
     json.dump(existing, f, indent=2)
@@ -135,7 +135,7 @@ if [[ -f "$SETTINGS_FILE" ]]; then
         cat > "$SETTINGS_FILE" <<'JSON'
 {
   "copilot.instructions": [
-    "shared-instructions/copilot.instructions.md"
+    "shared-instructions/instructions/copilot.instructions.md"
   ]
 }
 JSON
@@ -155,7 +155,7 @@ else
   cat > "$SETTINGS_FILE" <<'JSON'
 {
   "copilot.instructions": [
-    "shared-instructions/copilot.instructions.md"
+    "shared-instructions/instructions/copilot.instructions.md"
   ]
 }
 JSON
