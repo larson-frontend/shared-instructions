@@ -2,6 +2,11 @@
 
 Minimal steps to start using shared-instructions in your project. No Docker or extra tooling required.
 
+Quick interactive setup:
+```zsh
+./shared-instructions/scripts/install-shared-instructions.sh
+```
+
 ## Prerequisites
 - VS Code installed
 - `zsh` shell (Linux/macOS)
