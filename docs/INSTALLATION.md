@@ -7,6 +7,11 @@ Quick interactive setup:
 ./shared-instructions/scripts/install-shared-instructions.sh
 ```
 
+Windows (PowerShell):
+```powershell
+powershell -ExecutionPolicy Bypass -File shared-instructions/scripts/install-shared-instructions.ps1
+```
+
 ## Prerequisites
 - VS Code installed
 - `zsh` shell (Linux/macOS)
@@ -22,6 +27,11 @@ ln -s ../shared-instructions shared-instructions
 2) Initialize VS Code settings (reads Copilot instructions from shared-instructions)
 ```zsh
 shared-instructions/scripts/init-shared-instructions-vscode.sh --non-interactive
+```
+
+Windows (PowerShell):
+```powershell
+powershell -ExecutionPolicy Bypass -File shared-instructions/scripts/init-shared-instructions-vscode.ps1 -NonInteractive
 ```
 
 3) Reload VS Code
