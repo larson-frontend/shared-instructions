@@ -100,6 +100,11 @@ Example:
 
  - **Custom Agent Details:** `shared-instructions/instructions/custom-agent.agent.md`
  - **Agent Usage History:** `shared-instructions/docs/agent-usage.md`
+ - **Stack-Specific Agents:**
+	 - React: `shared-instructions/instructions/react-agent.agent.md`
+	 - Vue: `shared-instructions/instructions/vue-agent.agent.md`
+	 - Java: `shared-instructions/instructions/java-agent.agent.md`
+	 - Use these when the task is clearly scoped to that stack; otherwise default to the core instructions above.
 - Project-specific deployment/readiness guides: See your project's documentation
 
 ---
