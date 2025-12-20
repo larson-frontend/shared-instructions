@@ -193,3 +193,13 @@ else
 fi
 
 echo "Setup complete."
+
+# Agent usage logging guidance
+echo ""
+echo "Tip: Log this setup in agent-usage.md (optional):"
+echo "  ./shared-instructions/scripts/log-agent-usage.sh \\
+  --agent \"Custom Auto\" \\
+  --task setup \\
+  --model <model> \\
+  --status primary \\
+  --desc \"Linked VS Code settings to shared-instructions\""

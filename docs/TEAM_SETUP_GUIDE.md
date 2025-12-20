@@ -322,7 +322,7 @@ git push
 ## 🎓 Learning More
 
 **For detailed agent behavior:**
-- Read: `shared-instructions/agents/custom-agent.agent.md`
+ - Read: `shared-instructions/instructions/custom-agent.agent.md`
 
 **For Copilot instructions in this workspace:**
 - Read: `shared-instructions/copilot.instructions.md`

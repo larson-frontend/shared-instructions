@@ -17,6 +17,7 @@
 | **instructions/test.instructions.md** | Unit testing best practices (Java/TS) | 10 min | All developers |
 | **docs/agent-usage.md** | Agent usage history & patterns | 5-10 min | Reference for past solutions |
 | **scripts/log-agent-usage.sh** | Append usage entries automatically | 1 min | All developers |
+| **scripts/link-shared-instructions.sh** | Interactively add repo symlink | 1-2 min | All developers |
 
 **Total onboarding time: ~30-50 minutes** (depending on experience)
 
@@ -32,10 +33,20 @@
    ```
    → See `docs/GETTING_STARTED.md` for detailed setup
 
-2. **Read Team Standards**
+2. **Link shared-instructions into your repo**
+   ```zsh
+   # Interactive (select target repo, optional VS Code init)
+   ./shared-instructions/scripts/link-shared-instructions.sh --init-vscode
+
+   # Or manual
+   ln -s ../shared-instructions shared-instructions
+   shared-instructions/scripts/init-shared-instructions-vscode.sh --non-interactive
+   ```
+
+3. **Read Team Standards**
    → See `docs/TEAM_SETUP_GUIDE.md` for workflows and guidelines
 
-3. **Start Development**
+4. **Start Development**
    ```bash
    # Follow GETTING_STARTED.md step-by-step
    # You'll have a running local development environment
