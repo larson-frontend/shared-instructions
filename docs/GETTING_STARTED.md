@@ -1,4 +1,4 @@
-<REPLACED WITH ABSTRACT VERSION ABOVE>
+
 
 # 🚀 Getting Started with Project Development
 
@@ -413,12 +413,9 @@ docker-compose down                 # Stop all services
    - Review documentation in each project directory
 
 5. ✅ **Start development**
-   - Create a feature branch: `git checkout -b feature/my-feature`
+   - Create a feature branch: `git checkout -b feature/<your-feature>`
    - Make changes, commit, push
-   - Create pull requestb/fasting/controller/`
-
-5. ✅ **For publication**
-   - Run: `npm run pre-publication-check`
+   - Open a pull request for review
 ## 📞 Getting Help
 
 - **Copilot Chat**: Press `⌘ + I` (Mac) or `Ctrl + I` to ask the agent

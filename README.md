@@ -10,10 +10,10 @@
 
 | Document | Purpose | Read Time | Audience |
 |----------|---------|-----------|----------|
-| **GETTING_STARTED.md** | Complete setup from clone to running | 15-20 min | New developers, onboarding |
-| **TEAM_SETUP_GUIDE.md** | Team workflows, standards, collaboration | 10-15 min | All team members |
+| **docs/GETTING_STARTED.md** | Complete setup from clone to running | 15-20 min | New developers, onboarding |
+| **docs/TEAM_SETUP_GUIDE.md** | Team workflows, standards, collaboration | 10-15 min | All team members |
 | **copilot.instructions.md** | AI agent instructions & behavior | 5 min | Developers using agents |
-| **agent-usage.md** | Agent usage history & patterns | 5-10 min | Reference for past solutions |
+| **docs/agent-usage.md** | Agent usage history & patterns | 5-10 min | Reference for past solutions |
 
 **Total onboarding time: ~30-50 minutes** (depending on experience)
 
@@ -27,10 +27,10 @@
    cd <YOUR_PROJECT>
    git submodule update --init --recursive
    ```
-   → See `GETTING_STARTED.md` for detailed setup
+   → See `docs/GETTING_STARTED.md` for detailed setup
 
 2. **Read Team Standards**
-   → See `TEAM_SETUP_GUIDE.md` for workflows and guidelines
+   → See `docs/TEAM_SETUP_GUIDE.md` for workflows and guidelines
 
 3. **Start Development**
    ```bash
@@ -47,10 +47,12 @@ This repository uses **symlinks** for shared documentation:
 ```
 root/
 ├── shared-instructions/          ← Central source of truth
-│   ├── GETTING_STARTED.md
-│   ├── TEAM_SETUP_GUIDE.md
-│   ├── copilot.instructions.md
-│   └── ...
+│   ├── docs/
+│   │   ├── GETTING_STARTED.md
+│   │   ├── TEAM_SETUP_GUIDE.md
+│   │   └── agent-usage.md
+│   ├── copilot.instructions.md (symlink to docs/copilot.instructions.md)
+│   └── README.md (index)
 ├── project-1/
 │   └── shared-instructions/ → ../shared-instructions  (symlink)
 └── project-2/
