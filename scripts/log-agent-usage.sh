@@ -67,17 +67,28 @@ detect_lang_from_changes() {
     }
     {
       fname = $0;
-      n = split(fname, parts, ".");
-      base = parts[n];
-      # special case MANIFEST.MF
-      if (fname ~ /(^|\/)MANIFEST\.MF$/) {
-        lc["manifest"]++;
-        next;
-      }
-      ext = tolower(base);
-      if (ext in m) {
-        lc[m[ext]]++;
-      }
+      n = split(fname, parts, "/");
+      basepath = fname;
+      basename = parts[n];
+      # special cases by basename and path
+      if (fname ~ /(^|\/ )MANIFEST\.MF$/) { lc["manifest"]++; next; }
+      if (fname ~ /(^|\/ )Dockerfile(\..*)?$/) { lc["docker"]++; next; }
+      if (fname ~ /(^|\/ )docker-compose\.ya?ml$/) { lc["docker_compose"]++; next; }
+      if (fname ~ /(^|\/ )Jenkinsfile$/) { lc["jenkins"]++; next; }
+      if (fname ~ /(^|\/ )Makefile$/) { lc["make"]++; next; }
+      if (fname ~ /(^|\/ )\.github\/workflows\//) { lc["github_actions"]++; next; }
+      if (fname ~ /(^|\/ )\.gitlab-ci\.yml$/) { lc["gitlab_ci"]++; next; }
+      if (fname ~ /(^|\/ )\.circleci\/config\.yml$/) { lc["circleci"]++; next; }
+      if (fname ~ /(^|\/ )charts\// || fname ~ /(^|\/ )helm\// || fname ~ /(^|\/ )Chart\.ya?ml$/) { lc["helm"]++; next; }
+      if (fname ~ /(^|\/ )kustomization\.ya?ml$/) { lc["kustomize"]++; next; }
+      if (fname ~ /(^|\/ )argo(cd)?\//) { lc["argocd"]++; next; }
+      if (fname ~ /(^|\/ )flux\//) { lc["flux"]++; next; }
+      if (fname ~ /(^|\/ )skaffold\.ya?ml$/) { lc["skaffold"]++; next; }
+      # extension mapping
+      # get extension from basename
+      split(basename, extparts, ".");
+      ext = tolower(extparts[length(extparts)]);
+      if (ext in m) { lc[m[ext]]++; next; }
     }
     END {
       top = ""; cnt = 0;

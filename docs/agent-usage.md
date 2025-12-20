@@ -15,6 +15,7 @@ Visual stats (ASCII ring/pie):
 Language auto-detection:
 - Uses `shared-instructions/config/language-map.conf` to infer language from changed files (e.g., `.xml → xml`, `MANIFEST.MF → manifest`).
 - Agent hints apply first (React/Vue/Java agents), then repo heuristics (`pom.xml`, `tsconfig.json`), then file changes.
+- GitOps/DevOps detection includes special files and paths: `Dockerfile`, `docker-compose.yml`, `Jenkinsfile`, `Makefile`, `.github/workflows/*` (GitHub Actions), `.gitlab-ci.yml`, `.circleci/config.yml`, `helm/` & `charts/`, `kustomization.yaml`, `skaffold.yaml`, `flux/`, `argocd/`.
 
 Recent entries:
 - [2025-12-06 21:30] agent=Custom_Auto task=setup model=claude-sonnet-4.5 status=primary desc=initial logging file bootstrap
@@ -35,3 +36,4 @@ Recent entries:
 - [2025-12-20 16:40] agent=Vue_Agent task=code model=gpt-4o status=primary lang=vue desc=Demo auto-detect language from agent
 - [2025-12-20 16:44] agent=Custom_Auto task=analysis model=claude-sonnet-4.5 status=primary lang=shell desc=Detect xml/manifest via changes
 - [2025-12-20 16:44] agent=Custom_Auto task=analysis model=claude-sonnet-4.5 status=primary lang=xml desc=XML dominates changes
+- [2025-12-20 16:47] agent=Custom_Auto task=analysis model=claude-sonnet-4.5 status=primary lang=xml desc=Detect GitOps/DevOps files
