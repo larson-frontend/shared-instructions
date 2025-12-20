@@ -20,7 +20,7 @@ MODEL=""
 STATUS=""
 DESC=""
 LANG=""
-LOG_FILE="shared-instructions/docs/agent-usage.md"
+LOG_FILE=""
 SCRIPT_DIR=$(cd -- "$(dirname "$0")" && pwd)
 LANG_MAP_FILE="$SCRIPT_DIR/../config/language-map.conf"
 
@@ -39,6 +39,12 @@ while [[ $# -gt 0 ]]; do
     *) echo "Unknown argument: $1" >&2; exit 1;;
   esac
 done
+
+# Auto-detect repo if --file not provided
+if [[ -z "$LOG_FILE" ]]; then
+  REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
+  LOG_FILE="$REPO_ROOT/.agent-usage.md"
+fi
 
 if [[ -z "$AGENT" || -z "$TASK" || -z "$MODEL" || -z "$STATUS" || -z "$DESC" ]]; then
   echo "Error: Missing required arguments. See --help." >&2
