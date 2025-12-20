@@ -114,15 +114,37 @@ echo "JetBrains setup complete."
 
 # 3) Username prompt and agent name personalization
 if [[ -z "$USERNAME" && "$NON_INTERACTIVE" == false ]]; then
-  printf "\nOptional: Enter your username to personalize agent name (or press Enter to use 'Custom_Auto'): "
+  printf "\nOptional: Enter your username to personalize agent name\n"
+  printf "  - Enter a custom name (e.g., 'Mario')\n"
+  printf "  - Type 'random' for a Mario Bros character\n"
+  printf "  - Press Enter to use 'Custom_Auto'\n"
+  printf "Username: "
   read -r USERNAME
 fi
 
 if [[ -n "$USERNAME" ]]; then
-  # Normalize username: lowercase, replace spaces with underscores
-  USERNAME_NORM=$(echo "$USERNAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
-  AGENT_NAME="${USERNAME_NORM}-custom_agent"
-  echo "Agent name set to: $AGENT_NAME"
+  # Check if user wants random name
+  if [[ "$USERNAME" == "random" ]]; then
+    MARIO_NAMES_FILE="$SHARED_ABS/config/mario-names.conf"
+    if [[ -f "$MARIO_NAMES_FILE" ]]; then
+      # Read all names, filter out comments/empty lines, pick random
+      USERNAME=$(grep -v '^#' "$MARIO_NAMES_FILE" | grep -v '^[[:space:]]*$' | shuf -n 1)
+      echo "🎮 Random character selected: $USERNAME"
+    else
+      echo "Warning: mario-names.conf not found, using default."
+      USERNAME=""
+    fi
+  fi
+  
+  if [[ -n "$USERNAME" ]]; then
+    # Normalize username: lowercase, replace spaces with underscores
+    USERNAME_NORM=$(echo "$USERNAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
+    AGENT_NAME="${USERNAME_NORM}-custom_agent"
+    echo "Agent name set to: $AGENT_NAME"
+  else
+    AGENT_NAME="Custom_Auto"
+    echo "Agent name: $AGENT_NAME (default)"
+  fi
 else
   AGENT_NAME="Custom_Auto"
   echo "Agent name: $AGENT_NAME (default)"

@@ -27,8 +27,16 @@ If you don't provide the `--username` flag and not running in `--non-interactive
 
 ```
 Optional: Enter your username to personalize the agent name.
-Press Enter to use the default agent name 'Custom_Auto'.
-Username: Mario
+  - Enter a custom name (e.g., 'Mario')
+  - Type 'random' for a Mario Bros character
+  - Press Enter to use 'Custom_Auto'
+Username: random
+```
+
+**Result:**
+```
+🎮 Random character selected: yoshi
+Agent name set to: yoshi-custom_agent
 ```
 
 ### Behavior
@@ -38,6 +46,7 @@ Username: Mario
 | `Mario` | `mario` | `mario-custom_agent` |
 | `Alice Smith` | `alice_smith` | `alice_smith-custom_agent` |
 | `Bob-Dev` | `bob-dev` | `bob-dev-custom_agent` |
+| `random` | *(random Mario character)* | `yoshi-custom_agent` 🎮 |
 | *(empty)* | *(empty)* | `Custom_Auto` |
 
 **Normalization Rules:**
@@ -45,9 +54,39 @@ Username: Mario
 - Replaces spaces with underscores
 - Preserves hyphens and underscores
 
+**Random Option:**
+- Type `random` to get a random Mario Bros character name
+- Characters include: mario, luigi, peach, yoshi, bowser, toad, rosalina, and 20+ more!
+- Each run selects a different random character
+- Characters are stored in `config/mario-names.conf`
+
 ## Examples
 
-### Example 1: With Username Flag
+### Example 1: Random Mario Character 🎮
+
+```bash
+cd fasting-service
+../shared-instructions/scripts/init-shared-instructions-jetbrains.sh --username random
+```
+
+**Output:**
+```
+Using shared-instructions at: /path/to/shared-instructions
+Symlink shared-instructions already correct.
+JetBrains setup complete.
+🎮 Random character selected: bowser
+Agent name set to: bowser-custom_agent
+
+Tip: Log this setup in agent-usage.md:
+  ./shared-instructions/scripts/log-agent-usage.sh \
+  --agent "bowser-custom_agent" \
+  --task setup \
+  --model <model> \
+  --status primary \
+  --desc "Linked IntelliJ IDEA settings to shared-instructions"
+```
+
+### Example 2: With Username Flag
 
 ```bash
 cd fasting-frontend
@@ -81,7 +120,9 @@ cd fasting-service
 **Prompts:**
 ```
 Optional: Enter your username to personalize the agent name.
-Press Enter to use the default agent name 'Custom_Auto'.
+  - Enter a custom name (e.g., 'Mario')
+  - Type 'random' for a Mario Bros character
+  - Press Enter to use 'Custom_Auto'
 Username: [Enter]
 ```
 
@@ -98,7 +139,7 @@ Tip: Log this setup in agent-usage.md (optional):
   --desc "Linked IntelliJ IDEA settings to shared-instructions"
 ```
 
-### Example 3: Non-Interactive Mode (No Username)
+### Example 4: Non-Interactive Mode (No Username)
 
 ```bash
 cd fasting-frontend
@@ -197,7 +238,26 @@ bash init-shared-instructions-eclipse.sh --non-interactive --username "Bob"
 # Expected: Agent name set to: bob-custom_agent
 ```
 
-### Test Case 2: Default Agent Name
+### Test Case 2: Random Mario Character 🎮
+
+```bash
+# JetBrains
+bash init-shared-instructions-jetbrains.sh --username random
+# Expected: 🎮 Random character selected: <character>
+# Expected: Agent name set to: <character>-custom_agent
+
+# VSCode
+bash init-shared-instructions-vscode.sh --username random
+# Expected: 🎮 Random character selected: <character>
+# Expected: Agent name set to: <character>-custom_agent
+
+# Eclipse
+bash init-shared-instructions-eclipse.sh --non-interactive --username random
+# Expected: 🎮 Random character selected: <character>
+# Expected: Agent name set to: <character>-custom_agent
+```
+
+### Test Case 3: Default Agent Name
 
 ```bash
 # JetBrains
@@ -228,6 +288,20 @@ bash init-shared-instructions-eclipse.sh --username "Bob-Dev"
 bash init-shared-instructions-jetbrains.sh --username "MarioRossi"
 # Expected: Agent name set to: mariorossi-custom_agent
 ```
+
+## Mario Bros Character List 🎮
+
+The random option selects from 28 Mario Bros characters stored in `config/mario-names.conf`:
+
+**Heroes:** mario, luigi, peach, daisy, toad, toadette, yoshi, rosalina, pauline, cappy
+
+**Villains:** bowser, wario, waluigi, king_boo, kamek
+
+**Enemies/NPCs:** koopa, goomba, shy_guy, boo, hammer_bro, lakitu, dry_bones
+
+**Friends:** birdo, donkey_kong, diddy_kong, nabbit, toadsworth, polterpup
+
+You can add more characters by editing `config/mario-names.conf` - just add one name per line!
 
 ## Future Enhancements
 
