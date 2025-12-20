@@ -30,7 +30,7 @@ When you open the workspace, these settings load automatically:
 ### Part 1: Shared Instructions Submodule
 
 ```
-Repository Structure:
+Repository Structure (example):
 ├── .github/
 ├── .vscode/
 │   └── settings.json          ← Workspace settings (shared by all)
@@ -39,8 +39,8 @@ Repository Structure:
 │   ├── agents/
 │   │   └── custom-agent.agent.md
 │   └── agent-usage.md
-├── fasting-service/           ← Backend service
-├── fasting-frontend/          ← Frontend service
+├── <backend-project>/         ← Backend service
+├── <frontend-project>/        ← Frontend service
 └── [other folders]
 ```
 
@@ -87,8 +87,8 @@ Repository Structure:
 
 **Step 1: Clone with Submodules**
 ```bash
-git clone --recurse-submodules git@github.com:larson-frontend/fasting-service.git
-cd fasting-service
+git clone --recurse-submodules <YOUR_REPO_URL>
+cd <YOUR_PROJECT_DIR>
 ```
 
 **Step 2: Open in VS Code**
@@ -116,7 +116,7 @@ git pull origin
 git submodule update --remote
 
 # If you see username/password prompts (forcing SSH for the submodule):
-git config submodule.shared-instructions.url git@github.com:larson-frontend/shared-instructions.git
+git config submodule.shared-instructions.url git@github.com:<owner>/<shared-repo>.git
 git submodule sync --recursive
 git submodule update --init --recursive
 ```
@@ -129,7 +129,7 @@ git submodule update --init --recursive
 
 ### Example 1: Complex Refactoring
 ```
-Your Question: "Refactor the FastingService to use async/await instead of callbacks"
+Your Question: "Refactor the service to use async/await instead of callbacks"
 
 Copilot Reasoning:
 - Task: Code (complex refactoring)
@@ -200,7 +200,7 @@ git submodule update --remote
 ## 📁 File Structure Explained
 
 ```
-Fasting-Service/
+<backend-project>/
 │
 ├── .vscode/settings.json
 │   └── Tells VS Code: "Load instructions from shared-instructions/copilot.instructions.md"
@@ -221,10 +221,10 @@ Fasting-Service/
 │   ├── copilot/ (folder for internal use)
 │   └── .git/ (Submodule repository)
 │
-├── fasting-service/ (Your backend)
+├── <backend-project>/ (Your backend)
 │   └── Also has .gitmodules pointing to shared-instructions
 │
-└── fasting-frontend/ (Your frontend)
+└── <frontend-project>/ (Your frontend)
     └── Also has .gitmodules pointing to shared-instructions
 ```
 

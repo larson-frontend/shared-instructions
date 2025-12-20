@@ -59,21 +59,18 @@ The Custom Auto agent will automatically:
 
 ## Workspace Context
 
-**Full-Stack Fasting Tracker Application:**
+This instruction set is project-agnostic. Adapt guidance to your stack:
 
-- **Backend:** Java 21, Spring Boot 3.4.0, PostgreSQL 16
-- **Frontend:** Vue 3.5, TypeScript 5.9, Vite 7.2
-- **Mobile:** Capacitor 7.4 (Android & iOS)
-- **Testing:** JUnit 5, Testcontainers, Vitest, @vue/test-utils
-- **Infrastructure:** Docker, Docker Compose, Maven, npm
-- **Deployment:** Railway, Vercel, PWA-capable
+- Backend: Replace with your language/framework/tooling
+- Frontend: Replace with your framework/tooling
+- Mobile: Include only if applicable
+- Testing/Infra/Deployment: Use the tools relevant to your project
 
-**Key Principles:**
+Key principles (universal):
 - ✅ Prioritize code quality and maintainability
 - ✅ Comprehensive testing (unit + integration)
-- ✅ Type-safe (TypeScript strict mode, Spring Boot generics)
-- ✅ Security-first (2FA, HTTPS, environment variables)
-- ✅ Performance-optimized (lazy loading, PWA caching)
+- ✅ Security-first practices for secrets and environments
+- ✅ Performance-awareness appropriate to your stack
 
 ---
 
@@ -103,9 +100,7 @@ Example:
 
 - **Custom Agent Details:** `shared-instructions/agents/custom-agent.agent.md`
 - **Agent Usage History:** `shared-instructions/agent-usage.md`
-- **Deployment Guide:** `deployment/DEPLOYMENT.md`
-- **Frontend Readiness:** `deployment/FRONTEND_STAGING_READINESS.md`
-- **Backend Hosting:** `deployment/BACKEND_HOSTING_DECISION.md`
+- Project-specific deployment/readiness guides: See your project's documentation
 
 ---
 

@@ -1,6 +1,10 @@
-# 🚀 Getting Started with Fasting Tracker Pro
+<REPLACED WITH ABSTRACT VERSION ABOVE>
 
-> Complete setup guide from cloning to running the full stack (frontend + backend)
+# 🚀 Getting Started with Project Development
+
+> Complete setup guide from cloning repository to running the development stack
+> 
+> **Note:** This is a template guide. Adjust paths and commands for your specific project.
 
 ---
 
@@ -22,8 +26,8 @@ Before you begin, ensure you have:
 
 ```bash
 # Clone the main repository
-git clone https://github.com/larson-frontend/fasting-service.git
-cd fasting-service
+git clone <YOUR_REPO_URL>
+cd <YOUR_PROJECT_DIR>
 
 # Initialize submodules (includes shared-instructions)
 git submodule update --init --recursive
@@ -33,161 +37,142 @@ ls -la shared-instructions/
 # Should show: agent-usage.md, copilot.instructions.md, TEAM_SETUP_GUIDE.md, etc.
 ```
 
+**Replace:**
+- `<YOUR_REPO_URL>` with your repository URL
+- `<YOUR_PROJECT>` with your project directory name
+
 ---
 
 ## 📁 Step 2: Understand the Project Structure
 
 ```
-fasting-service/                          # Main workspace root
+<root-workspace>/
 ├── shared-instructions/                  # Shared docs (symlinked in projects)
 │   ├── copilot.instructions.md          # Copilot agent instructions
 │   ├── agent-usage.md                   # Agent usage history
 │   ├── TEAM_SETUP_GUIDE.md              # Team onboarding
+│   ├── README.md                        # This documentation hub
 │   └── agents/                          # Agent-specific configs
-├── fasting-frontend/                     # Vue.js + Capacitor mobile app
-│   ├── src/                             # TypeScript/Vue source code
-│   ├── android/                         # Android native project
-│   ├── ios/                             # iOS native project
+├── <project-1>/                          # Project 1 (e.g., frontend)
+│   ├── src/                             # Source code
 │   ├── .vscode/settings.json            # Copilot instructions (symlinked)
-│   ├── package.json                     # Dependencies & npm scripts
-│   └── capacitor.config.ts              # Mobile app config
-├── fasting-service/                      # Spring Boot Java backend
-│   ├── src/                             # Java source code
-│   ├── pom.xml                          # Maven dependencies
-│   ├── Dockerfile                       # Docker image definition
-│   ├── docker-compose.yml               # Local development stack
-│   └── .vscode/settings.json            # Copilot instructions (symlinked)
-└── deployment/                           # Deployment guides
+│   └── shared-instructions/ → ../shared-instructions  (symlink)
+├── <project-2>/                          # Project 2 (e.g., backend)
+│   ├── src/                             # Source code
+│   ├── .vscode/settings.json            # Copilot instructions (symlinked)
+│   └── shared-instructions/ → ../shared-instructions  (symlink)
+└── <additional-projects>/               # Additional projects (optional)
 ```
+
+**Your projects:**
+- Replace `<root-workspace>` with your workspace directory
+- Replace `<project-1>`, `<project-2>` with your actual project names
+- Both projects symlink to the same `shared-instructions/` for consistency
 
 ---
+## 🗂️ Step 3: Setup Infrastructure (If Required)
 
-## 🗂️ Step 3: Setup Database
+### Database Setup (Backend Projects)
 
-### Option A: Docker (Recommended for Quick Start)
-
+**Option A: Docker (Recommended)**
 ```bash
-cd fasting-service
-
-# Start PostgreSQL in Docker
-docker-compose up -d fasting-db
-
-# Verify database is running
-docker ps | grep fasting-db
-
-# Check connection
-docker-compose exec fasting-db psql -U postgres -c "SELECT 1"
+cd <backend-project>
+docker-compose up -d
 ```
 
-### Option B: Local PostgreSQL
+**Option B: Local Installation**
+- Install your required database (PostgreSQL, MySQL, MongoDB, etc.)
+- Create development database
+- Configure connection string in your project's config file
 
-```bash
-# Create database
-createdb fasting_tracker_dev
-
-# Create user
-psql -U postgres -c "CREATE USER fasting WITH PASSWORD 'dev_password';"
-psql -U postgres -c "GRANT ALL PRIVILEGES ON DATABASE fasting_tracker_dev TO fasting;"
-```
-
-Update `fasting-service/application.properties`:
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/fasting_tracker_dev
-spring.datasource.username=fasting
-spring.datasource.password=dev_password
+**Check your project's README or `docker-compose.yml` for specific setup instructions.**
 ```
 
 ---
 
 ## 🔨 Step 4: Build & Run Backend
 
+```
+## 🔨 Step 4: Build & Run Backend Services
+
+**This step depends on your backend technology stack.**
+
+### For Java/Maven Projects
 ```bash
-cd fasting-service
-
-# Install dependencies & run tests
-mvn clean install
-
-# Expected output:
-# [INFO] BUILD SUCCESS
-# [INFO] Tests run: 92, Failures: 0, Errors: 0
-
-# Run backend server
-mvn spring-boot:run
-
-# OR run directly
-java -jar target/fasting-service-0.0.1-SNAPSHOT.jar
+cd <backend-project>
+mvn clean install      # Build and run tests
+mvn spring-boot:run    # Run server
 ```
 
-**Backend is running at:** `http://localhost:8080/api`
-
-Test it:
+### For Node.js/npm Projects
 ```bash
-curl http://localhost:8080/api/health
-# Response: {"status":"UP"}
+cd <backend-project>
+npm install            # Install dependencies
+npm start              # Start server
+# OR: npm run dev      # Development with watch mode
 ```
 
----
+### For Python Projects
+```bash
+cd <backend-project>
+pip install -r requirements.txt
+python manage.py runserver  # or your project's run command
+```
 
-## 🎨 Step 5: Build & Run Frontend
+### For Go/Rust/Other Languages
+```bash
+cd <backend-project>
+## 🎨 Step 5: Build & Run Frontend Services
+
+**For Node.js/npm-based frontends:**
 
 ```bash
-cd fasting-frontend
+cd <frontend-project>
 
 # Install npm dependencies
 npm install
 
-# Expected output:
-# added 638 packages, 0 vulnerabilities
-
 # Run development server
 npm run dev
-
-# Output will show:
-# VITE v7.2.6 ready in XXX ms
-# ➜  Local:   http://localhost:5173/
+# Output will show the running URL (typically http://localhost:3000 or 5173)
 ```
-
-**Frontend is running at:** `http://localhost:5173`
-
-### Common Frontend Commands
-
-```bash
-npm run build              # Production build
-npm run preview            # Preview production build
-npm run test:all           # Run all tests (159 + 21 = 180 tests)
-npm run type-check         # TypeScript validation
-npm run pre-publication-check  # Validate publication readiness
-```
-
----
 
 ## 🧪 Step 6: Verify Full Stack
 
 ### Health Checks
 
+**Backend verification:**
 ```bash
-# Backend health
-curl http://localhost:8080/api/health
-# Expected: {"status":"UP"}
+# Check if backend is responding
+curl http://localhost:8080/health  # Or your backend port/endpoint
+# OR visit in browser and check for 200 status
+```
 
-# Frontend (in browser)
-open http://localhost:5173
-# Should load Fasting Tracker app
+**Frontend verification:**
+```bash
+# Open in browser
+open http://localhost:3000  # Or your frontend port
+# Should load without errors
 ```
 
 ### Run Tests
 
-```bash
-# Frontend tests
-cd fasting-frontend
-npm run test:all
-# Expected: 159 passed | 4 todo, 21/21 standalone tests passed
+**Run tests in each project:**
 
+```bash
 # Backend tests
-cd ../fasting-service
-mvn test
-# Expected: Tests run: 92, BUILD SUCCESS
+cd <backend-project>
+mvn test                    # Maven
+# OR: npm test             # Node.js
+# OR: your language's test command
+
+# Frontend tests
+cd <frontend-project>
+npm test                    # Most npm projects
+# OR: npm run test:all     # If using custom test scripts
 ```
+
+**All tests should pass before proceeding.**
 
 ---
 
@@ -202,9 +187,9 @@ mvn test
    ]
    ```
 
-2. **The symlink resolves automatically:**
-   - `fasting-frontend/shared-instructions/` → `../shared-instructions/` (root)
-   - `fasting-service/shared-instructions/` → `../shared-instructions/` (root)
+2. **The symlink resolves automatically in each project:**
+   - `<frontend-project>/shared-instructions/` → `../shared-instructions/` (root)
+   - `<backend-project>/shared-instructions/` → `../shared-instructions/` (root)
 
 3. **All projects share the same instructions:**
    - Single source of truth in `shared-instructions/copilot.instructions.md`
@@ -216,37 +201,24 @@ mvn test
 Open VS Code and start coding:
 
 ```bash
-# Open workspace
-code /path/to/fasting-service
+## 🚀 Step 8: Building for Mobile (If Applicable)
 
-# In the editor:
-# ⌘ + I (Mac) or Ctrl + I (Linux/Windows) → Opens Copilot Chat
-# Type your question or request
-# Agent automatically detects task type and selects best model
-```
+**This section only applies if your project targets mobile platforms.**
 
-**Example:** 
-```
-"Create a function to validate email addresses"
-→ Agent detects: code task
-→ Selects: Claude Sonnet 4.5 (for complex logic)
-→ Provides: Implementation with explanation
-```
+### For Capacitor/React Native/Flutter Projects
 
----
+Refer to your project's specific mobile build documentation:
+- Check `<project>/README.md` for mobile setup
+- Look for `android/`, `ios/`, or `mobile/` directories
+- Consult your framework's official documentation
 
-## 🚀 Step 8: Building for Mobile
-
-### Android
-
+**Example for Capacitor:**
 ```bash
-cd fasting-frontend
+npm run android:sync   # Sync web to Android
+npm run ios:sync       # Sync web to iOS
+```
 
-# Build and sync to Android
-npm run android:sync
-
-# Open Android Studio
-npm run android:open
+**If your project doesn't target mobile, skip this step.** run android:open
 
 # Build signed APK (requires keystore setup - see ANDROID_SIGNING.md)
 npm run build-release-apk
@@ -255,7 +227,7 @@ npm run build-release-apk
 ### iOS
 
 ```bash
-cd fasting-frontend
+cd <frontend-project>
 
 # Build and sync to iOS
 npm run ios:sync
@@ -263,42 +235,30 @@ npm run ios:sync
 # Open Xcode
 npm run ios:open
 
-# Build for App Store (requires Apple Developer account)
-# In Xcode: Product → Archive → Distribute App → App Store Connect
-```
+## 📱 Step 9: Deployment & Publication (If Applicable)
 
----
+**This section applies only if you're preparing for production deployment or app store publication.**
 
-## 📱 Step 9: Publication Readiness
-
-### Pre-Submission Checklist
+### Pre-Deployment Checklist
 
 ```bash
-cd fasting-frontend
+# 1. Run all tests
+npm test                  # Frontend
+mvn test                  # Backend (if Maven)
 
-# Run automated validation
-npm run pre-publication-check
+# 2. Build for production
+npm run build             # Frontend
+mvn clean package         # Backend (if Maven)
 
-# Expected output:
-# ✓ All tests passing (159 frontend + 21 standalone)
-# ✓ Production build successful
-# ✓ Android configuration ready
-# ✓ iOS configuration ready
-# ... (more checks)
-# ✓ All checks passed! Ready for publication.
+# 3. Run any project-specific validation
+# Check your project's README for additional checks
 ```
 
-### For Android
+### For Publication
 
-1. See: `fasting-frontend/PUBLICATION_GUIDE.md` (Android section)
-2. See: `fasting-frontend/ANDROID_SIGNING.md` (keystore setup)
-3. Upload to: Google Play Console
-
-### For iOS
-
-1. See: `fasting-frontend/IOS_PUBLISHING.md` (step-by-step guide)
-2. Set up: Apple Developer account & certificates
-3. Upload to: App Store Connect
+- Check your project's documentation for publication guides
+- Follow your platform's submission process (e.g., App Store, Google Play)
+- Skip if your project does not require publication
 
 ---
 
@@ -306,162 +266,177 @@ npm run pre-publication-check
 
 ### Frontend Production
 
-Create `.env.production` in `fasting-frontend/`:
+Create `.env.production` in `<frontend-project>/`:
 
 ```env
-VITE_API_BASE=https://your-api-domain.com/api
-VITE_APP_VERSION=1.0.0
-VITE_ENABLE_ANALYTICS=true
-VITE_SECURE_STORAGE_ENABLED=true
-```
+## 🔒 Security & Environment Variables
 
-### Backend Production
+### Development vs. Production
 
-Create `.env` or set environment variables:
+**Development:**
+- Use default configuration (often provided in project)
+- Store sensitive values in `.env.local` or `.env.development`
+- Never commit `.env.local` to git
 
+**Production:**
+- Use `.env.production` (if tracked) OR environment variables
+- Store secrets in secure vaults (GitHub Secrets, AWS Secrets Manager, etc.)
+- Rotate secrets regularly
+
+### Setting Environment Variables
+
+**Option 1: Environment File**
 ```bash
-export DB_PASSWORD=secure_password
-export JWT_SECRET=your_256bit_random_secret
-export SPRING_PROFILES_ACTIVE=prod
+# Create .env.local (not tracked by git)
+echo "DB_PASSWORD=secure_value" > .env.local
+echo "API_KEY=your_api_key" >> .env.local
 ```
 
----
-
+**Option 2: Shell Environment**
+```bash
 ## 🐛 Troubleshooting
 
-### Frontend Issues
+### General Issues
 
 ```bash
-# Clear cache and reinstall
-npm run clean
+# Port already in use (Linux/macOS)
+lsof -i :<PORT>          # Find process using port
+kill -9 <PID>            # Terminate process
+
+# Clear caches and reinstall
+rm -rf node_modules package-lock.json
 npm install
 
-# Port already in use
-lsof -i :5173  # Find process
-kill -9 <PID>  # Kill process
+# Submodule not loading
+git submodule update --init --recursive
 
-# TypeScript errors
-npm run type-check
-
-# Tests failing
-npm run test:all -- --reporter=verbose
+# Verify symlinks
+ls -la <project>/shared-instructions
+# Should show: shared-instructions -> ../shared-instructions
 ```
 
 ### Backend Issues
 
 ```bash
-# Clear Maven cache
-mvn clean
+# Restart infrastructure
+docker-compose restart
 
-# Database connection refused
-# Check: Is PostgreSQL running?
-docker ps | grep fasting-db
+# Check database connection
+# Verify database service is running and accessible
 
-# Port 8080 in use
-lsof -i :8080
+# Review logs
+docker-compose logs <service-name>
 ```
 
-### Git Issues
+### Frontend Issues
 
 ```bash
-# Submodule not loading
-git submodule update --init --recursive
+# Clear build cache
+npm run clean  # (if available) or rm -rf dist/
 
-# Symlink issues (Windows)
-# Use: git config core.symlinks true
-# Then: git reset --hard HEAD
+# Test failing
+npm test -- --verbose
 
-# Verify symlinks
-ls -la fasting-frontend/shared-instructions
-# Should show: shared-instructions -> ../shared-instructions
+# Type errors
+npm run type-check  # (if using TypeScript)
 ```
 
----
+**See your project's README for project-specific troubleshooting.**ymlink issues (Windows)
+# Use: git config core.symlinks true
+# Then: git reset --hard HEAD
 
 ## 📚 Documentation Files
 
 | File | Purpose | Location |
 |------|---------|----------|
-| **PUBLICATION_GUIDE.md** | Complete publication guide | `fasting-frontend/` |
-| **ANDROID_SIGNING.md** | Android keystore setup | `fasting-frontend/` |
-| **IOS_PUBLISHING.md** | iOS App Store steps | `fasting-frontend/` |
-| **PRODUCTION_DEPLOYMENT.md** | Backend deployment | `fasting-service/` |
+| **README.md** (in each project) | Project-specific setup | Each project directory |
+| **TEAM_SETUP_GUIDE.md** | Team workflow & standards | `shared-instructions/` |
 | **copilot.instructions.md** | Agent instructions | `shared-instructions/` |
-| **TEAM_SETUP_GUIDE.md** | Team onboarding | `shared-instructions/` |
 | **agent-usage.md** | Agent usage history | `shared-instructions/` |
 
----
+**Check each project's directory for additional documentation specific to that project.**
+| **README.md** (in each project) | Project-specific setup | Each project |
+| **TEAM_SETUP_GUIDE.md** | Team workflow & standards | `shared-instructions/` |
+| **copilot.instructions.md** | Agent instructions | `shared-instructions/` |
+| **agent-usage.md** | History/patterns | `shared-instructions/` |
+## 🚀 Quick Reference - Common Commands
 
-## 🚀 Quick Reference Commands
+### Universal Commands
 
 ```bash
-# Frontend
-npm run dev                    # Start dev server (5173)
-npm run build                  # Production build
-npm run test:all              # Run all tests
-npm run type-check            # TypeScript check
-npm run pre-publication-check # Validate publication
-npm run build-release-apk     # Build signed APK
+# Repository
+git clone <repo>                  # Clone repository
+git submodule update --init       # Initialize submodules
+git checkout -b feature/<name>    # Create feature branch
 
-# Backend
-mvn clean install             # Build with tests
-mvn spring-boot:run          # Run server (8080)
-mvn test                      # Run tests only
-mvn clean package -DskipTests # Build without tests
+# npm-based Projects
+npm install                       # Install dependencies
+npm start / npm run dev          # Start dev server
+npm test                         # Run tests
+npm run build                    # Production build
+npm run lint                     # Lint code
 
-# Android
-npm run android:sync          # Sync to Android
-npm run android:open          # Open Android Studio
+# Maven-based Projects
+mvn clean install                # Build with tests
+mvn test                         # Run tests
+mvn spring-boot:run             # Run server
+mvn clean package                # Build without tests
 
-# iOS
-npm run ios:sync              # Sync to iOS
-npm run ios:open              # Open Xcode
-
-# Database
-docker-compose up -d fasting-db    # Start PostgreSQL
-docker-compose down                 # Stop all services
-docker-compose exec fasting-db psql # Access database
+# Docker
+docker-compose up -d             # Start services
+docker-compose down              # Stop services
+docker-compose logs <service>    # View logs
 ```
 
----
+**Your specific project may have different commands. Check `package.json` or `pom.xml` for available scripts.** run ios:open              # Open Xcode
 
+# Database
+docker-compose up -d <db-service>  # Start your database service
+docker-compose down                 # Stop all services
 ## 🎯 Next Steps After Setup
 
-1. ✅ **Read the documentation**
-   - Review `TEAM_SETUP_GUIDE.md` for team workflow
-   - Check `copilot.instructions.md` for agent behavior
+1. ✅ **Read the team documentation**
+   - Review `shared-instructions/TEAM_SETUP_GUIDE.md` for workflow
+   - Check `shared-instructions/copilot.instructions.md` for agent behavior
 
 2. ✅ **Try the Copilot agent**
-   - Open VS Code
+   - Open VS Code in your project
    - Press `⌘ + I` (Mac) or `Ctrl + I` (Linux/Windows)
-   - Ask a question about the codebase
+   - Ask for help with your code
 
-3. ✅ **Run tests to verify everything works**
-   - Frontend: `npm run test:all` (should see 180 tests pass)
-   - Backend: `mvn test` (should see 92 tests pass)
+3. ✅ **Run tests to verify setup**
+   - `npm test` or `mvn test`
+   - All tests should pass
 
 4. ✅ **Explore the codebase**
-   - Frontend: Start in `src/App.vue`
-   - Backend: Check `src/main/java/com/larslab/fasting/controller/`
+   - Read project-specific README
+   - Review documentation in each project directory
+
+5. ✅ **Start development**
+   - Create a feature branch: `git checkout -b feature/my-feature`
+   - Make changes, commit, push
+   - Create pull requestb/fasting/controller/`
 
 5. ✅ **For publication**
    - Run: `npm run pre-publication-check`
-   - Follow: `PUBLICATION_GUIDE.md`
-   - Submit to: Google Play & Apple App Store
-
----
-
 ## 📞 Getting Help
 
-- **Copilot Chat**: Press `⌘ + I` to ask the agent
-- **Documentation**: Check files in `shared-instructions/`
-- **Tests**: Run full test suite to verify your changes
-- **Git History**: Review commits to see how features were built
+- **Copilot Chat**: Press `⌘ + I` (Mac) or `Ctrl + I` to ask the agent
+- **Documentation**: 
+  - Shared: Check `shared-instructions/` directory
+  - Project-specific: Check each project's README
+- **Tests**: Run test suite to verify your setup
+- **Git**: Review commit history for examples
 
 ---
 
 **Last Updated:** December 20, 2025
 **Version:** 1.0.0
+**Type:** Abstract Template (Adapt for your project)
+
+---
+
+> 💡 **Tip:** Replace all project-specific values with yours. This is a template guide designed to work across different technology stacks and project structures.
 **Status:** Production Ready ✅
 
 ---

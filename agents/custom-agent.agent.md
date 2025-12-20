@@ -133,40 +133,31 @@ If unclear → ask **1–3 precise clarifying questions**.
 
 ---
 
-## 📚 Project-Specific Knowledge & Troubleshooting
+## 📚 Troubleshooting & Knowledge (Project-Agnostic)
 
-### Consulting Documentation Before Debugging
+### Consult Documentation First
 
-When encountering issues or configuration problems:
+When issues arise, check your project's troubleshooting documentation:
 
-1. **Check Troubleshooting Guides First**
-   - Location: `docs/troubleshooting/` in the fasting-service repository
-   - Index: `docs/troubleshooting/README.md` lists all available guides
-   - **Always consult relevant guides before extensive debugging**
+1. **Troubleshooting Guides**
+   - Typical location: `docs/troubleshooting/` in your repository
+   - Index files (e.g., `docs/troubleshooting/README.md`) often list guides
+   - Consult relevant guides before deep debugging
 
-2. **Swagger/OpenAPI Issues**
-   - **Mandatory:** Read `docs/troubleshooting/swagger-api-docs.md` first
-   - Common symptoms:
-     - "Failed to load remote configuration" in Swagger UI
-     - 403/401 errors on `/api-docs` or `/v3/api-docs`
-     - QR code generation not working
-     - Security filters blocking endpoints
-   - **Key checks:**
-     - Verify active Spring profile (`spring.profiles.active`)
-     - Check `application-{profile}.yml` for actual API docs path
-     - Confirm `permitAll()` configuration in SecurityConfig
-     - Ensure custom filters bypass API docs endpoints
+2. **API Documentation/Schema Issues**
+   - If using OpenAPI/Swagger, ensure the docs endpoint is reachable
+   - Check auth/permissions for docs endpoints (401/403 errors)
+   - Verify framework-specific settings for exposing docs
 
 3. **Environment-Specific Behavior**
-   - Configuration varies by profile: `dev`, `docker`, `prod`
-   - Some features are intentionally disabled in production (e.g., QR codes)
-   - **Always verify environment before assuming a bug**
+   - Configuration varies by environment (e.g., `dev`, `docker`, `prod`)
+   - Some features may be disabled in production
+   - Verify environment variables before assuming a bug
 
-4. **Security Configuration Patterns**
-   - Public endpoints require BOTH:
-     - `permitAll()` in Spring Security config
-     - Explicit bypass in custom filters (`shouldNotFilter()`)
-   - See troubleshooting guide for filter patterns
+4. **Security Considerations**
+   - Public endpoints must be explicitly allowed by your framework
+   - Confirm filters/middleware do not block internal tooling endpoints
+   - Use secrets management and avoid hardcoding sensitive values
 
 ### Quick Reference
 
