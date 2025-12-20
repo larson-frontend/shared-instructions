@@ -8,22 +8,25 @@ set -euo pipefail
 
 usage() {
   cat <<'USAGE'
-Usage: ./scripts/init-shared-instructions-jetbrains.sh [--shared-path <path>] [--non-interactive]
+Usage: ./scripts/init-shared-instructions-jetbrains.sh [--shared-path <path>] [--non-interactive] [--username <name>]
 
 Options:
   --shared-path <path>   Path to shared-instructions directory (default: ../shared-instructions)
   --non-interactive      Assume defaults: create/overwrite symlinks; apply optional settings if available
+  --username <name>      Optional username prefix for agent name (e.g., "mario" → "mario-custom_agent")
 
 Run from your project root (contains `.idea/`). This script will:
   1) Create/refresh `shared-instructions` symlink
   2) If present in shared-instructions, link JetBrains code style and inspection profiles
      - shared-instructions/jetbrains/codeStyles/Project.xml -> .idea/codeStyles/Project.xml
      - shared-instructions/jetbrains/inspectionProfiles/Project_Default.xml -> .idea/inspectionProfiles/Project_Default.xml
+  3) Prompt for optional username to personalize agent name
 USAGE
 }
 
 SHARED_PATH="../shared-instructions"
 NON_INTERACTIVE=false
+USERNAME=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -31,6 +34,8 @@ while [[ $# -gt 0 ]]; do
       SHARED_PATH="$2"; shift 2;;
     --non-interactive)
       NON_INTERACTIVE=true; shift;;
+    --username)
+      USERNAME="$2"; shift 2;;
     -h|--help)
       usage; exit 0;;
     *) echo "Unknown argument: $1" >&2; usage; exit 1;;
@@ -107,10 +112,26 @@ link_optional "$IP_SRC" "$IP_DST" "InspectionProfile (Project_Default.xml)"
 
 echo "JetBrains setup complete."
 
+# 3) Username prompt and agent name personalization
+if [[ -z "$USERNAME" && "$NON_INTERACTIVE" == false ]]; then
+  printf "\nOptional: Enter your username to personalize agent name (or press Enter to use 'Custom_Auto'): "
+  read -r USERNAME
+fi
+
+if [[ -n "$USERNAME" ]]; then
+  # Normalize username: lowercase, replace spaces with underscores
+  USERNAME_NORM=$(echo "$USERNAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
+  AGENT_NAME="${USERNAME_NORM}-custom_agent"
+  echo "Agent name set to: $AGENT_NAME"
+else
+  AGENT_NAME="Custom_Auto"
+  echo "Agent name: $AGENT_NAME (default)"
+fi
+
 # Agent usage logging guidance
-echo "\nTip: Log this setup in agent-usage.md (optional):"
+echo "\nTip: Log this setup in agent-usage.md:"
 echo "  ./shared-instructions/scripts/log-agent-usage.sh \\
-  --agent \"Custom Auto\" \\
+  --agent \"$AGENT_NAME\" \\
   --task setup \\
   --model <model> \\
   --status primary \\
