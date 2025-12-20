@@ -11,6 +11,7 @@
 | Document | Purpose | Read Time | Audience |
 |----------|---------|-----------|----------|
 | **docs/GETTING_STARTED.md** | Complete setup from clone to running | 15-20 min | New developers, onboarding |
+| **docs/INSTALLATION_QUICK.md** | Ultra-short copy/paste steps | 1-2 min | Quick starters |
 | **docs/INSTALLATION.md** | Minimal steps to start using instructions | 3-5 min | All developers |
 | **docs/TEAM_SETUP_GUIDE.md** | Team workflows, standards, collaboration | 10-15 min | All team members |
 | **instructions/copilot.instructions.md** | AI agent instructions & behavior | 5 min | Developers using agents |
@@ -23,7 +24,11 @@
 
 ---
 
-## 🚀 Quick Start (3 Steps, ~20 min)
+## 🚀 Quick Start
+
+**Ultra-quick (copy/paste):** See `docs/INSTALLATION_QUICK.md` (~2 min)
+
+**Full walkthrough (3 Steps, ~20 min):**
 
 1. **Clone & Setup**
    ```bash
