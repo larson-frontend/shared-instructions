@@ -11,6 +11,7 @@
 | Document | Purpose | Read Time | Audience |
 |----------|---------|-----------|----------|
 | **docs/GETTING_STARTED.md** | Complete setup from clone to running | 15-20 min | New developers, onboarding |
+| **docs/INSTALLATION.md** | Minimal steps to start using instructions | 3-5 min | All developers |
 | **docs/TEAM_SETUP_GUIDE.md** | Team workflows, standards, collaboration | 10-15 min | All team members |
 | **instructions/copilot.instructions.md** | AI agent instructions & behavior | 5 min | Developers using agents |
 | **instructions/test.instructions.md** | Unit testing best practices (Java/TS) | 10 min | All developers |

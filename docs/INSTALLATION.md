@@ -1,0 +1,52 @@
+# Installation (Quick Start)
+
+Minimal steps to start using shared-instructions in your project. No Docker or extra tooling required.
+
+## Prerequisites
+- VS Code installed
+- `zsh` shell (Linux/macOS)
+
+## Steps (copy/paste)
+
+1) Link shared-instructions into your project root
+```zsh
+# From your project root
+ln -s ../shared-instructions shared-instructions
+```
+
+2) Initialize VS Code settings (reads Copilot instructions from shared-instructions)
+```zsh
+shared-instructions/scripts/init-shared-instructions-vscode.sh --non-interactive
+```
+
+3) Reload VS Code
+- `Ctrl+Shift+P` → "Reload Window"
+
+4) Start using the agent
+- Open any file → press `Ctrl+I`
+- The agent uses `shared-instructions/instructions/copilot.instructions.md`
+
+## Optional
+
+- Custom shared path (if not `../shared-instructions`):
+```zsh
+shared-instructions/scripts/init-shared-instructions-vscode.sh \
+  --shared-path /absolute/path/to/shared-instructions \
+  --non-interactive
+```
+
+- Log this setup (keeps team-wide usage history):
+```zsh
+./shared-instructions/scripts/log-agent-usage.sh \
+  --agent "Custom Auto" \
+  --task setup \
+  --model claude-sonnet-4.5 \
+  --status primary \
+  --desc "Initialized shared-instructions for project"
+```
+
+- JetBrains / Eclipse (optional):
+```zsh
+shared-instructions/scripts/init-shared-instructions-jetbrains.sh --non-interactive
+shared-instructions/scripts/init-shared-instructions-eclipse.sh --non-interactive
+```
