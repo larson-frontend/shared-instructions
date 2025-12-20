@@ -2,11 +2,13 @@
 
 Minimal steps to start using shared-instructions in your project. No Docker or extra tooling required.
 
+<p><strong><span style="color:red">Run this first (auto-detect installer):</span></strong></p>
 Quick interactive setup (auto-detect):
 ```zsh
 ./shared-instructions/scripts/install-auto.sh
 ```
 
+<p><strong><span style="color:red">Windows: run this (auto-detect installer):</span></strong></p>
 Windows (auto-detect, PowerShell):
 ```powershell
 powershell -ExecutionPolicy Bypass -File shared-instructions/scripts/install-auto.ps1
@@ -24,11 +26,13 @@ powershell -ExecutionPolicy Bypass -File shared-instructions/scripts/install-aut
 ln -s ../shared-instructions shared-instructions
 ```
 
+<p><strong><span style="color:red">Init VS Code settings (required):</span></strong></p>
 2) Initialize VS Code settings (reads Copilot instructions from shared-instructions)
 ```zsh
 shared-instructions/scripts/init-shared-instructions-vscode.sh --non-interactive
 ```
 
+<p><strong><span style="color:red">Windows VS Code init (required):</span></strong></p>
 Windows (PowerShell):
 ```powershell
 powershell -ExecutionPolicy Bypass -File shared-instructions/scripts/init-shared-instructions-vscode.ps1 -NonInteractive
