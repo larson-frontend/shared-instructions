@@ -178,3 +178,4 @@ After each assistant response, log the usage to `shared-instructions/docs/agent-
 - Timestamp: Script records UTC time automatically.
 - Multiple models: If you switch models mid-task, run the script again for each switch.
 - Missing file: The script creates the file with header if absent.
+- **Auto-prompt:** Every 20 uses, the script asks if you want to see statistics in your terminal.

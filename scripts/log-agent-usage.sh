@@ -52,3 +52,15 @@ fi
 
 echo "$LINE" >> "$LOG_FILE"
 echo "Logged: $LINE"
+
+# Count entries and prompt every 20 uses
+count=$(grep -c "^- \[" "$LOG_FILE" 2>/dev/null || echo 0)
+if (( count % 20 == 0 )); then
+  echo ""
+  printf "📊 You've used the agent %d times. View stats? [y/N]: " "$count"
+  read -r ans
+  if [[ "$ans" == [yY] ]]; then
+    SCRIPT_DIR=$(cd -- "$(dirname "$0")" && pwd)
+    "$SCRIPT_DIR/stats-agent-usage.sh" "$LOG_FILE" || true
+  fi
+fi
