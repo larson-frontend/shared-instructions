@@ -15,6 +15,7 @@
 | **instructions/copilot.instructions.md** | AI agent instructions & behavior | 5 min | Developers using agents |
 | **instructions/test.instructions.md** | Unit testing best practices (Java/TS) | 10 min | All developers |
 | **docs/agent-usage.md** | Agent usage history & patterns | 5-10 min | Reference for past solutions |
+| **scripts/log-agent-usage.sh** | Append usage entries automatically | 1 min | All developers |
 
 **Total onboarding time: ~30-50 minutes** (depending on experience)
 
@@ -99,6 +100,7 @@ Each project includes `.vscode/settings.json` that configures AI agents:
 - Reads all `instructions/copilot.instructions.md` files
 - Understands team standards from `docs/TEAM_SETUP_GUIDE.md`
 - References usage patterns from `docs/agent-usage.md`
+- Logs usage via `scripts/log-agent-usage.sh` (optional but recommended)
 - Provides consistent guidance across team
 
 ---
