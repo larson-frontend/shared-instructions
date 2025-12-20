@@ -10,11 +10,12 @@ set -euo pipefail
 
 usage() {
   cat <<'USAGE'
-Usage: ./scripts/init-shared-instructions-vscode.sh [--shared-path <path>] [--non-interactive]
+Usage: ./scripts/init-shared-instructions-vscode.sh [--shared-path <path>] [--non-interactive] [--username <name>]
 
 Options:
   --shared-path <path>   Path to shared-instructions directory (default: ../shared-instructions)
-  --non-interactive      Assume defaults: symlink create/overwrite, update settings.json by merge
+  --non-interactive      Assume defaults: create/overwrite symlinks and settings
+  --username <name>      Optional username prefix for agent name (e.g., "mario" → "mario-custom_agent")
 
 This script should be run from your project root (the directory that should contain the symlink
 `shared-instructions/` and `.vscode/settings.json`).
@@ -23,6 +24,7 @@ USAGE
 
 SHARED_PATH="../shared-instructions"
 NON_INTERACTIVE=false
+USERNAME=""
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -30,6 +32,8 @@ while [[ $# -gt 0 ]]; do
       SHARED_PATH="$2"; shift 2;;
     --non-interactive)
       NON_INTERACTIVE=true; shift;;
+    --username)
+      USERNAME="$2"; shift 2;;
     -h|--help)
       usage; exit 0;;
     *)
@@ -194,11 +198,29 @@ fi
 
 echo "Setup complete."
 
+# Prompt for username if not provided and not in non-interactive mode
+if [ -z "$USERNAME" ] && [ "$NON_INTERACTIVE" = false ]; then
+  echo ""
+  echo "Optional: Enter your username to personalize the agent name."
+  echo "Press Enter to use the default agent name 'Custom_Auto'."
+  read -p "Username: " USERNAME
+fi
+
+# Normalize username and construct agent name
+if [ -n "$USERNAME" ]; then
+  USERNAME_NORM=$(echo "$USERNAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
+  AGENT_NAME="${USERNAME_NORM}-custom_agent"
+  echo "Agent name set to: $AGENT_NAME"
+else
+  AGENT_NAME="Custom_Auto"
+  echo "Agent name: $AGENT_NAME (default)"
+fi
+
 # Agent usage logging guidance
 echo ""
 echo "Tip: Log this setup in agent-usage.md (optional):"
 echo "  ./shared-instructions/scripts/log-agent-usage.sh \\
-  --agent \"Custom Auto\" \\
+  --agent \"$AGENT_NAME\" \\
   --task setup \\
   --model <model> \\
   --status primary \\
