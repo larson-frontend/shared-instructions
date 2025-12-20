@@ -2,14 +2,14 @@
 
 Minimal steps to start using shared-instructions in your project. No Docker or extra tooling required.
 
-Quick interactive setup:
+Quick interactive setup (auto-detect):
 ```zsh
-./shared-instructions/scripts/install-shared-instructions.sh
+./shared-instructions/scripts/install-auto.sh
 ```
 
-Windows (PowerShell):
+Windows (auto-detect, PowerShell):
 ```powershell
-powershell -ExecutionPolicy Bypass -File shared-instructions/scripts/install-shared-instructions.ps1
+powershell -ExecutionPolicy Bypass -File shared-instructions/scripts/install-auto.ps1
 ```
 
 ## Prerequisites
