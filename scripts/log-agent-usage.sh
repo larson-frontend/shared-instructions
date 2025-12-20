@@ -21,6 +21,8 @@ STATUS=""
 DESC=""
 LANG=""
 LOG_FILE="shared-instructions/docs/agent-usage.md"
+SCRIPT_DIR=$(cd -- "$(dirname "$0")" && pwd)
+LANG_MAP_FILE="$SCRIPT_DIR/../config/language-map.conf"
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -43,50 +45,64 @@ if [[ -z "$AGENT" || -z "$TASK" || -z "$MODEL" || -z "$STATUS" || -z "$DESC" ]];
   exit 1
 fi
 
+detect_lang_from_changes() {
+  local repo_root="$1"
+  # Gather changed/untracked files
+  local files
+  files=$(git -C "$repo_root" ls-files -m -o --exclude-standard 2>/dev/null || true)
+  [[ -z "$files" ]] && files=$(git -C "$repo_root" diff --name-only 2>/dev/null || true)
+  # Use awk to map extensions via config and count frequencies
+  echo "$files" | awk -v mapfile="$LANG_MAP_FILE" '
+    BEGIN {
+      FS="\n"; OFS="\n";
+      # load map
+      while ((getline line < mapfile) > 0) {
+        if (line ~ /^#/ || line ~ /^\s*$/) continue;
+        split(line, kv, "=");
+        ext = tolower(kv[1]);
+        lang = tolower(kv[2]);
+        m[ext] = lang;
+      }
+      close(mapfile);
+    }
+    {
+      fname = $0;
+      n = split(fname, parts, ".");
+      base = parts[n];
+      # special case MANIFEST.MF
+      if (fname ~ /(^|\/)MANIFEST\.MF$/) {
+        lc["manifest"]++;
+        next;
+      }
+      ext = tolower(base);
+      if (ext in m) {
+        lc[m[ext]]++;
+      }
+    }
+    END {
+      top = ""; cnt = 0;
+      for (k in lc) {
+        if (lc[k] > cnt) { cnt = lc[k]; top = k; }
+      }
+      if (top == "") print "mixed"; else print top;
+    }
+  '
+}
+
 if [[ -z "$LANG" ]]; then
-  # Auto-detect language from agent name or repo indicators
+  # Auto-detect language: prefer agent hint, else repo heuristics, else changes using map
   case "$AGENT" in
-    React_Agent)
-      LANG="typescript";;
-    Vue_Agent)
-      LANG="vue";;
-    Java_Agent)
-      LANG="java";;
+    React_Agent) LANG="typescript" ;;
+    Vue_Agent)   LANG="vue" ;;
+    Java_Agent)  LANG="java" ;;
     *)
-      # Detect from repo root
       REPO_ROOT=$(git rev-parse --show-toplevel 2>/dev/null || pwd)
       if [[ -f "$REPO_ROOT/pom.xml" ]]; then
         LANG="java"
       elif [[ -f "$REPO_ROOT/tsconfig.json" ]]; then
         LANG="typescript"
-      elif [[ -n "$(git ls-files '*.vue' 2>/dev/null)" ]]; then
-        LANG="vue"
-      elif [[ -n "$(git ls-files '*.tsx' 2>/dev/null)" || -n "$(git ls-files '*.ts' 2>/dev/null)" ]]; then
-        LANG="typescript"
-      elif [[ -n "$(git ls-files '*.jsx' 2>/dev/null)" || -n "$(git ls-files '*.js' 2>/dev/null)" ]]; then
-        LANG="javascript"
-      elif [[ -n "$(git ls-files '*.go' 2>/dev/null)" ]]; then
-        LANG="go"
-      elif [[ -n "$(git ls-files '*.py' 2>/dev/null)" ]]; then
-        LANG="python"
-      elif [[ -n "$(git ls-files '*.rs' 2>/dev/null)" ]]; then
-        LANG="rust"
-      elif [[ -n "$(git ls-files '*.kt' 2>/dev/null)" || -n "$(git ls-files '*.kts' 2>/dev/null)" ]]; then
-        LANG="kotlin"
-      elif [[ -n "$(git ls-files '*.cs' 2>/dev/null)" ]]; then
-        LANG="csharp"
-      elif [[ -n "$(git ls-files '*.php' 2>/dev/null)" ]]; then
-        LANG="php"
-      elif [[ -n "$(git ls-files '*.swift' 2>/dev/null)" ]]; then
-        LANG="swift"
-      elif [[ -n "$(git ls-files '*.dart' 2>/dev/null)" ]]; then
-        LANG="dart"
-      elif [[ -n "$(git ls-files '*.c' 2>/dev/null)" || -n "$(git ls-files '*.h' 2>/dev/null)" ]]; then
-        LANG="c"
-      elif [[ -n "$(git ls-files '*.cpp' 2>/dev/null)" || -n "$(git ls-files '*.cc' 2>/dev/null)" || -n "$(git ls-files '*.cxx' 2>/dev/null)" ]]; then
-        LANG="cpp"
       else
-        LANG="mixed"
+        LANG=$(detect_lang_from_changes "$REPO_ROOT")
       fi
       ;;
   esac

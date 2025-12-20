@@ -12,6 +12,10 @@ Visual stats (ASCII ring/pie):
 - `./shared-instructions/scripts/stats-agent-usage-pie.sh` (from repo root)
 - `./shared-instructions/scripts/stats-agent-usage-pie.sh docs/agent-usage.md` (if you pass a custom log path)
 
+Language auto-detection:
+- Uses `shared-instructions/config/language-map.conf` to infer language from changed files (e.g., `.xml → xml`, `MANIFEST.MF → manifest`).
+- Agent hints apply first (React/Vue/Java agents), then repo heuristics (`pom.xml`, `tsconfig.json`), then file changes.
+
 Recent entries:
 - [2025-12-06 21:30] agent=Custom_Auto task=setup model=claude-sonnet-4.5 status=primary desc=initial logging file bootstrap
 - [2025-12-06 21:42] agent=Custom_Auto task=code model=claude-sonnet-4.5 status=primary desc=Create Docker testing doc
@@ -29,3 +33,5 @@ Recent entries:
 - [2025-12-20 14:15] agent=Custom_Auto task=code model=claude-sonnet-4.5 status=primary desc=Enabled scripted agent usage logging
 - [2025-12-20 16:33] agent=React_Agent task=code model=gpt-4o status=primary lang=typescript desc=Demo log for language/agent stats
 - [2025-12-20 16:40] agent=Vue_Agent task=code model=gpt-4o status=primary lang=vue desc=Demo auto-detect language from agent
+- [2025-12-20 16:44] agent=Custom_Auto task=analysis model=claude-sonnet-4.5 status=primary lang=shell desc=Detect xml/manifest via changes
+- [2025-12-20 16:44] agent=Custom_Auto task=analysis model=claude-sonnet-4.5 status=primary lang=xml desc=XML dominates changes
