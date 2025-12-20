@@ -8,6 +8,10 @@ Standard entry format:
 Quick logging command:
 - `./shared-instructions/scripts/log-agent-usage.sh --agent "Custom Auto" --task code --model claude-sonnet-4.5 --status primary --desc "Short action description"`
 
+Visual stats (ASCII ring/pie):
+- `./shared-instructions/scripts/stats-agent-usage-pie.sh` (from repo root)
+- `./shared-instructions/scripts/stats-agent-usage-pie.sh docs/agent-usage.md` (if you pass a custom log path)
+
 Recent entries:
 - [2025-12-06 21:30] agent=Custom Auto task=setup model=claude-sonnet-4.5 status=primary desc=initial logging file bootstrap
 - [2025-12-06 21:42] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Create Docker testing doc
