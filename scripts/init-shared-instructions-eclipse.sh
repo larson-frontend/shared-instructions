@@ -124,3 +124,12 @@ link_dir  "$SETTINGS_SRC" ".settings" ".settings (Eclipse settings)"
 link_file "$PROJECT_SRC" ".project"   ".project (Eclipse project)"
 
 echo "Eclipse setup complete."
+
+# Agent usage logging guidance
+echo "\nTip: Log this setup in agent-usage.md (optional):"
+echo "  ./shared-instructions/scripts/log-agent-usage.sh \\
+  --agent \"Custom Auto\" \\
+  --task setup \\
+  --model <model> \\
+  --status primary \\
+  --desc \"Linked Eclipse settings to shared-instructions\""

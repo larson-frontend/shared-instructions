@@ -106,3 +106,12 @@ link_optional "$CS_SRC" "$CS_DST" "CodeStyle (Project.xml)"
 link_optional "$IP_SRC" "$IP_DST" "InspectionProfile (Project_Default.xml)"
 
 echo "JetBrains setup complete."
+
+# Agent usage logging guidance
+echo "\nTip: Log this setup in agent-usage.md (optional):"
+echo "  ./shared-instructions/scripts/log-agent-usage.sh \\
+  --agent \"Custom Auto\" \\
+  --task setup \\
+  --model <model> \\
+  --status primary \\
+  --desc \"Linked JetBrains settings to shared-instructions\""

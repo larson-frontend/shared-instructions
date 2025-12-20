@@ -170,11 +170,11 @@ When issues arise, check your project's troubleshooting documentation:
 
 ---
 
-## 🧾 Usage Logging (manual, after every response)
+## 🧾 Usage Logging (automatic via script)
 
-To keep a history of model usage, append a line to `.github/agent-usage.md` **after each assistant response**:
-- Format: `- [YYYY-MM-DD HH:MM] model=<model> task=<task-type> status=<primary|fallback> reason=<short reason>`
-- Use UTC time.
-- Get the timestamp by running `date -u +"%Y-%m-%d %H:%M"` in the terminal (no need to ask for statistics or other prompts).
-- If multiple models are used in one turn, add one line per model switch.
-- If the file is missing, recreate it with a header `# Agent Usage History` before appending entries.
+After each assistant response, log the usage to `shared-instructions/docs/agent-usage.md` using:
+
+- Command: `./shared-instructions/scripts/log-agent-usage.sh --agent "Custom Auto" --task <code|chat|analysis|large-context> --model <model> --status <primary|fallback-x> --desc "<short description>"`
+- Timestamp: Script records UTC time automatically.
+- Multiple models: If you switch models mid-task, run the script again for each switch.
+- Missing file: The script creates the file with header if absent.

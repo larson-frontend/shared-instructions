@@ -1,15 +1,25 @@
 # Agent Usage History
 
-- [2025-12-06 21:30] model=claude-sonnet-4.5 task=setup status=primary reason=initial logging file bootstrap
-- [2025-12-06 21:42] model=claude-sonnet-4.5 task=code status=primary reason=Create Docker testing doc
-- [2025-12-06 21:43] model=claude-sonnet-4.5 task=code status=primary reason=Commit and push Docker doc
-- [2025-12-06 21:48] model=claude-sonnet-4.5 task=code status=primary reason=Explain run-local port and next steps
-- [2025-12-06 21:50] model=gpt-4o task=chat status=primary reason=Quick Swagger access info
-- [2025-12-06 21:57] model=gpt-4o task=code status=primary reason=Start backend in background with nohup
-- [2025-12-06 22:00] model=gpt-4o task=chat status=primary reason=Display agent usage statistics
-- [2025-12-06 22:24] model=claude-sonnet-4.5 task=code status=primary reason=Align Swagger 2FA TOTP env handling
-- [2025-12-06 22:26] model=claude-sonnet-4.5 task=code status=primary reason=Clarify agent usage logging flow
-- [2025-12-06 22:28] model=claude-sonnet-4.5 task=code status=primary reason=Expose swagger 2FA env in docker-compose
-- [2025-12-06 22:31] model=claude-sonnet-4.5 task=code status=primary reason=Add swagger 2FA TOTP static fallback
-- [2025-12-06 22:36] model=claude-sonnet-4.5 task=code status=primary reason=Implement swagger 2FA with BasicAuth
-- [2025-12-06 22:46] model=claude-sonnet-4.5 task=code status=primary reason=Fix TOTP env var and enable Google Auth
+This file records every agent/model usage with a concise description argument.
+
+Standard entry format:
+- `[YYYY-MM-DD HH:MM] agent=<name> task=<type> model=<model> status=<primary|fallback-x> desc=<short description>`
+
+Quick logging command:
+- `./shared-instructions/scripts/log-agent-usage.sh --agent "Custom Auto" --task code --model claude-sonnet-4.5 --status primary --desc "Short action description"`
+
+Recent entries:
+- [2025-12-06 21:30] agent=Custom Auto task=setup model=claude-sonnet-4.5 status=primary desc=initial logging file bootstrap
+- [2025-12-06 21:42] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Create Docker testing doc
+- [2025-12-06 21:43] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Commit and push Docker doc
+- [2025-12-06 21:48] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Explain run-local port and next steps
+- [2025-12-06 21:50] agent=Custom Auto task=chat model=gpt-4o status=primary desc=Quick Swagger access info
+- [2025-12-06 21:57] agent=Custom Auto task=code model=gpt-4o status=primary desc=Start backend in background with nohup
+- [2025-12-06 22:00] agent=Custom Auto task=chat model=gpt-4o status=primary desc=Display agent usage statistics
+- [2025-12-06 22:24] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Align Swagger 2FA TOTP env handling
+- [2025-12-06 22:26] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Clarify agent usage logging flow
+- [2025-12-06 22:28] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Expose swagger 2FA env in docker-compose
+- [2025-12-06 22:31] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Add swagger 2FA TOTP static fallback
+- [2025-12-06 22:36] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Implement swagger 2FA with BasicAuth
+- [2025-12-06 22:46] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Fix TOTP env var and enable Google Auth
+- [2025-12-20 14:15] agent=Custom Auto task=code model=claude-sonnet-4.5 status=primary desc=Enabled scripted agent usage logging

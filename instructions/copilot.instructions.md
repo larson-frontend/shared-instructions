@@ -98,8 +98,8 @@ Example:
 
 ## Additional Resources
 
-- **Custom Agent Details:** `shared-instructions/agents/custom-agent.agent.md`
-- **Agent Usage History:** `shared-instructions/agent-usage.md`
+ - **Custom Agent Details:** `shared-instructions/instructions/custom-agent.agent.md`
+ - **Agent Usage History:** `shared-instructions/docs/agent-usage.md`
 - Project-specific deployment/readiness guides: See your project's documentation
 
 ---
