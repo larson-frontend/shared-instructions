@@ -32,30 +32,40 @@ If unclear → ask **1–3 precise clarifying questions**.
 
 ## 🧠 Model Preference & Fallback Logic (Priority Order)
 
-### **Primary Model: Claude Sonnet 4.5** (Default for all complex tasks)
+### **Primary Model: Claude Opus 4.5** (Default for all complex tasks)
+- Highest reasoning capability and intelligence
+- Superior contextual understanding and creativity
+- Best-in-class for complex refactoring and architecture
+- **Selected for:** Code, Analysis, Large-Context tasks requiring maximum reasoning power
+
+### **Secondary Model: Claude Sonnet 4.5** (Balanced performance)
 - High precision, reasoning, code analysis
-- Deep contextual understanding
-- Complex refactoring and implementation
-- **Selected for:** Code, Analysis, Large-Context tasks requiring deep reasoning
+- Excellent speed-to-quality ratio
+- Strong multi-file context handling
+- **Selected for:** When Opus unavailable or for tasks needing fast, high-quality responses
 
 ### **Fallback Rules by Task Type**
 
 **Code Tasks:**
-- Primary: `claude-sonnet-4.5` — **Reason:** Best for complex logic, architecture decisions, multi-file refactoring
-- Fallback 1: `gpt-5.1-codex` — **Reason:** Code-specialized, excellent for syntax-heavy tasks
-- Fallback 2: `gpt-4o` — **Reason:** Fast fallback when both above unavailable, handles simple implementations
+- Primary: `claude-opus-4.5` — **Reason:** Maximum intelligence for complex logic, architecture decisions, multi-file refactoring
+- Fallback 1: `claude-sonnet-4.5` — **Reason:** Strong reasoning with better speed, excellent for most code tasks
+- Fallback 2: `gpt-5.1-codex` — **Reason:** Code-specialized, excellent for syntax-heavy tasks
+- Fallback 3: `gpt-4o` — **Reason:** Fast fallback when all above unavailable, handles simple implementations
 
 **Analysis Tasks:**
-- Primary: `claude-sonnet-4.5` — **Reason:** Superior reasoning for deep analysis, research, long documents
-- Fallback 1: `gpt-4o` — **Reason:** Balanced reasoning, good for structured analysis when Sonnet unavailable
+- Primary: `claude-opus-4.5` — **Reason:** Highest reasoning capability for deep analysis, research, complex planning
+- Fallback 1: `claude-sonnet-4.5` — **Reason:** Superior reasoning for deep analysis, research, long documents
+- Fallback 2: `gpt-4o` — **Reason:** Balanced reasoning, good for structured analysis when Claude unavailable
 
 **Chat Tasks (Simple Q&A):**
 - Primary: `gpt-4o` — **Reason:** Optimized for speed and efficiency on straightforward questions
 - Fallback 1: `claude-sonnet-4.5` — **Reason:** Switch to Sonnet if question requires deeper reasoning than expected
+- Fallback 2: `claude-opus-4.5` — **Reason:** Maximum reasoning for unexpectedly complex questions
 
 **Large-Context Tasks:**
-- Primary: `claude-sonnet-4.5` — **Reason:** Handles large documents with better comprehension and context retention
-- Fallback 1: `gpt-4o` — **Reason:** Alternative with strong large-context capabilities
+- Primary: `claude-opus-4.5` — **Reason:** Best comprehension and reasoning over large, complex documents
+- Fallback 1: `claude-sonnet-4.5` — **Reason:** Handles large documents with excellent comprehension and context retention
+- Fallback 2: `gpt-4o` — **Reason:** Alternative with strong large-context capabilities
 
 ---
 
@@ -70,15 +80,17 @@ If unclear → ask **1–3 precise clarifying questions**.
 ### Transparency Header Examples:
 
 **Primary Model Usage (with reasons):**
-- `**Agent: Custom Auto | Task: code | Model: claude-sonnet-4.5 | Reason: Complex refactoring requires deep reasoning | Status: primary**`
-- `**Agent: Custom Auto | Task: analysis | Model: claude-sonnet-4.5 | Reason: Long document needs superior comprehension | Status: primary**`
+- `**Agent: Custom Auto | Task: code | Model: claude-opus-4.5 | Reason: Complex refactoring requires maximum reasoning power | Status: primary**`
+- `**Agent: Custom Auto | Task: analysis | Model: claude-opus-4.5 | Reason: Long document needs highest intelligence for comprehension | Status: primary**`
 - `**Agent: Custom Auto | Task: chat | Model: gpt-4o | Reason: Simple Q&A benefits from fast response | Status: primary**`
 
 **Fallback Model Usage (with reasons):**
-- `**Agent: Custom Auto | Task: code | Model: gpt-5.1-codex | Reason: Claude unavailable; Codex excels at syntax-heavy tasks | Status: fallback-1**`
-- `**Agent: Custom Auto | Task: code | Model: gpt-4o | Reason: Claude & Codex unavailable; Using fast fallback | Status: fallback-2**`
+- `**Agent: Custom Auto | Task: code | Model: claude-sonnet-4.5 | Reason: Opus unavailable; Sonnet provides excellent reasoning with better speed | Status: fallback-1**`
+- `**Agent: Custom Auto | Task: code | Model: gpt-5.1-codex | Reason: Both Claude models unavailable; Codex excels at syntax-heavy tasks | Status: fallback-2**`
+- `**Agent: Custom Auto | Task: code | Model: gpt-4o | Reason: All preferred models unavailable; Using fast fallback | Status: fallback-3**`
 - `**Agent: Custom Auto | Task: chat | Model: claude-sonnet-4.5 | Reason: Initial assessment underestimated complexity; switching to deeper reasoning | Status: fallback-1**`
-- `**Agent: Custom Auto | Task: analysis | Model: gpt-4o | Reason: Claude unavailable; GPT-4o provides balanced reasoning | Status: fallback-1**`
+- `**Agent: Custom Auto | Task: analysis | Model: claude-sonnet-4.5 | Reason: Opus unavailable; Sonnet provides superior reasoning | Status: fallback-1**`
+- `**Agent: Custom Auto | Task: analysis | Model: gpt-4o | Reason: Both Claude models unavailable; GPT-4o provides balanced reasoning | Status: fallback-2**`
 
 ### Model Selection Decision Tree:
 
@@ -89,7 +101,7 @@ If unclear → ask **1–3 precise clarifying questions**.
 5. **Report status** → Show if using primary or fallback
 
 ### When to Switch Models Mid-Task:
-- Task complexity increases unexpectedly → Switch to Sonnet for reasoning
+- Task complexity increases unexpectedly → Switch to Opus for maximum reasoning, or Sonnet if Opus unavailable
 - Response quality insufficient → Try next fallback in chain
 - Model unavailable/rate-limited → Move to fallback immediately
 - **Always report the switch** with reason in header
@@ -106,14 +118,16 @@ If unclear → ask **1–3 precise clarifying questions**.
 - Use tools appropriately
 
 ### For Code Tasks:
-- **Why Claude Sonnet 4.5:** Excels at understanding complex architectures, refactoring patterns, multi-file context
+- **Why Claude Opus 4.5:** Maximum intelligence for understanding complex architectures, advanced refactoring patterns, multi-file context
+- **Fallback to Sonnet 4.5:** Excellent reasoning with better speed, handles most code tasks efficiently
 - Read necessary context before changes
 - Ensure code follows project conventions
 - Validate changes when possible
 - Include brief explanations with rationale
 
 ### For Analysis Tasks:
-- **Why Claude Sonnet 4.5:** Superior at deep reasoning, connecting complex ideas, synthesizing information
+- **Why Claude Opus 4.5:** Highest reasoning capability for deep analysis, connecting complex ideas, synthesizing information
+- **Fallback to Sonnet 4.5:** Superior at deep reasoning and comprehensive analysis
 - Gather comprehensive context
 - Provide structured, reasoned responses
 - Support conclusions with evidence
@@ -123,10 +137,11 @@ If unclear → ask **1–3 precise clarifying questions**.
 - **Why GPT-4o first:** Optimized for quick answers, speed matters for simple questions
 - Give clear, concise answers
 - Keep responses focused
-- Switch to Sonnet if reasoning complexity emerges
+- Switch to Sonnet if reasoning complexity emerges, Opus for maximum complexity
 
 ### For Large-Context Tasks:
-- **Why Claude Sonnet 4.5:** Maintains context over long documents, superior comprehension of intricate details
+- **Why Claude Opus 4.5:** Best comprehension and reasoning over large, complex documents
+- **Fallback to Sonnet 4.5:** Maintains context over long documents, excellent comprehension of intricate details
 - Process entire context systematically
 - Reference specific sections in your reasoning
 - Summarize key findings clearly
