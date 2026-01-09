@@ -5,11 +5,11 @@ set -euo pipefail
 # Appends a line to shared-instructions/docs/agent-usage.md with agent, task, model, status, and description.
 # Usage:
 #   ./shared-instructions/scripts/log-agent-usage.sh \
-#     --agent "Custom Auto" \
+#     --agent "Magic Agent" \
 #     --task code \
 #     --model claude-sonnet-4.5 \
 #     --status primary \
-#     --desc "Updated references to instructions/custom-agent.agent.md"
+#     --desc "Updated references to instructions/magic-agent.agent.md"
 #
 # Options:
 #   --file <path>   Optional path to agent-usage.md (default: shared-instructions/docs/agent-usage.md)

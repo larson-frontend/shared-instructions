@@ -2,9 +2,9 @@
 
 ## Default Agent Selection
 
-**Always use the Custom Auto agent** for all interactions in this workspace.
+**Always use the Magic Agent agent** for all interactions in this workspace.
 
-The Custom Auto agent will automatically:
+The Magic Agent agent will automatically:
 - 🎯 Detect the task type (code / analysis / chat / large-context)
 - 🤖 Select the best model based on task requirements
 - 📊 Provide transparency about agent and model selection
@@ -79,11 +79,25 @@ Key principles (universal):
 Every Copilot response includes transparency about model choice:
 
 ```
-**Agent: Custom Auto | Task: [type] | Model: [model] | Reason: [why] | Status: [primary/fallback]**
+✨ **Magic Agent**
+📋 Task: [type]
+🤖 Model: [model]
+💡 Reason: [why]
+🎯 Status: [primary/fallback]
+🥋 Chuck: [random Chuck Norris quote]
+📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
 Example:
-- `**Agent: Custom Auto | Task: code | Model: claude-sonnet-4.5 | Reason: Complex refactoring requires deep reasoning | Status: primary**`
+```
+✨ **Magic Agent**
+📋 Task: code
+🤖 Model: claude-opus-4.5
+💡 Reason: Complex refactoring requires deep reasoning
+🎯 Status: primary
+🥋 Chuck: Chuck Norris can access private methods.
+📊 Stats: Type 'show stats' to view agent usage analytics
+```
 
 ---
 
@@ -98,7 +112,7 @@ Example:
 
 ## Additional Resources
 
- - **Custom Agent Details:** `shared-instructions/instructions/custom-agent.agent.md`
+ - **Custom Agent Details:** `shared-instructions/instructions/magic-agent.agent.md`
  - **Agent Usage History:** `shared-instructions/docs/agent-usage.md`
  - **Stack-Specific Agents:**
 	 - React: `shared-instructions/instructions/react-agent.agent.md`

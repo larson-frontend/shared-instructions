@@ -15,7 +15,7 @@ Usage: ./scripts/init-shared-instructions-vscode.sh [--shared-path <path>] [--no
 Options:
   --shared-path <path>   Path to shared-instructions directory (default: ../shared-instructions)
   --non-interactive      Assume defaults: create/overwrite symlinks and settings
-  --username <name>      Optional username prefix for agent name (e.g., "mario" → "mario-custom_agent")
+  --username <name>      Optional username prefix for agent name (e.g., "mario" → "mario-magic_agent")
 
 This script should be run from your project root (the directory that should contain the symlink
 `shared-instructions/` and `.vscode/settings.json`).
@@ -225,7 +225,7 @@ if [ -n "$USERNAME" ]; then
   
   if [ -n "$USERNAME" ]; then
     USERNAME_NORM=$(echo "$USERNAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
-    AGENT_NAME="${USERNAME_NORM}-custom_agent"
+    AGENT_NAME="${USERNAME_NORM}-magic_agent"
     echo "Agent name set to: $AGENT_NAME"
   else
     AGENT_NAME="Custom_Auto"

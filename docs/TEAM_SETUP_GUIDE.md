@@ -17,7 +17,7 @@ This guide explains how the **shared-instructions** submodule and workspace sett
 When you open the workspace, these settings load automatically:
 
 1. **Copilot Instructions** → Load from `shared-instructions/copilot.instructions.md`
-2. **Agent Selection** → Custom Auto agent with optimized model routing
+2. **Agent Selection** → Magic Agent agent with optimized model routing
 3. **Code Formatting** → Prettier for all file types
 4. **ESLint Integration** → Automatic code quality fixes
 
@@ -37,7 +37,7 @@ Repository Structure (example):
 ├── shared-instructions/       ← Git submodule (shared repo)
 │   ├── copilot.instructions.md
 │   ├── agents/
-│   │   └── custom-agent.agent.md
+│   │   └── magic-agent.agent.md
 │   └── agent-usage.md
 ├── <backend-project>/         ← Backend service
 ├── <frontend-project>/        ← Frontend service
@@ -65,7 +65,7 @@ Repository Structure (example):
 ```markdown
 # Global Copilot Instructions
 
-**Always use the Custom Auto agent** for all interactions...
+**Always use the Magic Agent agent** for all interactions...
 
 ## Model Selection Rules (Priority Order)
 - Primary: Claude Sonnet 4.5
@@ -213,7 +213,7 @@ git submodule update --remote
 │   │   └── Workspace context
 │   │
 │   ├── agents/
-│   │   └── custom-agent.agent.md (Detailed agent behavior)
+│   │   └── magic-agent.agent.md (Detailed agent behavior)
 │   │
 │   ├── agent-usage.md
 │   │   └── Logging of which models are used
@@ -322,7 +322,7 @@ git push
 ## 🎓 Learning More
 
 **For detailed agent behavior:**
- - Read: `shared-instructions/instructions/custom-agent.agent.md`
+ - Read: `shared-instructions/instructions/magic-agent.agent.md`
 
 **For Copilot instructions in this workspace:**
 - Read: `shared-instructions/copilot.instructions.md`

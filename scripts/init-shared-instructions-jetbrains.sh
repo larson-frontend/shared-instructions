@@ -13,7 +13,7 @@ Usage: ./scripts/init-shared-instructions-jetbrains.sh [--shared-path <path>] [-
 Options:
   --shared-path <path>   Path to shared-instructions directory (default: ../shared-instructions)
   --non-interactive      Assume defaults: create/overwrite symlinks; apply optional settings if available
-  --username <name>      Optional username prefix for agent name (e.g., "mario" → "mario-custom_agent")
+  --username <name>      Optional username prefix for agent name (e.g., "mario" → "mario-magic_agent")
 
 Run from your project root (contains `.idea/`). This script will:
   1) Create/refresh `shared-instructions` symlink
@@ -139,7 +139,7 @@ if [[ -n "$USERNAME" ]]; then
   if [[ -n "$USERNAME" ]]; then
     # Normalize username: lowercase, replace spaces with underscores
     USERNAME_NORM=$(echo "$USERNAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '_')
-    AGENT_NAME="${USERNAME_NORM}-custom_agent"
+    AGENT_NAME="${USERNAME_NORM}-magic_agent"
     echo "Agent name set to: $AGENT_NAME"
   else
     AGENT_NAME="Custom_Auto"

@@ -57,7 +57,7 @@ shared-instructions/scripts/init-shared-instructions-vscode.sh \
 - Log this setup (keeps team-wide usage history):
 ```zsh
 ./shared-instructions/scripts/log-agent-usage.sh \
-  --agent "Custom Auto" \
+  --agent "Magic Agent" \
   --task setup \
   --model claude-sonnet-4.5 \
   --status primary \

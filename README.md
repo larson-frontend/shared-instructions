@@ -172,7 +172,7 @@ workspace/
 │   │   └── agent-usage.md
 │   ├── instructions/
 │   │   ├── copilot.instructions.md
-│   │   ├── custom-agent.agent.md
+│   │   ├── magic-agent.agent.md
 │   │   └── test.instructions.md
 │   ├── scripts/
 │   └── README.md            ← This file

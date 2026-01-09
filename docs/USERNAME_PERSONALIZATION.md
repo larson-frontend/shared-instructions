@@ -36,17 +36,17 @@ Username: random
 **Result:**
 ```
 🎮 Random character selected: yoshi
-Agent name set to: yoshi-custom_agent
+Agent name set to: yoshi-magic_agent
 ```
 
 ### Behavior
 
 | Input | Normalized | Agent Name |
 |-------|------------|------------|
-| `Mario` | `mario` | `mario-custom_agent` |
-| `Alice Smith` | `alice_smith` | `alice_smith-custom_agent` |
-| `Bob-Dev` | `bob-dev` | `bob-dev-custom_agent` |
-| `random` | *(random Mario character)* | `yoshi-custom_agent` 🎮 |
+| `Mario` | `mario` | `mario-magic_agent` |
+| `Alice Smith` | `alice_smith` | `alice_smith-magic_agent` |
+| `Bob-Dev` | `bob-dev` | `bob-dev-magic_agent` |
+| `random` | *(random Mario character)* | `yoshi-magic_agent` 🎮 |
 | *(empty)* | *(empty)* | `Custom_Auto` |
 
 **Normalization Rules:**
@@ -75,11 +75,11 @@ Using shared-instructions at: /path/to/shared-instructions
 Symlink shared-instructions already correct.
 JetBrains setup complete.
 🎮 Random character selected: bowser
-Agent name set to: bowser-custom_agent
+Agent name set to: bowser-magic_agent
 
 Tip: Log this setup in agent-usage.md:
   ./shared-instructions/scripts/log-agent-usage.sh \
-  --agent "bowser-custom_agent" \
+  --agent "bowser-magic_agent" \
   --task setup \
   --model <model> \
   --status primary \
@@ -99,11 +99,11 @@ Using shared-instructions at: /path/to/shared-instructions
 Symlink shared-instructions already correct.
 settings.json merged successfully.
 Setup complete.
-Agent name set to: alice-custom_agent
+Agent name set to: alice-magic_agent
 
 Tip: Log this setup in agent-usage.md (optional):
   ./shared-instructions/scripts/log-agent-usage.sh \
-  --agent "alice-custom_agent" \
+  --agent "alice-magic_agent" \
   --task setup \
   --model <model> \
   --status primary \
@@ -172,8 +172,8 @@ Each developer can use their own personalized agent name, making it easier to tr
 ```markdown
 | Agent Name | Task | Model | Status | Language | Date | Description |
 |------------|------|-------|--------|----------|------|-------------|
-| mario-custom_agent | setup | claude-sonnet-4.5 | primary | mixed | 2025-01-30 | Initial setup by Mario |
-| alice-custom_agent | setup | claude-sonnet-4.5 | primary | mixed | 2025-01-30 | Initial setup by Alice |
+| mario-magic_agent | setup | claude-sonnet-4.5 | primary | mixed | 2025-01-30 | Initial setup by Mario |
+| alice-magic_agent | setup | claude-sonnet-4.5 | primary | mixed | 2025-01-30 | Initial setup by Alice |
 ```
 
 ### Team Collaboration
@@ -192,8 +192,8 @@ When reviewing stats, you can easily see which developer used which agent:
 Total Entries: 15
 
 By Agent:
-  mario-custom_agent   ████████░░ 8  (53%)
-  alice-custom_agent   ████░░░░░░ 5  (33%)
+  mario-magic_agent   ████████░░ 8  (53%)
+  alice-magic_agent   ████░░░░░░ 5  (33%)
   Custom_Auto          ██░░░░░░░░ 2  (13%)
 ```
 
@@ -203,7 +203,7 @@ The personalized agent name is automatically used in the logging tip displayed a
 
 ```bash
 ./shared-instructions/scripts/log-agent-usage.sh \
-  --agent "mario-custom_agent" \
+  --agent "mario-magic_agent" \
   --task setup \
   --model claude-sonnet-4.5 \
   --status primary \
@@ -227,15 +227,15 @@ All three init scripts support the `--username` flag:
 ```bash
 # JetBrains
 bash init-shared-instructions-jetbrains.sh --username "Mario"
-# Expected: Agent name set to: mario-custom_agent
+# Expected: Agent name set to: mario-magic_agent
 
 # VSCode
 bash init-shared-instructions-vscode.sh --username "Alice"
-# Expected: Agent name set to: alice-custom_agent
+# Expected: Agent name set to: alice-magic_agent
 
 # Eclipse
 bash init-shared-instructions-eclipse.sh --non-interactive --username "Bob"
-# Expected: Agent name set to: bob-custom_agent
+# Expected: Agent name set to: bob-magic_agent
 ```
 
 ### Test Case 2: Random Mario Character 🎮
@@ -244,17 +244,17 @@ bash init-shared-instructions-eclipse.sh --non-interactive --username "Bob"
 # JetBrains
 bash init-shared-instructions-jetbrains.sh --username random
 # Expected: 🎮 Random character selected: <character>
-# Expected: Agent name set to: <character>-custom_agent
+# Expected: Agent name set to: <character>-magic_agent
 
 # VSCode
 bash init-shared-instructions-vscode.sh --username random
 # Expected: 🎮 Random character selected: <character>
-# Expected: Agent name set to: <character>-custom_agent
+# Expected: Agent name set to: <character>-magic_agent
 
 # Eclipse
 bash init-shared-instructions-eclipse.sh --non-interactive --username random
 # Expected: 🎮 Random character selected: <character>
-# Expected: Agent name set to: <character>-custom_agent
+# Expected: Agent name set to: <character>-magic_agent
 ```
 
 ### Test Case 3: Default Agent Name
@@ -278,15 +278,15 @@ bash init-shared-instructions-eclipse.sh --non-interactive
 ```bash
 # With spaces
 bash init-shared-instructions-vscode.sh --username "Alice Smith"
-# Expected: Agent name set to: alice_smith-custom_agent
+# Expected: Agent name set to: alice_smith-magic_agent
 
 # With hyphens
 bash init-shared-instructions-eclipse.sh --username "Bob-Dev"
-# Expected: Agent name set to: bob-dev-custom_agent
+# Expected: Agent name set to: bob-dev-magic_agent
 
 # Mixed case
 bash init-shared-instructions-jetbrains.sh --username "MarioRossi"
-# Expected: Agent name set to: mariorossi-custom_agent
+# Expected: Agent name set to: mariorossi-magic_agent
 ```
 
 ## Mario Bros Character List 🎮
@@ -312,7 +312,7 @@ You can add more characters by editing `config/mario-names.conf` - just add one 
    - Auto-detect from git config: `git config user.name`
 
 2. **Team Name Support:**
-   - Allow team prefixes: `--team "frontend"` → `frontend-mario-custom_agent`
+   - Allow team prefixes: `--team "frontend"` → `frontend-mario-magic_agent`
    - Useful for large teams with multiple developers named "Mario"
 
 3. **Validation:**
