@@ -142,7 +142,7 @@ Example 2:
 💡 Reason: Both Claude models unavailable; Codex excels at syntax-heavy tasks
 🎯 Status: fallback-2
 🥋 Chuck: Chuck Norris writes code that optimizes itself out of fear.
-🎓 React: [Advanced Patterns](https://react.dev/learn/render-and-commit) — Rendering & Commits
+🎓 React: useEffect cleanup functions prevent memory leaks by running before component unmount. [Learn more](https://react.dev/reference/react/useEffect)
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
@@ -154,7 +154,7 @@ Example 3:
 💡 Reason: Both Claude models unavailable; GPT-4o provides balanced reasoning
 🎯 Status: fallback-2
 🥋 Chuck: Chuck Norris doesn't read documentation. Documentation reads Chuck Norris.
-🎓 React: [Hooks Deep Dive](https://react.dev/reference/react/hooks) — Custom hooks & performance
+🎓 React: React.memo prevents re-renders of functional components when props haven't changed. [Learn more](https://react.dev/reference/react/memo)
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
@@ -179,18 +179,19 @@ Example 3:
 - Make it fun and relevant to coding/development when possible
 
 ### React Learning Guidelines:
-- Include a **React Learning** link in every response (between Chuck & Stats)
-- Rotate through these resources:
-  - Beginner: `[React Official Docs](https://react.dev)` — Modern React with Hooks
-  - Beginner: `[Create React App](https://create-react-app.dev)` — Quickstart guide
-  - Beginner: `[React Router](https://reactrouter.com)` — Client-side routing
-  - Intermediate: `[Advanced Patterns](https://react.dev/learn/render-and-commit)` — Rendering & Commits
-  - Intermediate: `[Hooks Deep Dive](https://react.dev/reference/react/hooks)` — Custom hooks & performance
-  - Intermediate: `[State Management](https://react.dev/learn/managing-state)` — useState, useReducer, Context
-  - Advanced: `[Performance Optimization](https://react.dev/learn/render-and-commit#epilogue-portals)` — memo, useMemo, useCallback
-  - Advanced: `[Concurrent Features](https://react.dev/reference/react/useTransition)` — Suspense, Transitions
-  - Advanced: `[Testing](https://testing-library.com/docs/react-testing-library/intro)` — React Testing Library
-- Select resources randomly to vary educational content
+- Include a **React Learning** info in every response (between Chuck & Stats)
+- Format: Informative sentence + link for more details
+- Rotate through these educational facts:
+  1. React's Virtual DOM diffing algorithm minimizes expensive DOM operations. [Learn more](https://react.dev)
+  2. React Hooks let you use state and side effects in functional components without classes. [Learn more](https://react.dev/reference/react/hooks)
+  3. Keys help React identify which items have changed, been added, or been removed in lists. [Learn more](https://react.dev/learn/rendering-lists)
+  4. useEffect cleanup functions prevent memory leaks by running before component unmount. [Learn more](https://react.dev/reference/react/useEffect)
+  5. React Context API reduces prop drilling by providing a way to pass data through the tree. [Learn more](https://react.dev/learn/managing-state)
+  6. React.memo prevents re-renders of functional components when props haven't changed. [Learn more](https://react.dev/reference/react/memo)
+  7. useMemo caches expensive computations to avoid recalculation on every render. [Learn more](https://react.dev/reference/react/useMemo)
+  8. Suspense allows components to "pause" while loading asynchronous data. [Learn more](https://react.dev/reference/react/Suspense)
+  9. Custom hooks extract component logic into reusable functions that follow the Rules of Hooks. [Learn more](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- Select facts randomly to provide varied educational content
 
 ### Stats Command:
 - Always include the stats command line: `📊 Stats: Type 'show stats' to view agent usage analytics`
