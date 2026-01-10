@@ -47,6 +47,40 @@ print_info() {
   echo "${BLUE}ℹ${NC} $1"
 }
 
+setup_stats() {
+  local PROJECT_DIR="$1"
+  
+  print_info "Setting up agent usage tracking..."
+  
+  # Create .agent-usage.md in project root
+  cat > "$PROJECT_DIR/.agent-usage.md" << 'EOF'
+# Agent Usage Statistics
+
+This file tracks Magic Agent usage in your project.
+Auto-generated and managed by shared-instructions.
+
+## Log Format
+[YYYY-MM-DD HH:MM] agent=AGENT_NAME task=TASK_TYPE model=MODEL_NAME status=STATUS lang=LANGUAGE desc=DESCRIPTION
+
+EOF
+  
+  # Update .gitignore to exclude stats
+  if [[ -f "$PROJECT_DIR/.gitignore" ]]; then
+    if ! grep -q "\.agent-usage" "$PROJECT_DIR/.gitignore"; then
+      echo "" >> "$PROJECT_DIR/.gitignore"
+      echo "# Magic Agent Usage Tracking (local only)" >> "$PROJECT_DIR/.gitignore"
+      echo ".agent-usage.md" >> "$PROJECT_DIR/.gitignore"
+      print_success "Updated .gitignore for agent usage tracking"
+    fi
+  else
+    cat > "$PROJECT_DIR/.gitignore" << 'EOF'
+# Magic Agent Usage Tracking (local only)
+.agent-usage.md
+EOF
+    print_success "Created .gitignore with agent usage tracking"
+  fi
+}
+
 show_usage() {
   echo "${YELLOW}Usage:${NC}"
   echo ""
@@ -105,6 +139,9 @@ clone_and_link() {
   fi
   
   cd "$target_path"
+  
+  # Setup statistics
+  setup_stats "$(pwd)"
   
   echo ""
   echo "${YELLOW}🔗 Linking...${NC}"
@@ -180,6 +217,9 @@ link_only() {
   fi
   
   cd "$project_path"
+  
+  # Setup statistics
+  setup_stats "$(pwd)"
   
   echo ""
   echo "${YELLOW}🔗 Linking...${NC}"

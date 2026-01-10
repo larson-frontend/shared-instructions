@@ -139,6 +139,9 @@ main() {
     print_info "Removed existing symlink"
   fi
   
+  # Setup statistics before linking
+  setup_stats "$(pwd)"
+  
   if ln -s "$SHARED_PATH" shared-instructions; then
     print_success "Symlink created"
   else
@@ -147,37 +150,37 @@ main() {
   fi
   
   # Verify
-  if [[ -d shared-instructions/instructions ]]; then
-    print_success "Installation verified"
-    
-    echo ""
-    echo "${GREEN}╔════════════════════════════════════════════════════════╗${NC}"
-    echo "${GREEN}║  ✓ Installation Complete!                             ║${NC}"
-    echo "${GREEN}╚════════════════════════════════════════════════════════╝${NC}"
-    echo ""
-    echo "📁 Project: $PROJECT_NAME"
-    echo "📂 Location: $(pwd)"
-    echo "🔗 Shared Instructions: $SHARED_PATH"
-    echo ""
-    echo "${YELLOW}🔧 Next Steps:${NC}"
-    echo ""
-    echo "  1. Open in VS Code:"
-    echo "     ${BLUE}code $INSTALL_DIR/$PROJECT_NAME${NC}"
-    echo ""
-    echo "  2. Reload VS Code:"
-    echo "     ${BLUE}Ctrl+Shift+P → 'Reload Window'${NC}"
-    echo ""
-    echo "  3. Start using Magic Agent:"
-    echo "     ${BLUE}Press Ctrl+I in any file${NC}"
-    echo ""
-    echo "  4. View documentation:"
-    echo "     ${BLUE}cat shared-instructions/INSTALL.md${NC}"
-    echo ""
-    echo "${GREEN}Happy coding! 🚀${NC}"
-    echo ""
+setup_stats() {
+  local PROJECT_DIR="$1"
+  
+  print_info "Setting up agent usage tracking..."
+  
+  # Create .agent-usage.md in project root
+  cat > "$PROJECT_DIR/.agent-usage.md" << 'EOF'
+# Agent Usage Statistics
+
+This file tracks Magic Agent usage in your project.
+Auto-generated and managed by shared-instructions.
+
+## Log Format
+[YYYY-MM-DD HH:MM] agent=AGENT_NAME task=TASK_TYPE model=MODEL_NAME status=STATUS lang=LANGUAGE desc=DESCRIPTION
+
+EOF
+  
+  # Update .gitignore to exclude stats
+  if [[ -f "$PROJECT_DIR/.gitignore" ]]; then
+    if ! grep -q "\.agent-usage" "$PROJECT_DIR/.gitignore"; then
+      echo "" >> "$PROJECT_DIR/.gitignore"
+      echo "# Magic Agent Usage Tracking (local only)" >> "$PROJECT_DIR/.gitignore"
+      echo ".agent-usage.md" >> "$PROJECT_DIR/.gitignore"
+      print_success "Updated .gitignore for agent usage tracking"
+    fi
   else
-    print_error "Installation verification failed"
-    exit 1
+    cat > "$PROJECT_DIR/.gitignore" << 'EOF'
+# Magic Agent Usage Tracking (local only)
+.agent-usage.md
+EOF
+    print_success "Created .gitignore with agent usage tracking"
   fi
 }
 
