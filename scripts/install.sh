@@ -1,0 +1,239 @@
+#!/usr/bin/env zsh
+#
+# Magic Agent — Universal Install Script
+#
+# Clone a repository + auto-link shared-instructions in ONE command
+#
+# Usage:
+#   ./scripts/install.sh --clone https://github.com/user/my-project
+#   ./scripts/install.sh --clone https://github.com/user/my-project /path/to/install
+#   ./scripts/install.sh --link /path/to/existing/project
+#
+
+set -e
+
+# Get the actual path of THIS script file (not function name)
+INSTALL_SCRIPT_PATH="$(readlink -f "${(%):-%N}")" 2>/dev/null || INSTALL_SCRIPT_PATH="$(cd "$(dirname "$0")" && pwd)/$0"
+SHARED_INSTRUCTIONS_ROOT="$(dirname "$(dirname "$INSTALL_SCRIPT_PATH")")"
+
+# Colors
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+NC='\033[0m'
+
+print_header() {
+  echo ""
+  echo "${BLUE}╔════════════════════════════════════════════════════════╗${NC}"
+  echo "${BLUE}║  ✨ Magic Agent — Universal Installer                 ║${NC}"
+  echo "${BLUE}╚════════════════════════════════════════════════════════╝${NC}"
+  echo ""
+}
+
+print_success() {
+  echo "${GREEN}✓${NC} $1"
+}
+
+print_error() {
+  echo "${RED}✗${NC} $1"
+}
+
+print_warning() {
+  echo "${YELLOW}⚠${NC} $1"
+}
+
+print_info() {
+  echo "${BLUE}ℹ${NC} $1"
+}
+
+show_usage() {
+  echo "${YELLOW}Usage:${NC}"
+  echo ""
+  echo "  Clone + Link:"
+  echo "    ${BLUE}./scripts/install.sh --clone <REPO_URL> [TARGET_PATH]${NC}"
+  echo ""
+  echo "  Link Only:"
+  echo "    ${BLUE}./scripts/install.sh --link <PROJECT_PATH>${NC}"
+  echo ""
+  echo "  Examples:"
+  echo "    ${BLUE}./scripts/install.sh --clone https://github.com/user/my-project${NC}"
+  echo "    ${BLUE}./scripts/install.sh --clone https://github.com/user/my-project ~/my-projects/my-app${NC}"
+  echo "    ${BLUE}./scripts/install.sh --link /path/to/existing/project${NC}"
+  echo ""
+}
+
+clone_and_link() {
+  local repo_url="$1"
+  local target_path="$2"
+  
+  if [[ -z "$repo_url" ]]; then
+    print_error "Repository URL required"
+    show_usage
+    exit 1
+  fi
+  
+  # Use global SHARED_INSTRUCTIONS_ROOT
+  if [[ ! -d "$SHARED_INSTRUCTIONS_ROOT/instructions" ]]; then
+    print_error "Could not locate shared-instructions at: $SHARED_INSTRUCTIONS_ROOT"
+    exit 1
+  fi
+  
+  print_success "Using shared-instructions: $SHARED_INSTRUCTIONS_ROOT"
+  echo ""
+  
+  # Parse repo name if target not provided
+  if [[ -z "$target_path" ]]; then
+    target_path="${repo_url##*/}"
+    target_path="${target_path%.git}"
+  fi
+  
+  # Expand ~
+  target_path="${target_path/#\~/$HOME}"
+  
+  echo "${YELLOW}🔄 Cloning...${NC}"
+  echo "  Repository: $repo_url"
+  echo "  Location: $target_path"
+  echo ""
+  
+  # Clone
+  if git clone "$repo_url" "$target_path"; then
+    print_success "Repository cloned"
+  else
+    print_error "Failed to clone repository"
+    exit 1
+  fi
+  
+  cd "$target_path"
+  
+  echo ""
+  echo "${YELLOW}🔗 Linking...${NC}"
+  
+  # Create symlink
+  if [[ -L shared-instructions ]]; then
+    rm shared-instructions
+    print_warning "Removed existing symlink"
+  fi
+  
+  if ln -s "$SHARED_INSTRUCTIONS_ROOT" shared-instructions; then
+    print_success "Symlink created: shared-instructions"
+  else
+    print_error "Failed to create symlink"
+    exit 1
+  fi
+  
+  # Verify
+  if [[ -d shared-instructions/instructions ]]; then
+    print_success "Installation verified"
+    
+    echo ""
+    echo "${GREEN}╔════════════════════════════════════════════════════════╗${NC}"
+    echo "${GREEN}║  ✓ Installation Complete!                             ║${NC}"
+    echo "${GREEN}╚════════════════════════════════════════════════════════╝${NC}"
+    echo ""
+    echo "📁 Project: $(basename "$target_path")"
+    echo "📂 Location: $(pwd)"
+    echo "🔗 Symlink: shared-instructions → $SHARED_INSTRUCTIONS_ROOT"
+    echo ""
+    echo "${YELLOW}🔧 Next Steps:${NC}"
+    echo ""
+    echo "  1. Open in VS Code:"
+    echo "     ${BLUE}code .${NC}"
+    echo ""
+    echo "  2. Reload VS Code:"
+    echo "     ${BLUE}Ctrl+Shift+P → 'Reload Window'${NC}"
+    echo ""
+    echo "  3. Start using Magic Agent:"
+    echo "     ${BLUE}Press Ctrl+I in any file${NC}"
+    echo ""
+    echo "${GREEN}Happy coding! 🚀${NC}"
+    echo ""
+  else
+    print_error "Installation verification failed"
+    exit 1
+  fi
+}
+
+link_only() {
+  local project_path="$1"
+  
+  if [[ -z "$project_path" ]]; then
+    print_error "Project path required"
+    show_usage
+    exit 1
+  fi
+  
+  # Use global SHARED_INSTRUCTIONS_ROOT
+  if [[ ! -d "$SHARED_INSTRUCTIONS_ROOT/instructions" ]]; then
+    print_error "Could not locate shared-instructions at: $SHARED_INSTRUCTIONS_ROOT"
+    exit 1
+  fi
+  
+  print_success "Using shared-instructions: $SHARED_INSTRUCTIONS_ROOT"
+  
+  # Expand ~
+  project_path="${project_path/#\~/$HOME}"
+  
+  if [[ ! -d "$project_path" ]]; then
+    print_error "Project directory not found: $project_path"
+    exit 1
+  fi
+  
+  cd "$project_path"
+  
+  echo ""
+  echo "${YELLOW}🔗 Linking...${NC}"
+  
+  # Create symlink
+  if [[ -L shared-instructions ]]; then
+    rm shared-instructions
+    print_warning "Removed existing symlink"
+  fi
+  
+  if ln -s "$SHARED_INSTRUCTIONS_ROOT" shared-instructions; then
+    print_success "Symlink created: shared-instructions"
+  else
+    print_error "Failed to create symlink"
+    exit 1
+  fi
+  
+  # Verify
+  if [[ -d shared-instructions/instructions ]]; then
+    print_success "Linking verified"
+    
+    echo ""
+    echo "${GREEN}✓ Project Linked!${NC}"
+    echo "  Location: $(pwd)"
+    echo "  Symlink: shared-instructions → $SHARED_INSTRUCTIONS_ROOT"
+    echo ""
+  else
+    print_error "Linking verification failed"
+    exit 1
+  fi
+}
+
+# Main
+main() {
+  print_header
+  
+  MODE="$1"
+  
+  case "$MODE" in
+    --clone)
+      clone_and_link "$2" "$3"
+      ;;
+    --link)
+      link_only "$2"
+      ;;
+    --help|-h)
+      show_usage
+      ;;
+    *)
+      print_error "Invalid command: $MODE"
+      show_usage
+      exit 1
+      ;;
+  esac
+}
+
+main "$@"
