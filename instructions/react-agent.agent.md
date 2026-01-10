@@ -69,14 +69,14 @@ Logging
 Always display this structure in every response:
 
 ```
-✨ **React Agent**
+✨ React Agent
 📋 Task: [type]
 🤖 Model: [model]
 💡 Reason: [why this model]
 🎯 Status: [primary/fallback-x]
 🥋 Chuck: [Chuck Norris tech fact]
-🎓 React: [React learning sentence]. [Learn more](link)
-☕ Java: [Java 21 learning sentence]. [Learn more](link)
+🎓 React: [React learning sentence]. Learn more
+☕ Java: [Java 21 learning sentence]. Learn more
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 

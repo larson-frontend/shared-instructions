@@ -103,14 +103,14 @@ If unclear → ask **1–3 precise clarifying questions**.
 **Always display the agent, model selection, and reasoning in this format:**
 
 ```
-✨ **Magic Agent**
+✨ Magic Agent
 📋 Task: [type]
 🤖 Model: [model]
 💡 Reason: [why]
 🎯 Status: [primary/fallback]
 🥋 Chuck: [random Chuck Norris quote]
-🎓 React: [React Learning Sentence + Link]
-☕ Java: [Java Learning Sentence + Link]
+🎓 React: [React learning sentence]. Learn more
+☕ Java: [Java learning sentence]. Learn more
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
@@ -120,7 +120,7 @@ If unclear → ask **1–3 precise clarifying questions**.
 
 Example 1:
 ```
-✨ **Magic Agent**
+✨ Magic Agent
 📋 Task: code
 🤖 Model: claude-opus-4.5
 💡 Reason: Complex refactoring requires maximum reasoning power
@@ -131,7 +131,7 @@ Example 1:
 
 Example 2:
 ```
-✨ **Magic Agent**
+✨ Magic Agent
 📋 Task: analysis
 🤖 Model: claude-opus-4.5
 💡 Reason: Long document needs highest intelligence for comprehension
@@ -142,7 +142,7 @@ Example 2:
 
 Example 3:
 ```
-✨ **Magic Agent**
+✨ Magic Agent
 📋 Task: chat
 🤖 Model: gpt-4o
 💡 Reason: Simple Q&A benefits from fast response
@@ -155,40 +155,40 @@ Example 3:
 
 Example 1:
 ```
-✨ **Magic Agent**
+✨ Magic Agent
 📋 Task: code
 🤖 Model: claude-sonnet-4.5
 💡 Reason: Opus unavailable; Sonnet provides excellent reasoning with better speed
 🎯 Status: fallback-1
 🥋 Chuck: Chuck Norris doesn't need try-catch. Exceptions are too scared to occur.
-🎓 React: React Hooks let you use state and side effects in functional components without classes. [Learn more](https://react.dev/reference/react/hooks)
-☕ Java: Virtual threads (Java 21) make lightweight threading simple, allowing millions of concurrent tasks. [Learn more](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html)
+🎓 React: React Hooks let you use state and side effects in functional components without classes. Learn more
+☕ Java: Virtual threads (Java 21) make lightweight threading simple, allowing millions of concurrent tasks. Learn more
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
 Example 2:
 ```
-✨ **Magic Agent**
+✨ Magic Agent
 📋 Task: code
 🤖 Model: gpt-5.1-codex
 💡 Reason: Both Claude models unavailable; Codex excels at syntax-heavy tasks
 🎯 Status: fallback-2
 🥋 Chuck: Chuck Norris writes code that optimizes itself out of fear.
-🎓 React: useEffect cleanup functions prevent memory leaks by running before component unmount. [Learn more](https://react.dev/reference/react/useEffect)
-☕ Java: Pattern matching (Java 21) simplifies type checking and casting with instanceof patterns. [Learn more](https://docs.oracle.com/javase/21/language-updates.html)
+🎓 React: useEffect cleanup functions prevent memory leaks by running before component unmount. Learn more
+☕ Java: Pattern matching (Java 21) simplifies type checking and casting with instanceof patterns. Learn more
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
 Example 3:
 ```
-✨ **Magic Agent**
+✨ Magic Agent
 📋 Task: analysis
 🤖 Model: gpt-4o
 💡 Reason: Both Claude models unavailable; GPT-4o provides balanced reasoning
 🎯 Status: fallback-2
 🥋 Chuck: Chuck Norris doesn't read documentation. Documentation reads Chuck Norris.
-🎓 React: React.memo prevents re-renders of functional components when props haven't changed. [Learn more](https://react.dev/reference/react/memo)
-☕ Java: Sealed classes (Java 17+) restrict which classes can extend them, enabling better pattern matching. [Learn more](https://docs.oracle.com/javase/21/language-updates.html)
+🎓 React: React.memo prevents re-renders of functional components when props haven't changed. Learn more
+☕ Java: Sealed classes (Java 17+) restrict which classes can extend them, enabling better pattern matching. Learn more
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
