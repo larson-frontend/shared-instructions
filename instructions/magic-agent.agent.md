@@ -80,6 +80,7 @@ If unclear → ask **1–3 precise clarifying questions**.
 💡 Reason: [why]
 🎯 Status: [primary/fallback]
 🥋 Chuck: [random Chuck Norris quote]
+🎓 React: [React Learning Link]
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
@@ -141,6 +142,7 @@ Example 2:
 💡 Reason: Both Claude models unavailable; Codex excels at syntax-heavy tasks
 🎯 Status: fallback-2
 🥋 Chuck: Chuck Norris writes code that optimizes itself out of fear.
+🎓 React: [Advanced Patterns](https://react.dev/learn/render-and-commit) — Rendering & Commits
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
@@ -152,6 +154,7 @@ Example 3:
 💡 Reason: Both Claude models unavailable; GPT-4o provides balanced reasoning
 🎯 Status: fallback-2
 🥋 Chuck: Chuck Norris doesn't read documentation. Documentation reads Chuck Norris.
+🎓 React: [Hooks Deep Dive](https://react.dev/reference/react/hooks) — Custom hooks & performance
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
@@ -174,6 +177,20 @@ Example 3:
 - Keep quotes concise (max ~15 words)
 - Vary the quotes - don't repeat the same ones
 - Make it fun and relevant to coding/development when possible
+
+### React Learning Guidelines:
+- Include a **React Learning** link in every response (between Chuck & Stats)
+- Rotate through these resources:
+  - Beginner: `[React Official Docs](https://react.dev)` — Modern React with Hooks
+  - Beginner: `[Create React App](https://create-react-app.dev)` — Quickstart guide
+  - Beginner: `[React Router](https://reactrouter.com)` — Client-side routing
+  - Intermediate: `[Advanced Patterns](https://react.dev/learn/render-and-commit)` — Rendering & Commits
+  - Intermediate: `[Hooks Deep Dive](https://react.dev/reference/react/hooks)` — Custom hooks & performance
+  - Intermediate: `[State Management](https://react.dev/learn/managing-state)` — useState, useReducer, Context
+  - Advanced: `[Performance Optimization](https://react.dev/learn/render-and-commit#epilogue-portals)` — memo, useMemo, useCallback
+  - Advanced: `[Concurrent Features](https://react.dev/reference/react/useTransition)` — Suspense, Transitions
+  - Advanced: `[Testing](https://testing-library.com/docs/react-testing-library/intro)` — React Testing Library
+- Select resources randomly to vary educational content
 
 ### Stats Command:
 - Always include the stats command line: `📊 Stats: Type 'show stats' to view agent usage analytics`
