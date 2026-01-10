@@ -132,6 +132,8 @@ Example 1:
 💡 Reason: Opus unavailable; Sonnet provides excellent reasoning with better speed
 🎯 Status: fallback-1
 🥋 Chuck: Chuck Norris doesn't need try-catch. Exceptions are too scared to occur.
+🎓 React: React Hooks let you use state and side effects in functional components without classes. [Learn more](https://react.dev/reference/react/hooks)
+☕ Java: Virtual threads (Java 21) make lightweight threading simple, allowing millions of concurrent tasks. [Learn more](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html)
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
@@ -144,6 +146,7 @@ Example 2:
 🎯 Status: fallback-2
 🥋 Chuck: Chuck Norris writes code that optimizes itself out of fear.
 🎓 React: useEffect cleanup functions prevent memory leaks by running before component unmount. [Learn more](https://react.dev/reference/react/useEffect)
+☕ Java: Pattern matching (Java 21) simplifies type checking and casting with instanceof patterns. [Learn more](https://docs.oracle.com/javase/21/language-updates.html)
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
@@ -156,6 +159,7 @@ Example 3:
 🎯 Status: fallback-2
 🥋 Chuck: Chuck Norris doesn't read documentation. Documentation reads Chuck Norris.
 🎓 React: React.memo prevents re-renders of functional components when props haven't changed. [Learn more](https://react.dev/reference/react/memo)
+☕ Java: Sealed classes (Java 17+) restrict which classes can extend them, enabling better pattern matching. [Learn more](https://docs.oracle.com/javase/21/language-updates.html)
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
