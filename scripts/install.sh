@@ -12,8 +12,14 @@
 
 set -e
 
-# Get the actual path of THIS script file (not function name)
-INSTALL_SCRIPT_PATH="$(readlink -f "${(%):-%N}")" 2>/dev/null || INSTALL_SCRIPT_PATH="$(cd "$(dirname "$0")" && pwd)/$0"
+# Get the actual path of THIS script file (works with both bash and zsh)
+if [[ -n "${ZSH_VERSION}" ]]; then
+  # zsh
+  INSTALL_SCRIPT_PATH="$(readlink -f "${(%):-%N}")" 2>/dev/null || INSTALL_SCRIPT_PATH="$(cd "$(dirname "$0")" && pwd -P)/$(basename "$0")"
+else
+  # bash and others
+  INSTALL_SCRIPT_PATH="$(readlink -f "${BASH_SOURCE[0]}")" 2>/dev/null || INSTALL_SCRIPT_PATH="$(cd "$(dirname "$0")" && pwd -P)/$(basename "$0")"
+fi
 SHARED_INSTRUCTIONS_ROOT="$(dirname "$(dirname "$INSTALL_SCRIPT_PATH")")"
 
 # Colors
