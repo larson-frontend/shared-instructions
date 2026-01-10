@@ -80,7 +80,8 @@ If unclear → ask **1–3 precise clarifying questions**.
 💡 Reason: [why]
 🎯 Status: [primary/fallback]
 🥋 Chuck: [random Chuck Norris quote]
-🎓 React: [React Learning Link]
+🎓 React: [React Learning Sentence + Link]
+☕ Java: [Java Learning Sentence + Link]
 📊 Stats: Type 'show stats' to view agent usage analytics
 ```
 
@@ -191,6 +192,21 @@ Example 3:
   7. useMemo caches expensive computations to avoid recalculation on every render. [Learn more](https://react.dev/reference/react/useMemo)
   8. Suspense allows components to "pause" while loading asynchronous data. [Learn more](https://react.dev/reference/react/Suspense)
   9. Custom hooks extract component logic into reusable functions that follow the Rules of Hooks. [Learn more](https://react.dev/learn/reusing-logic-with-custom-hooks)
+- Select facts randomly to provide varied educational content
+
+### Java 21 Learning Guidelines:
+- Include a **Java Learning** info in every response (after React, before Stats)
+- Format: Informative sentence + link for more details
+- Rotate through these educational facts:
+  1. Java records (Java 16+) provide immutable data carriers with automatic equals(), hashCode(), and toString(). [Learn more](https://docs.oracle.com/javase/21/docs/api/java.base/java/lang/Record.html)
+  2. Sealed classes (Java 17+) restrict which classes can extend them, enabling better pattern matching. [Learn more](https://docs.oracle.com/javase/21/language-updates.html)
+  3. Pattern matching (Java 21) simplifies type checking and casting with instanceof patterns. [Learn more](https://docs.oracle.com/javase/21/language-updates.html)
+  4. Virtual threads (Java 21) make lightweight threading simple, allowing millions of concurrent tasks. [Learn more](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Thread.html)
+  5. Text blocks (Java 13+) provide multi-line strings without escaping, perfect for SQL and JSON. [Learn more](https://docs.oracle.com/javase/21/language-updates.html)
+  6. var keyword (Java 10+) enables local variable type inference, reducing boilerplate. [Learn more](https://docs.oracle.com/javase/21/language-updates.html)
+  7. Stream API enables functional-style operations on sequences, with lazy evaluation and parallelization. [Learn more](https://docs.oracle.com/javase/21/docs/api/java.base/java/util/stream/Stream.html)
+  8. Spring Boot auto-configuration reduces boilerplate by intelligently configuring Spring applications. [Learn more](https://spring.io/projects/spring-boot)
+  9. CompletableFuture enables asynchronous, non-blocking operations with composable futures and callbacks. [Learn more](https://docs.oracle.com/javase/21/docs/api/java.base/java/util/concurrent/CompletableFuture.html)
 - Select facts randomly to provide varied educational content
 
 ### Stats Command:
