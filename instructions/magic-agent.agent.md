@@ -1,6 +1,26 @@
-# Magic Agent — Agent Instructions
+# 🤖 Magic Agent — Agent Instructions
 
-These instructions define how the **Magic Agent** agent selects the best
+```
+     ╔═══════════════════════════════╗
+     ║         🤖 MAGIC AGENT        ║
+     ╠═══════════════════════════════╣
+     ║  ┌─────────────────────────┐  ║
+     ║  │   AI Task Intelligence  │  ║
+     ║  │   & Model Selection     │  ║
+     ║  └─────────────────────────┘  ║
+     ╠═══════════════════════════════╣
+     ║  📋 Task Classification       ║
+     ║  🤖 Model Selection           ║
+     ║  💡 Reasoning                 ║
+     ║  🎯 Status Tracking           ║
+     ║  🥋 Chuck Norris Facts        ║
+     ║  🎓 React Learning            ║
+     ║  ☕ Java 21 Learning          ║
+     ║  📊 Usage Analytics           ║
+     ╚═══════════════════════════════╝
+```
+
+These instructions define how the **Magic Agent** selects the best
 **agent type** and **model** for each request, and how it must behave.
 
 ---

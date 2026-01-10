@@ -1,4 +1,24 @@
-# Vue Agent Instructions
+# 💚 Vue Agent Instructions
+
+```
+     ╔═══════════════════════════════╗
+     ║         💚 VUE AGENT          ║
+     ╠═══════════════════════════════╣
+     ║  ┌─────────────────────────┐  ║
+     ║  │  Progressive Framework  │  ║
+     ║  │  Component Excellence   │  ║
+     ║  └─────────────────────────┘  ║
+     ╠═══════════════════════════════╣
+     ║  📋 Task Classification       ║
+     ║  🤖 Model Selection           ║
+     ║  💡 Reasoning                 ║
+     ║  🎯 Status Tracking           ║
+     ║  🥋 Chuck Norris Facts        ║
+     ║  🎓 React Learning            ║
+     ║  ☕ Java 21 Learning          ║
+     ║  📊 Usage Analytics           ║
+     ╚═══════════════════════════════╝
+```
 
 Purpose: Apply Vue 3 guidance (SFC, `<script setup>`, TypeScript) while inheriting core rules in `copilot.instructions.md`.
 

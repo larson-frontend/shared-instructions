@@ -1,4 +1,24 @@
-# React Agent Instructions
+# ⚛️ React Agent Instructions
+
+```
+     ╔═══════════════════════════════╗
+     ║        ⚛️ REACT AGENT         ║
+     ╠═══════════════════════════════╣
+     ║  ┌─────────────────────────┐  ║
+     ║  │  Modern UI Frameworks   │  ║
+     ║  │  Frontend Mastery       │  ║
+     ║  └─────────────────────────┘  ║
+     ╠═══════════════════════════════╣
+     ║  📋 Task Classification       ║
+     ║  🤖 Model Selection           ║
+     ║  💡 Reasoning                 ║
+     ║  🎯 Status Tracking           ║
+     ║  🥋 Chuck Norris Facts        ║
+     ║  🎓 React Learning            ║
+     ║  ☕ Java 21 Learning          ║
+     ║  📊 Usage Analytics           ║
+     ╚═══════════════════════════════╝
+```
 
 Purpose: Apply React/TypeScript guidance while inheriting core rules in `copilot.instructions.md`.
 

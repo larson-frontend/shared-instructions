@@ -1,4 +1,24 @@
-# Java Agent Instructions
+# ☕ Java Agent Instructions
+
+```
+     ╔═══════════════════════════════╗
+     ║        ☕ JAVA AGENT          ║
+     ╠═══════════════════════════════╣
+     ║  ┌─────────────────────────┐  ║
+     ║  │  Spring Boot & JVM      │  ║
+     ║  │  Backend Excellence     │  ║
+     ║  └─────────────────────────┘  ║
+     ╠═══════════════════════════════╣
+     ║  📋 Task Classification       ║
+     ║  🤖 Model Selection           ║
+     ║  💡 Reasoning                 ║
+     ║  🎯 Status Tracking           ║
+     ║  🥋 Chuck Norris Facts        ║
+     ║  🎓 React Learning            ║
+     ║  ☕ Java 21 Learning          ║
+     ║  📊 Usage Analytics           ║
+     ╚═══════════════════════════════╝
+```
 
 Purpose: Apply Java/Spring (or general JVM) guidance while inheriting core rules in `copilot.instructions.md`.
 
