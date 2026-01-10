@@ -28,7 +28,21 @@
 
 ## 🚀 Quick Start
 
-**Ultra-quick (copy/paste):** See `docs/INSTALLATION_QUICK.md` (~2 min)
+**Ultra-quick (one-liner):** 
+```bash
+# From anywhere in your project directory
+./shared-instructions/scripts/link-shared-instructions.sh --auto
+```
+
+**With VS Code init (one-liner):**
+```bash
+./shared-instructions/scripts/link-shared-instructions.sh --auto --init-vscode
+```
+
+**Interactive (select from list):**
+```bash
+./shared-instructions/scripts/link-shared-instructions.sh
+```
 
 **Full walkthrough (3 Steps, ~20 min):**
 
@@ -43,14 +57,13 @@
    ```
    → Ensure `shared-instructions/` sits next to your project folder for symlinking; see `docs/GETTING_STARTED.md` for detailed setup
 
-2. **Link shared-instructions into your repo**
+2. **Link shared-instructions into your repo (one-liner)**
    ```zsh
-   # Interactive (select target repo, optional VS Code init)
-   ./shared-instructions/scripts/link-shared-instructions.sh --init-vscode
-
-   # Or manual
-   ln -s ../shared-instructions shared-instructions
-   shared-instructions/scripts/init-shared-instructions-vscode.sh --non-interactive
+   # From your project directory - auto-detect and link
+   ../shared-instructions/scripts/link-shared-instructions.sh --auto
+   
+   # Or with VS Code init
+   ../shared-instructions/scripts/link-shared-instructions.sh --auto --init-vscode
    ```
 
 3. **Read Team Standards**

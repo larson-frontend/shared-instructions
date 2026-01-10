@@ -2,25 +2,34 @@
 set -euo pipefail
 
 # link-shared-instructions.sh
-# Interactively creates a `shared-instructions` symlink inside a selected repo.
-# Optionally runs the VS Code init script in that repo.
+# Creates a `shared-instructions` symlink inside a repo.
+# Can be run interactively (select from list) or non-interactively (auto-detect).
+# Optionally runs the VS Code init script after linking.
 #
 # Usage:
-#   ./shared-instructions/scripts/link-shared-instructions.sh \
-#     [--workspace <path>] [--shared-path <path>] [--non-interactive] [--target <repo-path>] [--init-vscode]
+#   # Interactive: select repo from list
+#   ./shared-instructions/scripts/link-shared-instructions.sh
 #
-# Defaults:
-#   --workspace     Parent folder containing repos (default: workspace root = parent of shared-instructions)
+#   # One-liner: auto-detect current repo
+#   ./shared-instructions/scripts/link-shared-instructions.sh --auto
+#
+#   # One-liner with VS Code init
+#   ./shared-instructions/scripts/link-shared-instructions.sh --auto --init-vscode
+#
+# Options:
+#   --auto          Auto-detect current repo and create symlink (one-liner)
+#   --workspace     Parent folder containing repos (default: workspace root)
 #   --shared-path   Path to shared-instructions (default: script's parent directory)
-#   --non-interactive  Skip prompts; requires --target
-#   --target        Repo directory to install symlink into (used with --non-interactive)
-#   --init-vscode   Run VS Code init script after linking (non-interactive)
+#   --non-interactive  Skip all prompts; requires --target or --auto
+#   --target        Repo directory to install symlink into
+#   --init-vscode   Run VS Code init script after linking
 
 WORKSPACE=""
 SHARED_PATH=""
 NON_INTERACTIVE=false
 TARGET_REPO=""
 INIT_VSCODE=false
+AUTO_DETECT=false
 
 # Resolve script dir
 SCRIPT_DIR=$(cd -- "$(dirname "$0")" && pwd)
@@ -33,20 +42,32 @@ while [[ $# -gt 0 ]]; do
     --shared-path) SHARED_PATH="$2"; shift 2;;
     --non-interactive) NON_INTERACTIVE=true; shift;;
     --target) TARGET_REPO="$2"; shift 2;;
+    --auto) AUTO_DETECT=true; NON_INTERACTIVE=true; shift;;
     --init-vscode) INIT_VSCODE=true; shift;;
     -h|--help)
       cat <<'USAGE'
-Interactively link shared-instructions into a selected repo.
+Create shared-instructions symlink in a repo (interactive or one-liner mode).
+
 Options:
+  --auto                  Auto-detect current repo and create symlink (one-liner)
   --workspace <path>      Root directory containing project repos (default: parent of shared-instructions)
   --shared-path <path>    Path to shared-instructions (default: this script's parent)
-  --non-interactive       Skip prompts (requires --target). Also respects --init-vscode
+  --non-interactive       Skip all prompts (requires --target or --auto)
   --target <repo-path>    Repo directory to install symlink into
-  --init-vscode           Run VS Code init script after linking (non-interactive)
+  --init-vscode           Also run VS Code init script after linking
+
 Examples:
+  # Interactive: select repo from list
   ./shared-instructions/scripts/link-shared-instructions.sh
-  ./shared-instructions/scripts/link-shared-instructions.sh --init-vscode
-  ./shared-instructions/scripts/link-shared-instructions.sh --non-interactive --target ./fasting-frontend --init-vscode
+
+  # One-liner: auto-detect current repo
+  ./shared-instructions/scripts/link-shared-instructions.sh --auto
+
+  # One-liner with VS Code init
+  ./shared-instructions/scripts/link-shared-instructions.sh --auto --init-vscode
+
+  # Non-interactive with explicit path
+  ./shared-instructions/scripts/link-shared-instructions.sh --non-interactive --target ./fasting-frontend
 USAGE
       exit 0;;
     *) echo "Unknown argument: $1" >&2; exit 1;;
@@ -85,14 +106,24 @@ for d in "$WORKSPACE_ABS"/*; do
 done
 
 if [[ "$NON_INTERACTIVE" == true ]]; then
-  if [[ -z "$TARGET_REPO" ]]; then
-    echo "Error: --non-interactive requires --target <repo-path>" >&2
-    exit 1
-  fi
-  TARGET_ABS=$(realpath "$TARGET_REPO" 2>/dev/null || true)
-  if [[ -z "$TARGET_ABS" || ! -d "$TARGET_ABS" ]]; then
-    echo "Error: target repo not found: $TARGET_REPO" >&2
-    exit 1
+  if [[ "$AUTO_DETECT" == true ]]; then
+    # Auto-detect: use current working directory
+    TARGET_ABS=$(pwd)
+    if [[ ! -d "$TARGET_ABS" ]]; then
+      echo "Error: current directory not found" >&2
+      exit 1
+    fi
+  else
+    # Explicit target required
+    if [[ -z "$TARGET_REPO" ]]; then
+      echo "Error: --non-interactive requires either --auto or --target <repo-path>" >&2
+      exit 1
+    fi
+    TARGET_ABS=$(realpath "$TARGET_REPO" 2>/dev/null || true)
+    if [[ -z "$TARGET_ABS" || ! -d "$TARGET_ABS" ]]; then
+      echo "Error: target repo not found: $TARGET_REPO" >&2
+      exit 1
+    fi
   fi
 else
   echo "Found repos:" 
