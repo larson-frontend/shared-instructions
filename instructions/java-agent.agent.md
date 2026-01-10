@@ -1,26 +1,20 @@
 # ☕ Java Agent Instructions
 
-```
-     ╔═══════════════════════════════╗
-     ║        ☕ JAVA AGENT          ║
-     ╠═══════════════════════════════╣
-     ║  ┌─────────────────────────┐  ║
-     ║  │  Spring Boot & JVM      │  ║
-     ║  │  Backend Excellence     │  ║
-     ║  └─────────────────────────┘  ║
-     ╠═══════════════════════════════╣
-     ║  📋 Task Classification       ║
-     ║  🤖 Model Selection           ║
-     ║  💡 Reasoning                 ║
-     ║  🎯 Status Tracking           ║
-     ║  🥋 Chuck Norris Facts        ║
-     ║  🎓 React Learning            ║
-     ║  ☕ Java 21 Learning          ║
-     ║  📊 Usage Analytics           ║
-     ╚═══════════════════════════════╝
-```
+![Java Agent Robot](../robot.webp)
+
+**Java Agent** — Spring Boot & JVM Backend Excellence
 
 Purpose: Apply Java/Spring (or general JVM) guidance while inheriting core rules in `copilot.instructions.md`.
+
+**Categories:**
+- 📋 Task Classification
+- 🤖 Model Selection
+- 💡 Reasoning
+- 🎯 Status Tracking
+- 🥋 Chuck Norris Facts
+- 🎓 React Learning
+- ☕ Java 21 Learning
+- 📊 Usage Analytics
 
 When to use
 - Backend tasks in Java (Spring Boot, JPA, REST, CLI tools).

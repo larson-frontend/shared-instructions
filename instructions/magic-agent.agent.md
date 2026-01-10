@@ -1,27 +1,21 @@
 # 🤖 Magic Agent — Agent Instructions
 
-```
-     ╔═══════════════════════════════╗
-     ║         🤖 MAGIC AGENT        ║
-     ╠═══════════════════════════════╣
-     ║  ┌─────────────────────────┐  ║
-     ║  │   AI Task Intelligence  │  ║
-     ║  │   & Model Selection     │  ║
-     ║  └─────────────────────────┘  ║
-     ╠═══════════════════════════════╣
-     ║  📋 Task Classification       ║
-     ║  🤖 Model Selection           ║
-     ║  💡 Reasoning                 ║
-     ║  🎯 Status Tracking           ║
-     ║  🥋 Chuck Norris Facts        ║
-     ║  🎓 React Learning            ║
-     ║  ☕ Java 21 Learning          ║
-     ║  📊 Usage Analytics           ║
-     ╚═══════════════════════════════╝
-```
+![Magic Agent Robot](../robot.webp)
+
+**Magic Agent** — AI Task Intelligence & Model Selection
 
 These instructions define how the **Magic Agent** selects the best
 **agent type** and **model** for each request, and how it must behave.
+
+**Categories:**
+- 📋 Task Classification
+- 🤖 Model Selection
+- 💡 Reasoning
+- 🎯 Status Tracking
+- 🥋 Chuck Norris Facts
+- 🎓 React Learning
+- ☕ Java 21 Learning
+- 📊 Usage Analytics
 
 ---
 

@@ -1,26 +1,20 @@
 # 💚 Vue Agent Instructions
 
-```
-     ╔═══════════════════════════════╗
-     ║         💚 VUE AGENT          ║
-     ╠═══════════════════════════════╣
-     ║  ┌─────────────────────────┐  ║
-     ║  │  Progressive Framework  │  ║
-     ║  │  Component Excellence   │  ║
-     ║  └─────────────────────────┘  ║
-     ╠═══════════════════════════════╣
-     ║  📋 Task Classification       ║
-     ║  🤖 Model Selection           ║
-     ║  💡 Reasoning                 ║
-     ║  🎯 Status Tracking           ║
-     ║  🥋 Chuck Norris Facts        ║
-     ║  🎓 React Learning            ║
-     ║  ☕ Java 21 Learning          ║
-     ║  📊 Usage Analytics           ║
-     ╚═══════════════════════════════╝
-```
+![Vue Agent Robot](../robot.webp)
+
+**Vue Agent** — Progressive Framework & Component Excellence
 
 Purpose: Apply Vue 3 guidance (SFC, `<script setup>`, TypeScript) while inheriting core rules in `copilot.instructions.md`.
+
+**Categories:**
+- 📋 Task Classification
+- 🤖 Model Selection
+- 💡 Reasoning
+- 🎯 Status Tracking
+- 🥋 Chuck Norris Facts
+- 🎓 React Learning
+- ☕ Java 21 Learning
+- 📊 Usage Analytics
 
 When to use
 - Frontend tasks in Vue 3 SFCs, Vite/Nuxt-style setups, Pinia/Vuex state, composables.
