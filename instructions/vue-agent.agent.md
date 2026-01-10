@@ -17,8 +17,6 @@
       │ │
 ```
 
-![Vue Agent Robot](https://raw.githubusercontent.com/larson-frontend/shared-instructions/main/robot.webp)
-
 **Vue Agent** — Progressive Framework & Component Excellence
 
 Purpose: Apply Vue 3 guidance (SFC, `<script setup>`, TypeScript) while inheriting core rules in `copilot.instructions.md`.

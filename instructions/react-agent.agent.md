@@ -17,8 +17,6 @@
       │ │
 ```
 
-![React Agent Robot](https://raw.githubusercontent.com/larson-frontend/shared-instructions/main/robot.webp)
-
 **React Agent** — Modern UI Frameworks & Frontend Mastery
 
 Purpose: Apply React/TypeScript guidance while inheriting core rules in `copilot.instructions.md`.
