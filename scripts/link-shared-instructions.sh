@@ -2,34 +2,35 @@
 set -euo pipefail
 
 # link-shared-instructions.sh
-# Creates a `shared-instructions` symlink inside a repo.
-# Can be run interactively (select from list) or non-interactively (auto-detect).
-# Optionally runs the VS Code init script after linking.
+# Creates a `shared-instructions` symlink inside a repo with VS Code integration.
+# Runs automatically with current directory detection (one-liner).
+# Can be run interactively with --interactive flag to select from list.
+#
+# Default Behavior (no arguments):
+#   - Auto-detects current repo
+#   - Creates symlink
+#   - Initializes VS Code settings
 #
 # Usage:
-#   # Interactive: select repo from list
+#   # Default (one-liner): auto-detect + VS Code init
 #   ./shared-instructions/scripts/link-shared-instructions.sh
 #
-#   # One-liner: auto-detect current repo
-#   ./shared-instructions/scripts/link-shared-instructions.sh --auto
-#
-#   # One-liner with VS Code init
-#   ./shared-instructions/scripts/link-shared-instructions.sh --auto --init-vscode
+#   # Interactive: select repo from list
+#   ./shared-instructions/scripts/link-shared-instructions.sh --interactive
 #
 # Options:
-#   --auto          Auto-detect current repo and create symlink (one-liner)
+#   --interactive   Interactive mode: select repo from list (no auto-detect)
 #   --workspace     Parent folder containing repos (default: workspace root)
 #   --shared-path   Path to shared-instructions (default: script's parent directory)
-#   --non-interactive  Skip all prompts; requires --target or --auto
-#   --target        Repo directory to install symlink into
-#   --init-vscode   Run VS Code init script after linking
+#   --target        Repo directory to install symlink into (for manual selection)
+#   --no-vscode     Skip VS Code init (default: enabled)
 
 WORKSPACE=""
 SHARED_PATH=""
-NON_INTERACTIVE=false
+NON_INTERACTIVE=true
 TARGET_REPO=""
-INIT_VSCODE=false
-AUTO_DETECT=false
+INIT_VSCODE=true
+AUTO_DETECT=true
 
 # Resolve script dir
 SCRIPT_DIR=$(cd -- "$(dirname "$0")" && pwd)
@@ -40,34 +41,37 @@ while [[ $# -gt 0 ]]; do
   case "$1" in
     --workspace) WORKSPACE="$2"; shift 2;;
     --shared-path) SHARED_PATH="$2"; shift 2;;
-    --non-interactive) NON_INTERACTIVE=true; shift;;
-    --target) TARGET_REPO="$2"; shift 2;;
-    --auto) AUTO_DETECT=true; NON_INTERACTIVE=true; shift;;
-    --init-vscode) INIT_VSCODE=true; shift;;
+    --interactive) NON_INTERACTIVE=false; AUTO_DETECT=false; shift;;
+    --target) TARGET_REPO="$2"; NON_INTERACTIVE=false; AUTO_DETECT=false; shift 2;;
+    --no-vscode) INIT_VSCODE=false; shift;;
     -h|--help)
       cat <<'USAGE'
-Create shared-instructions symlink in a repo (interactive or one-liner mode).
+Create shared-instructions symlink in a repo (auto with VS Code by default).
+
+Default behavior (no arguments):
+  - Auto-detects current repo
+  - Creates symlink
+  - Initializes VS Code settings
 
 Options:
-  --auto                  Auto-detect current repo and create symlink (one-liner)
-  --workspace <path>      Root directory containing project repos (default: parent of shared-instructions)
-  --shared-path <path>    Path to shared-instructions (default: this script's parent)
-  --non-interactive       Skip all prompts (requires --target or --auto)
+  --interactive           Interactive mode: select repo from list
+  --workspace <path>      Root directory containing project repos
+  --shared-path <path>    Path to shared-instructions
   --target <repo-path>    Repo directory to install symlink into
-  --init-vscode           Also run VS Code init script after linking
+  --no-vscode             Skip VS Code initialization
 
 Examples:
-  # Interactive: select repo from list
+  # Default (one-liner): auto-detect + VS Code init
   ./shared-instructions/scripts/link-shared-instructions.sh
 
-  # One-liner: auto-detect current repo
-  ./shared-instructions/scripts/link-shared-instructions.sh --auto
+  # Interactive mode: select repo from list
+  ./shared-instructions/scripts/link-shared-instructions.sh --interactive
 
-  # One-liner with VS Code init
-  ./shared-instructions/scripts/link-shared-instructions.sh --auto --init-vscode
+  # Auto with no VS Code init
+  ./shared-instructions/scripts/link-shared-instructions.sh --no-vscode
 
-  # Non-interactive with explicit path
-  ./shared-instructions/scripts/link-shared-instructions.sh --non-interactive --target ./fasting-frontend
+  # Explicit target with VS Code
+  ./shared-instructions/scripts/link-shared-instructions.sh --target ./fasting-frontend
 USAGE
       exit 0;;
     *) echo "Unknown argument: $1" >&2; exit 1;;

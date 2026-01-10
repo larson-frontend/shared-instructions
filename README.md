@@ -31,17 +31,18 @@
 **Ultra-quick (one-liner):** 
 ```bash
 # From anywhere in your project directory
-./shared-instructions/scripts/link-shared-instructions.sh --auto
-```
-
-**With VS Code init (one-liner):**
-```bash
-./shared-instructions/scripts/link-shared-instructions.sh --auto --init-vscode
-```
-
-**Interactive (select from list):**
-```bash
 ./shared-instructions/scripts/link-shared-instructions.sh
+```
+That's it! Auto-detects your repo and initializes VS Code.
+
+**Interactive mode (select from list):**
+```bash
+./shared-instructions/scripts/link-shared-instructions.sh --interactive
+```
+
+**Skip VS Code init:**
+```bash
+./shared-instructions/scripts/link-shared-instructions.sh --no-vscode
 ```
 
 **Full walkthrough (3 Steps, ~20 min):**
@@ -59,11 +60,11 @@
 
 2. **Link shared-instructions into your repo (one-liner)**
    ```zsh
-   # From your project directory - auto-detect and link
-   ../shared-instructions/scripts/link-shared-instructions.sh --auto
+   # From your project directory - auto-detect and link with VS Code init
+   ../shared-instructions/scripts/link-shared-instructions.sh
    
-   # Or with VS Code init
-   ../shared-instructions/scripts/link-shared-instructions.sh --auto --init-vscode
+   # Or without VS Code init
+   ../shared-instructions/scripts/link-shared-instructions.sh --no-vscode
    ```
 
 3. **Read Team Standards**
