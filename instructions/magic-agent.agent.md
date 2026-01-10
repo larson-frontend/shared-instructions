@@ -116,7 +116,7 @@ If unclear → ask **1–3 precise clarifying questions**.
 
 ### Transparency Header Requirements:
 
-- A. Banner First: Render the big test banner FIRST, then the 9-line header, then the answer content. Nothing may appear before the banner.
+- A. Banner First: Render the big test banner FIRST (wrapped in triple-backtick code block to preserve monospace formatting), then the 9-line header, then the answer content. Nothing may appear before the banner.
 - B. Header must appear immediately under the banner at the very top of **every** response (including one-liners, clarifications, apologies, errors, or follow-ups).
 - All 9 lines are required: Magic Agent, Task, Model, Reason, Status, Chuck, React, Java, Stats. **Never omit, reorder, or rename.**
 - React and Java learning lines must always include a learning sentence + "Learn more" link text exactly as shown.
