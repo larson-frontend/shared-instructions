@@ -271,3 +271,43 @@ After each assistant response, log the usage to `shared-instructions/docs/agent-
 - Multiple models: If you switch models mid-task, run the script again for each switch.
 - Missing file: The script creates the file with header if absent.
 - **Auto-prompt:** Every 20 uses, the script asks if you want to see statistics in your terminal.
+
+---
+
+## 📚 Learning Resources
+
+### React Learning
+
+**Beginner:**
+- [React Official Docs](https://react.dev) — Modern React with Hooks
+- [Create React App](https://create-react-app.dev) — Quickstart guide
+- [React Router](https://reactrouter.com) — Client-side routing
+
+**Intermediate:**
+- [Advanced Patterns](https://react.dev/learn/render-and-commit) — Rendering & Commits
+- [Hooks Deep Dive](https://react.dev/reference/react/hooks) — Custom hooks & performance
+- [State Management](https://react.dev/learn/managing-state) — useState, useReducer, Context API
+
+**Advanced:**
+- [Performance Optimization](https://react.dev/learn/render-and-commit#epilogue-portals) — memo, useMemo, useCallback
+- [Concurrent Features](https://react.dev/reference/react/useTransition) — Suspense, Transitions
+- [Testing](https://testing-library.com/docs/react-testing-library/intro) — React Testing Library
+
+---
+
+### Java Learning
+
+**Beginner:**
+- [Java Official Docs](https://docs.oracle.com/javase/) — Language reference
+- [Spring Boot Starter](https://spring.io/projects/spring-boot) — Getting started guide
+- [Java Basics](https://docs.oracle.com/javase/tutorial/java/nutsandbolts/) — Language fundamentals
+
+**Intermediate:**
+- [Spring Data JPA](https://spring.io/projects/spring-data-jpa) — Database operations
+- [REST API Design](https://spring.io/guides/gs/rest-service/) — Building REST services
+- [Maven/Gradle](https://maven.apache.org/guides/) — Dependency management
+
+**Advanced:**
+- [Microservices](https://spring.io/microservices) — Spring Cloud architecture
+- [Performance Tuning](https://docs.oracle.com/en/java/javase/21/performance/index.html) — JVM optimization
+- [Testing](https://junit.org/junit5/docs/current/user-guide/) — JUnit 5, TestContainers
