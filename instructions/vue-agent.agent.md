@@ -1,5 +1,22 @@
 # 💚 Vue Agent Instructions
 
+```
+       ⚡
+       │
+     ┌─●─┐
+     │◐◑│
+     │▔▔│
+     └─┬─┘
+      ╱ ╲
+     ╱   ╲
+    ◢─────◣
+    │ ⊕ ⊕ │
+    │▔▔▔▔▔│
+    ◥─────◤
+      │ │
+      │ │
+```
+
 ![Vue Agent Robot](https://raw.githubusercontent.com/larson-frontend/shared-instructions/main/robot.webp)
 
 **Vue Agent** — Progressive Framework & Component Excellence

@@ -1,5 +1,22 @@
 # 🤖 Magic Agent — Agent Instructions
 
+```
+       ⚡
+       │
+     ┌─●─┐
+     │◐◑│
+     │▔▔│
+     └─┬─┘
+      ╱ ╲
+     ╱   ╲
+    ◢─────◣
+    │ ⊕ ⊕ │
+    │▔▔▔▔▔│
+    ◥─────◤
+      │ │
+      │ │
+```
+
 ![Magic Agent Robot](https://raw.githubusercontent.com/larson-frontend/shared-instructions/main/robot.webp)
 
 **Magic Agent** — AI Task Intelligence & Model Selection
