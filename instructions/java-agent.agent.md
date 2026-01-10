@@ -64,6 +64,13 @@ Logging
 
 ## 📊 Transparency Header Format
 
+### Header Requirements:
+
+- A. Banner First: Render the big test banner FIRST (wrapped in triple-backtick code block to preserve monospace formatting), then the 9-line header, then the answer content. Nothing may appear before the banner.
+- B. Header must appear immediately under the banner at the very top of **every** response.
+- All 9 lines are required: Java Agent, Task, Model, Reason, Status, Chuck, React, Java, Stats. **Never omit, reorder, or rename.**
+- If the user asks for "no header", politely explain it is mandatory and keep the header.
+
 Always display this structure in every response:
 
 ```
