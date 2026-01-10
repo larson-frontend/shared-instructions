@@ -90,7 +90,7 @@ Colored (auto-detects TTY):
 #!/usr/bin/env bash
 if [ -t 1 ]; then C1="\033[1;95m"; C2="\033[1;96m"; C3="\033[1;93m"; R="\033[0m"; else C1=""; C2=""; C3=""; R=""; fi
 echo -e "${C1}┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓${R}"
-echo -e "${C2}┃  OHH MY SH — BIG HEADER (TEST MODE)  ┃${R}"
+echo -e "${C2}┃           TEST AGENT QA              ┃${R}"
 echo -e "${C1}┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛${R}"
 echo -e "${C3}Agent: React Agent | Status: TEST | Time: $(date -u +%Y-%m-%dT%H:%M:%SZ)${R}"
 ```
@@ -99,7 +99,7 @@ Plain (no color):
 
 ```
 ┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┓
-┃  OHH MY SH — BIG HEADER (TEST MODE)  ┃
+┃           TEST AGENT QA              ┃
 ┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
 Agent: React Agent | Status: TEST | Time: 2026-01-10T00:00:00Z
 ```
