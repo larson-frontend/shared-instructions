@@ -55,9 +55,15 @@ pad_center() {
   printf '%*s%s%*s' "$pad" '' "$text" "$extra" ''
 }
 
-echo -e "${C1}┏$(printf '━%.0s' $(seq 1 $BOX_WIDTH))┓${R}"
-echo -e "${C2}┃$(pad_center "$TITLE" $BOX_WIDTH)┃${R}"
-echo -e "${C1}┗$(printf '━%.0s' $(seq 1 $BOX_WIDTH))┛${R}"
+# ASCII Art banner (TAAG-style, font: Big or similar)
+cat <<'BANNER'
+  _______ ______  _____ _______     ___    ______ ______ _   _ _______    ____    ___ 
+ |__   __|  ____|/ ____|__   __|   / \ \  / / ___|  ____| \ | |__   __|  / __ \  / _ \
+    | |  | |__  | (___    | |     / _ \ \/ / |   | |__  |  \| |  | |    | |  | |/ /_\ \
+    | |  |  __|  \___ \   | |    / ___ \  /| |   |  __| | . ` |  | |    | |  | |  _  |
+    | |  | |____ ____) |  | |   / /   \  / | |___| |____| |\  |  | |    | |__| | | | |
+    |_|  |______|_____/   |_|  /_/     \/   \____|______|_| \_|  |_|     \___\_\_| |_/
+BANNER
 
 # Details lines (like Spring Boot’s info block, but agent-oriented)
 [[ -n "$AGENT" ]] && echo -e "${C4}Agent:${R} $AGENT"
