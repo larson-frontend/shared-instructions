@@ -3,6 +3,8 @@
 > Centralized documentation, guidelines, and workflows for development teams
 >
 > **Note:** This is a template hub for shared project documentation. Customize for your team's needs.
+>
+> **Important:** This repo is no longer managed as a Git submodule. Clone it as a normal repo alongside your projects and symlink it in (see Quick Start).
 
 ---
 
@@ -30,13 +32,16 @@
 
 **Full walkthrough (3 Steps, ~20 min):**
 
-1. **Clone & Setup**
+1. **Clone & Setup (no submodules)**
    ```bash
-   git clone <YOUR_REPO>
+   # Clone shared instructions once
+   git clone <SHARED_INSTRUCTIONS_REPO> shared-instructions
+
+   # Clone your project as a sibling directory
+   git clone <YOUR_PROJECT_REPO> <YOUR_PROJECT>
    cd <YOUR_PROJECT>
-   git submodule update --init --recursive
    ```
-   → See `docs/GETTING_STARTED.md` for detailed setup
+   → Ensure `shared-instructions/` sits next to your project folder for symlinking; see `docs/GETTING_STARTED.md` for detailed setup
 
 2. **Link shared-instructions into your repo**
    ```zsh
@@ -127,7 +132,11 @@ Each project includes `.vscode/settings.json` that configures AI agents:
 ### 1. Pull Latest Changes
 ```bash
 git pull origin main
-git submodule update --recursive  # Update shared docs
+```
+
+If `shared-instructions/` is a sibling directory, pull updates there too:
+```bash
+pushd ../shared-instructions && git pull origin main && popd
 ```
 
 ### 2. Create Feature Branch
@@ -161,7 +170,7 @@ Agent provides context-aware guidance
 
 ## 📍 Project Locations
 
-Your projects are organized as submodules or separate directories:
+Your projects are organized as sibling directories (no Git submodules):
 
 ```
 workspace/
