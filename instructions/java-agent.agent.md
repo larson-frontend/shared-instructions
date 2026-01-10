@@ -1,6 +1,6 @@
 # ☕ Java Agent Instructions
 
-![Java Agent Robot](../robot.webp)
+![Java Agent Robot](https://raw.githubusercontent.com/larson-frontend/shared-instructions/main/robot.webp)
 
 **Java Agent** — Spring Boot & JVM Backend Excellence
 

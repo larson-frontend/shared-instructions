@@ -1,6 +1,6 @@
 # ⚛️ React Agent Instructions
 
-![React Agent Robot](../robot.webp)
+![React Agent Robot](https://raw.githubusercontent.com/larson-frontend/shared-instructions/main/robot.webp)
 
 **React Agent** — Modern UI Frameworks & Frontend Mastery
 
