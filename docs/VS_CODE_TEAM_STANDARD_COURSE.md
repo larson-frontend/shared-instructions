@@ -10,13 +10,14 @@
 
 Dieser Artikel zeigt, wie ein Team eine einheitliche Entwicklungsumgebung in VS Code aufbaut und dauerhaft gemeinsam pflegt.
 
-Der Fokus liegt auf fünf Bausteinen:
+Der Fokus liegt auf diesen Bausteinen:
 
 1. Gemeinsame Workspace-Settings in `.vscode/`
 2. Gemeinsame GitHub Copilot Instructions in `.github/`
 3. Gemeinsame Formatierungs- und Qualitätsregeln
 4. Gemeinsame Debugging-Profile
 5. Erweiterte Agent-Workflows mit Custom Agents und spezialisierten Instructions
+6. Klare Governance, Team-Rollen und Einführungsstrategie
 
 Das Ziel ist nicht nur, dass "alles funktioniert", sondern dass alle Entwickler im Team dieselben Standards, dieselbe Toolchain und dieselben AI-Konventionen verwenden.
 
@@ -605,7 +606,7 @@ Wenn ihr diese Linie haltet, werden `.vscode/` und `.github/` nicht nur Konfigur
 
 ## Nächste praktische Schritte
 
-Wenn du diesen Kurs im Team umsetzen willst, dann gehe in genau dieser Reihenfolge vor:
+Wenn du diesen Leitfaden im Team umsetzen willst, dann gehe in genau dieser Reihenfolge vor:
 
 1. Standard für `.vscode/settings.json` definieren
 2. `extensions.json` mit echten Team-Extensions füllen

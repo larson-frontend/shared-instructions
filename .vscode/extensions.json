@@ -1,12 +1,12 @@
 {
-  "recommendations": [
-    "github.copilot",
-    "github.copilot-chat",
-    "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint",
-    "ms-vscode.vscode-typescript-next",
-    "ms-playwright.playwright",
-    "ms-azuretools.vscode-docker",
-    "editorconfig.editorconfig"
-  ]
+    "recommendations": [
+        "github.copilot",
+        "github.copilot-chat",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "ms-vscode.vscode-typescript-next",
+        "ms-playwright.playwright",
+        "ms-azuretools.vscode-docker",
+        "editorconfig.editorconfig"
+    ]
 }
