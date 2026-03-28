@@ -1,31 +1,91 @@
 {
+    // ── Editor ──────────────────────────────────────────
     "editor.formatOnSave": true,
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit"
+        "source.fixAll.eslint": "explicit",
+        "source.organizeImports": "explicit"
     },
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": true,
+    "editor.minimap.enabled": false,
+    "editor.stickyScroll.enabled": true,
+    "editor.linkedEditing": true,
+    "editor.inlineSuggest.enabled": true,
+
+    // ── Files ──────────────────────────────────────────
     "files.eol": "\n",
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
+    "files.exclude": {
+        "**/node_modules": true,
+        "**/.git": true,
+        "**/dist": true,
+        "**/coverage": true
+    },
+
+    // ── TypeScript ─────────────────────────────────────
     "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "typescript.suggest.autoImports": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+
+    // ── ESLint ─────────────────────────────────────────
     "eslint.validate": [
         "javascript",
         "javascriptreact",
         "typescript",
         "typescriptreact"
     ],
+    "eslint.useFlatConfig": true,
+
+    // ── GitHub Copilot ─────────────────────────────────
     "github.copilot.chat.codeGeneration.useInstructionFiles": true,
     "github.copilot.chat.followUps": "always",
+    "chat.agent.enabled": true,
+    "chat.mcp.enabled": true,
+
+    // ── Git ────────────────────────────────────────────
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.pruneOnFetch": true,
+
+    // ── Search ─────────────────────────────────────────
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/dist": true,
+        "**/coverage": true,
+        "**/.git": true,
+        "**/package-lock.json": true
+    },
+
+    // ── Language Formatters ────────────────────────────
     "[typescript]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[typescriptreact]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
     "[json]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[css]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "[markdown]": {
         "editor.wordWrap": "on",
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[yaml]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     }
 }

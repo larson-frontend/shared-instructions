@@ -5,42 +5,88 @@
             "label": "Dev Server",
             "type": "shell",
             "command": "npm run dev",
-            "group": "build",
-            "problemMatcher": []
+            "group": { "kind": "build", "isDefault": true },
+            "problemMatcher": [],
+            "isBackground": true
         },
         {
-            "label": "Run Tests",
+            "label": "Dev Server (Mocks)",
             "type": "shell",
-            "command": "npm test",
-            "group": "test",
-            "problemMatcher": []
+            "command": "npm run dev:mock",
+            "group": "build",
+            "problemMatcher": [],
+            "isBackground": true
         },
         {
             "label": "Build",
             "type": "shell",
             "command": "npm run build",
             "group": "build",
-            "problemMatcher": [
-                "$tsc"
-            ]
+            "problemMatcher": ["$tsc"]
+        },
+        {
+            "label": "Run Tests",
+            "type": "shell",
+            "command": "npm test",
+            "group": { "kind": "test", "isDefault": true },
+            "problemMatcher": []
+        },
+        {
+            "label": "Cypress: E2E (headless)",
+            "type": "shell",
+            "command": "npm run cy:ci",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Cypress: Open",
+            "type": "shell",
+            "command": "npx cypress open",
+            "group": "test",
+            "problemMatcher": [],
+            "isBackground": true
         },
         {
             "label": "Lint",
             "type": "shell",
             "command": "npm run lint",
             "group": "test",
-            "problemMatcher": [
-                "$eslint-stylish"
-            ]
+            "problemMatcher": ["$eslint-stylish"]
+        },
+        {
+            "label": "Lint: Fix",
+            "type": "shell",
+            "command": "npm run lint -- --fix",
+            "group": "test",
+            "problemMatcher": ["$eslint-stylish"]
         },
         {
             "label": "Type Check",
             "type": "shell",
             "command": "npx tsc --noEmit",
             "group": "test",
-            "problemMatcher": [
-                "$tsc"
-            ]
+            "problemMatcher": ["$tsc"]
+        },
+        {
+            "label": "Format: Check",
+            "type": "shell",
+            "command": "npx prettier --check .",
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Format: Fix",
+            "type": "shell",
+            "command": "npx prettier --write .",
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "label": "Quality Gate",
+            "dependsOn": ["Type Check", "Lint", "Run Tests"],
+            "dependsOrder": "parallel",
+            "group": "test",
+            "problemMatcher": []
         }
     ]
 }

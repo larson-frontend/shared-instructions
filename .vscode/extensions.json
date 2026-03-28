@@ -1,12 +1,32 @@
 {
     "recommendations": [
+        // ── AI & Copilot ──
         "github.copilot",
         "github.copilot-chat",
+
+        // ── Code Quality ──
         "esbenp.prettier-vscode",
         "dbaeumer.vscode-eslint",
+        "editorconfig.editorconfig",
+
+        // ── TypeScript ──
         "ms-vscode.vscode-typescript-next",
+
+        // ── Testing ──
         "ms-playwright.playwright",
+
+        // ── DevOps ──
         "ms-azuretools.vscode-docker",
-        "editorconfig.editorconfig"
+
+        // ── Git ──
+        "eamodio.gitlens",
+        "github.vscode-pull-request-github",
+
+        // ── DX & Productivity ──
+        "christian-kohler.path-intellisense",
+        "streetsidesoftware.code-spell-checker",
+        "streetsidesoftware.code-spell-checker-german",
+        "usernamehw.errorlens",
+        "gruntfuggly.todo-tree"
     ]
 }

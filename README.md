@@ -73,10 +73,11 @@ Die Dateien sind als Startpunkt gedacht. Passe sie an die Toolchain und Konventi
 shared-instructions/
 ├── .editorconfig                          ← Einheitliche Editor-Basics
 ├── .vscode/
-│   ├── settings.json                      ← Team-Settings (Formatter, Linter, Copilot)
-│   ├── extensions.json                    ← Empfohlene Extensions
-│   ├── launch.json                        ← Debug-Profile (Node, Vite, Compound)
-│   └── tasks.json                         ← Häufige Tasks (dev, test, build, lint)
+│   ├── settings.json                      ← Team-Settings (Formatter, Linter, Copilot, Git)
+│   ├── extensions.json                    ← Empfohlene Extensions (15+)
+│   ├── launch.json                        ← Debug-Profile (Vite, BFF, Spring Boot, Cypress, Tests)
+│   ├── tasks.json                         ← Tasks (dev, test, build, lint, format, quality gate)
+│   └── mcp.json                           ← MCP Server Konfiguration (GitHub, Filesystem)
 ├── .github/
 │   ├── copilot-instructions.md            ← Globale AI-Regeln fürs Team
 │   ├── instructions/
@@ -84,6 +85,7 @@ shared-instructions/
 │   │   ├── backend.instructions.md        ← API/Service-spezifische Regeln
 │   │   └── testing.instructions.md        ← Test-Konventionen
 │   └── agents/
+│       ├── orchestrator.agent.md          ← Intelligent Model Router
 │       ├── review-agent.agent.md          ← PR-Review Agent
 │       └── react-agent.agent.md           ← React UI Agent
 ├── docs/
@@ -111,10 +113,11 @@ Der [Artikel](docs/VS_CODE_TEAM_STANDARD_COURSE.md) erklärt jeden Baustein im D
 | 2 | Team Extensions | `.vscode/extensions.json` | Alle nutzen dieselbe Toolbasis |
 | 3 | Debug-Profile | `.vscode/launch.json` | Debugging funktioniert auf jedem Rechner |
 | 4 | Task Runner | `.vscode/tasks.json` | Standardisierte Dev-Abläufe |
-| 5 | Copilot Instructions | `.github/copilot-instructions.md` | AI kennt eure Architektur und Regeln |
-| 6 | File-Instructions | `.github/instructions/*.md` | Bereichsspezifische AI-Regeln |
-| 7 | Custom Agents | `.github/agents/*.md` | Spezialisierte AI-Workflows |
-| 8 | Editor Config | `.editorconfig` | Basis-Formatierung auch ohne VS Code |
+| 5 | MCP Server | `.vscode/mcp.json` | AI-Agents mit GitHub & Filesystem verbinden |
+| 6 | Copilot Instructions | `.github/copilot-instructions.md` | AI kennt eure Architektur und Regeln |
+| 7 | File-Instructions | `.github/instructions/*.md` | Bereichsspezifische AI-Regeln |
+| 8 | Custom Agents | `.github/agents/*.md` | Spezialisierte AI-Workflows |
+| 9 | Editor Config | `.editorconfig` | Basis-Formatierung auch ohne VS Code |
 
 ---
 
@@ -167,6 +170,7 @@ Sofort nutzbar für jedes Projekt:
 
 | Agent | Datei | Einsatz |
 |-------|-------|---------|
+| Orchestrator | `orchestrator.agent.md` | Intelligent Model Router, Task-Detection, Transparency Header |
 | Review Agent | `review-agent.agent.md` | PR-Reviews, Risiken erkennen, fehlende Tests finden |
 | React Agent | `react-agent.agent.md` | React UI, Komponenten, State, Styling |
 

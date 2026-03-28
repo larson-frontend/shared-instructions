@@ -9,20 +9,34 @@
             "cwd": "${workspaceFolder}"
         },
         {
+            "name": "Frontend: Vite (Mocks)",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run dev:mock",
+            "cwd": "${workspaceFolder}"
+        },
+        {
             "name": "BFF: Node Debug",
             "type": "node",
             "request": "launch",
             "runtimeExecutable": "npm",
-            "runtimeArgs": [
-                "run",
-                "dev"
-            ],
+            "runtimeArgs": ["run", "dev"],
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal",
             "restart": true,
-            "skipFiles": [
-                "<node_internals>/**"
-            ]
+            "skipFiles": ["<node_internals>/**"]
+        },
+        {
+            "name": "BFF: Node Debug (Mock Mode)",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": ["run", "dev"],
+            "cwd": "${workspaceFolder}",
+            "env": { "ENABLE_MOCK_MODE": "true" },
+            "console": "integratedTerminal",
+            "restart": true,
+            "skipFiles": ["<node_internals>/**"]
         },
         {
             "name": "Backend: Spring Boot",
@@ -31,15 +45,40 @@
             "mainClass": "com.example.Application",
             "cwd": "${workspaceFolder}",
             "console": "integratedTerminal"
+        },
+        {
+            "name": "Cypress: Open",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npx cypress open",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Cypress: Run (headless)",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npm run cy:ci",
+            "cwd": "${workspaceFolder}"
+        },
+        {
+            "name": "Debug: Current Test File",
+            "type": "node",
+            "request": "launch",
+            "runtimeExecutable": "npx",
+            "runtimeArgs": ["vitest", "run", "${relativeFile}"],
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "skipFiles": ["<node_internals>/**"]
         }
     ],
     "compounds": [
         {
-            "name": "Start FE + BFF",
-            "configurations": [
-                "Frontend: Vite",
-                "BFF: Node Debug"
-            ]
+            "name": "Full Stack: FE + BFF",
+            "configurations": ["Frontend: Vite", "BFF: Node Debug"]
+        },
+        {
+            "name": "Full Stack (Mocks)",
+            "configurations": ["Frontend: Vite (Mocks)"]
         }
     ]
 }
