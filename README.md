@@ -1,251 +1,239 @@
-# 📚 Shared Instructions Hub
+# VS Code Team Standard
 
-> Centralized documentation, guidelines, and workflows for development teams
+```
+╔══════════════════════════════════════════════════════════════════╗
+║                                                                  ║
+║   ██╗   ██╗███████╗     ██████╗ ██████╗ ██████╗ ███████╗        ║
+║   ██║   ██║██╔════╝    ██╔════╝██╔═══██╗██╔══██╗██╔════╝        ║
+║   ██║   ██║███████╗    ██║     ██║   ██║██║  ██║█████╗          ║
+║   ╚██╗ ██╔╝╚════██║    ██║     ██║   ██║██║  ██║██╔══╝          ║
+║    ╚████╔╝ ███████║    ╚██████╗╚██████╔╝██████╔╝███████╗        ║
+║     ╚═══╝  ╚══════╝     ╚═════╝ ╚═════╝ ╚═════╝ ╚══════╝        ║
+║                                                                  ║
+║          Team Standard · Shared Instructions · AI Agents         ║
+║                                                                  ║
+╚══════════════════════════════════════════════════════════════════╝
+```
+
+> **Eine fertige Vorlage für gemeinsame VS Code Settings, GitHub Copilot Instructions und Custom Agents.**
 >
-> **Note:** This is a template hub for shared project documentation. Customize for your team's needs.
->
-> **Important:** This repo is no longer managed as a Git submodule. Clone it as a normal repo alongside your projects and symlink it in (see Quick Start).
+> Clone → anpassen → commiten. Das ganze Team arbeitet sofort mit denselben Standards.
 
 ---
 
-## 📖 Documentation Map
+## Worum es geht
 
-| Document | Purpose | Read Time | Audience |
-|----------|---------|-----------|----------|
-| **docs/GETTING_STARTED.md** | Complete setup from clone to running | 15-20 min | New developers, onboarding |
-| **docs/INSTALLATION_QUICK.md** | Ultra-short copy/paste steps | 1-2 min | Quick starters |
-| **docs/INSTALLATION.md** | Minimal steps to start using instructions | 3-5 min | All developers |
-| **docs/TEAM_SETUP_GUIDE.md** | Team workflows, standards, collaboration | 10-15 min | All team members |
-| **instructions/copilot.instructions.md** | AI agent instructions & behavior | 5 min | Developers using agents |
-| **instructions/test.instructions.md** | Unit testing best practices (Java/TS) | 10 min | All developers |
-| **docs/agent-usage.md** | Agent usage history & patterns | 5-10 min | Reference for past solutions |
-| **scripts/log-agent-usage.sh** | Append usage entries automatically | 1 min | All developers |
-| **scripts/link-shared-instructions.sh** | Interactively add repo symlink | 1-2 min | All developers |
+Dieses Repository ist eine **sofort nutzbare Referenz-Implementierung** für Teams, die eine gemeinsame Entwicklungsumgebung in VS Code aufbauen wollen.
 
-**Total onboarding time: ~30-50 minutes** (depending on experience)
+Es enthält:
+
+- fertige `.vscode/` Konfigurationen (Settings, Extensions, Debugging, Tasks)
+- fertige `.github/` Copilot Instructions, file-spezifische Instructions und Custom Agents
+- einen ausführlichen Artikel, der jeden Baustein erklärt
+- Skripte zum Einbinden in bestehende Projekte
+
+**Der Artikel dazu:** [docs/VS_CODE_TEAM_STANDARD_COURSE.md](docs/VS_CODE_TEAM_STANDARD_COURSE.md)
 
 ---
 
-## 🚀 Quick Start
+## Schnellstart
 
-**Ultra-quick (one-liner):** 
-```bash
-# From anywhere in your project directory
-./shared-instructions/scripts/link-shared-instructions.sh
-```
-That's it! Auto-detects your repo and initializes VS Code.
+### 1. Repo clonen
 
-**Interactive mode (select from list):**
 ```bash
-./shared-instructions/scripts/link-shared-instructions.sh --interactive
+git clone git@github.com:larson-frontend/shared-instructions.git
 ```
 
-**Skip VS Code init:**
+### 2. In dein Projekt einbinden
+
 ```bash
-./shared-instructions/scripts/link-shared-instructions.sh --no-vscode
+# Symlink im Projektordner anlegen
+cd dein-projekt/
+ln -s ../shared-instructions shared-instructions
 ```
 
-**Full walkthrough (3 Steps, ~20 min):**
+Oder die Dateien direkt in dein Projekt kopieren:
 
-1. **Clone & Setup (no submodules)**
-   ```bash
-   # Clone shared instructions once
-   git clone <SHARED_INSTRUCTIONS_REPO> shared-instructions
+```bash
+# .vscode/ und .github/ in dein Projekt übernehmen
+cp -r shared-instructions/.vscode/ dein-projekt/.vscode/
+cp -r shared-instructions/.github/ dein-projekt/.github/
+cp shared-instructions/.editorconfig dein-projekt/.editorconfig
+```
 
-   # Clone your project as a sibling directory
-   git clone <YOUR_PROJECT_REPO> <YOUR_PROJECT>
-   cd <YOUR_PROJECT>
-   ```
-   → Ensure `shared-instructions/` sits next to your project folder for symlinking; see `docs/GETTING_STARTED.md` for detailed setup
+### 3. Anpassen
 
-2. **Link shared-instructions into your repo (one-liner)**
-   ```zsh
-   # From your project directory - auto-detect and link with VS Code init
-   ../shared-instructions/scripts/link-shared-instructions.sh
-   
-   # Or without VS Code init
-   ../shared-instructions/scripts/link-shared-instructions.sh --no-vscode
-   ```
-
-3. **Read Team Standards**
-   → See `docs/TEAM_SETUP_GUIDE.md` for workflows and guidelines
-
-4. **Start Development**
-   ```bash
-   # Follow GETTING_STARTED.md step-by-step
-   # You'll have a running local development environment
-   ```
+Die Dateien sind als Startpunkt gedacht. Passe sie an die Toolchain und Konventionen deines Teams an.
 
 ---
 
-## 📁 How Symlinks Work
-
-This repository uses **symlinks** for shared documentation:
+## Was drin ist
 
 ```
-root/
-├── shared-instructions/          ← Central source of truth
-│   ├── docs/                     ← Human-readable guides
-│   │   ├── GETTING_STARTED.md
-│   │   ├── TEAM_SETUP_GUIDE.md
-│   │   └── agent-usage.md
-│   ├── instructions/             ← Tool consumption files
-│   │   └── copilot.instructions.md
-│   ├── scripts/                  ← Setup automation
-│   └── README.md                 ← This index
-├── project-1/
-│   └── shared-instructions/ → ../shared-instructions  (symlink)
-└── project-2/
-    └── shared-instructions/ → ../shared-instructions  (symlink)
-```
-
-**Benefits:**
-- 🎯 Single source of truth (updates auto-sync to all projects)
-- 🔄 No duplicate files to maintain
-- 📚 Consistent documentation across team
-- 🚀 Easy to reference from any project
-
-**Verify symlinks are working:**
-```bash
-# From any project
-cat shared-instructions/GETTING_STARTED.md | head -3
-# Should show content from root shared-instructions/
-```
-
----
-
-## 🤖 Using AI Agents (Copilot, etc.)
-
-Each project includes `.vscode/settings.json` that configures AI agents:
-
-```json
-{
-  "copilot.instructions": [
-    "shared-instructions/instructions/copilot.instructions.md"
-  ]
-}
-```
-
-**How to use:**
-1. Open any file in your project
-2. Press `⌘ + I` (Mac) or `Ctrl + I` (Linux/Windows)
-3. Ask a question about your code
-4. Agent reads instructions from `shared-instructions/instructions/copilot.instructions.md`
-
-**Agent context:**
-- Reads all `instructions/copilot.instructions.md` files
-- Understands team standards from `docs/TEAM_SETUP_GUIDE.md`
-- References usage patterns from `docs/agent-usage.md`
-- Logs usage via `scripts/log-agent-usage.sh` (optional but recommended)
-- Provides consistent guidance across team
-
----
-
-## 🔄 Daily Workflow
-
-### 1. Pull Latest Changes
-```bash
-git pull origin main
-```
-
-If `shared-instructions/` is a sibling directory, pull updates there too:
-```bash
-pushd ../shared-instructions && git pull origin main && popd
-```
-
-### 2. Create Feature Branch
-```bash
-git checkout -b feature/description-of-change
-```
-
-### 3. Make Changes & Commit
-```bash
-git add .
-git commit -m "type: short description"
-# See docs/TEAM_SETUP_GUIDE.md for commit conventions
-```
-
-### 4. Push & Create Pull Request
-```bash
-git push origin feature/description-of-change
-# Create PR for code review
-```
-
-### 5. Ask for Help
-```
-Press ⌘ + I (or Ctrl + I)
-"Help me with [task]"
-Agent provides context-aware guidance
-```
-
-**See `TEAM_SETUP_GUIDE.md` for detailed workflow & standards**
-
----
-
-## 📍 Project Locations
-
-Your projects are organized as sibling directories (no Git submodules):
-
-```
-workspace/
-├── shared-instructions/     ← You are here
-│   ├── docs/
-│   │   ├── GETTING_STARTED.md   ← START HERE
-│   │   ├── TEAM_SETUP_GUIDE.md
-│   │   └── agent-usage.md
+shared-instructions/
+├── .editorconfig                          ← Einheitliche Editor-Basics
+├── .vscode/
+│   ├── settings.json                      ← Team-Settings (Formatter, Linter, Copilot)
+│   ├── extensions.json                    ← Empfohlene Extensions
+│   ├── launch.json                        ← Debug-Profile (Node, Vite, Compound)
+│   └── tasks.json                         ← Häufige Tasks (dev, test, build, lint)
+├── .github/
+│   ├── copilot-instructions.md            ← Globale AI-Regeln fürs Team
 │   ├── instructions/
-│   │   ├── copilot.instructions.md
-│   │   ├── magic-agent.agent.md
-│   │   └── test.instructions.md
-│   ├── scripts/
-│   └── README.md            ← This file
-├── <project-1>/
-│   ├── src/
-│   ├── package.json (or pom.xml)
-│   └── shared-instructions/ → ../shared-instructions
-└── <project-2>/
-    ├── src/
-    ├── package.json (or pom.xml)
-    └── shared-instructions/ → ../shared-instructions
+│   │   ├── frontend.instructions.md       ← React/TSX-spezifische Regeln
+│   │   ├── backend.instructions.md        ← API/Service-spezifische Regeln
+│   │   └── testing.instructions.md        ← Test-Konventionen
+│   └── agents/
+│       ├── review-agent.agent.md          ← PR-Review Agent
+│       └── react-agent.agent.md           ← React UI Agent
+├── docs/
+│   └── VS_CODE_TEAM_STANDARD_COURSE.md    ← Der vollständige Artikel
+├── instructions/                          ← Erweiterte Agent-Definitionen
+│   ├── copilot.instructions.md
+│   ├── magic-agent.agent.md
+│   ├── react-agent.agent.md
+│   ├── java-agent.agent.md
+│   ├── vue-agent.agent.md
+│   └── test.instructions.md
+└── scripts/                               ← Setup-Skripte
+    └── link-shared-instructions.sh
 ```
 
-Replace `<project-1>` and `<project-2>` with your actual project names.
+---
+
+## Die Bausteine im Überblick
+
+Der [Artikel](docs/VS_CODE_TEAM_STANDARD_COURSE.md) erklärt jeden Baustein im Detail. Hier die Kurzversion:
+
+| # | Baustein | Dateien | Was es löst |
+|---|----------|---------|-------------|
+| 1 | Workspace Settings | `.vscode/settings.json` | Einheitlicher Formatter, Linter, Save-Verhalten |
+| 2 | Team Extensions | `.vscode/extensions.json` | Alle nutzen dieselbe Toolbasis |
+| 3 | Debug-Profile | `.vscode/launch.json` | Debugging funktioniert auf jedem Rechner |
+| 4 | Task Runner | `.vscode/tasks.json` | Standardisierte Dev-Abläufe |
+| 5 | Copilot Instructions | `.github/copilot-instructions.md` | AI kennt eure Architektur und Regeln |
+| 6 | File-Instructions | `.github/instructions/*.md` | Bereichsspezifische AI-Regeln |
+| 7 | Custom Agents | `.github/agents/*.md` | Spezialisierte AI-Workflows |
+| 8 | Editor Config | `.editorconfig` | Basis-Formatierung auch ohne VS Code |
 
 ---
 
-## 📚 Detailed Guides Index
+## So bindet ihr das Repo in bestehende Projekte ein
 
-### For New Team Members
-1. **docs/GETTING_STARTED.md** - Complete setup guide (15-20 min)
-2. **docs/TEAM_SETUP_GUIDE.md** - Team standards and workflow (10 min)
-3. **instructions/copilot.instructions.md** - How to use AI agent effectively (5 min)
+### Option A: Symlink (empfohlen)
 
-### For Ongoing Development
-- **docs/TEAM_SETUP_GUIDE.md** - Git workflow, commit conventions, PR process
-- **docs/agent-usage.md** - Reference previous solutions and patterns
-- Project-specific README - Check your project's README for tech-specific details
+```bash
+# shared-instructions/ liegt neben eurem Projekt
+workspace/
+├── shared-instructions/     ← Dieses Repo
+├── frontend/
+│   └── shared-instructions/ → ../shared-instructions  (Symlink)
+└── backend/
+    └── shared-instructions/ → ../shared-instructions  (Symlink)
+```
 
-### For Different Roles
-- **Frontend developers** - Read project-specific README in frontend directory
-- **Backend developers** - Read project-specific README in backend directory
-- **Mobile developers** - Check for `android/`, `ios/`, or mobile-specific docs
-- **DevOps/Deployment** - Check for deployment guides in project directories
+```bash
+# Symlink anlegen
+cd frontend/
+ln -s ../shared-instructions shared-instructions
+
+# Oder mit dem mitgelieferten Skript
+../shared-instructions/scripts/link-shared-instructions.sh
+```
+
+Vorteil: Änderungen am Repo wirken sofort in allen Projekten.
+
+### Option B: Dateien kopieren
+
+Für Teams, die keine Symlinks nutzen wollen:
+
+```bash
+cp -r shared-instructions/.vscode/ mein-projekt/.vscode/
+cp -r shared-instructions/.github/ mein-projekt/.github/
+cp shared-instructions/.editorconfig mein-projekt/
+```
+
+Nachteil: Updates müssen manuell übernommen werden.
 
 ---
 
-## ❓ FAQ
+## Custom Agents
 
-### Q: Where do I start?
-**A:** Read `docs/GETTING_STARTED.md` (15-20 minutes) for complete setup from scratch.
+Dieses Repo enthält zwei Typen von Agent-Definitionen:
 
-### Q: How do I get AI agent help?
-**A:** Press `⌘ + I` (Mac) or `Ctrl + I` (Windows/Linux) in VS Code.
+### Standard-Agents (`.github/agents/`)
 
-### Q: What are the team coding standards?
-**A:** See `docs/TEAM_SETUP_GUIDE.md` for conventions, commit messages, and PR workflow.
+Sofort nutzbar für jedes Projekt:
 
-### Q: I'm working on X, where's the documentation?
-**A:** Check the README.md in your specific project directory for tech-specific guides.
+| Agent | Datei | Einsatz |
+|-------|-------|---------|
+| Review Agent | `review-agent.agent.md` | PR-Reviews, Risiken erkennen, fehlende Tests finden |
+| React Agent | `react-agent.agent.md` | React UI, Komponenten, State, Styling |
+
+### Erweiterte Agents (`instructions/`)
+
+Spezialisierte Agents mit erweiterten Features (Transparency Header, Model Routing, Learning Facts):
+
+| Agent | Datei | Einsatz |
+|-------|-------|---------|
+| Magic Agent | `magic-agent.agent.md` | Universeller Agent mit Model-Routing |
+| React Agent | `react-agent.agent.md` | React/TypeScript Frontend |
+| Java Agent | `java-agent.agent.md` | Java/Spring Boot Backend |
+| Vue Agent | `vue-agent.agent.md` | Vue 3/Vite Frontend |
+
+---
+
+## Einführung im Team
+
+Der Artikel empfiehlt eine schrittweise Einführung:
+
+**Phase 1 — Minimum Standard:**
+- `.vscode/settings.json` + `extensions.json`
+- `.github/copilot-instructions.md`
+
+**Phase 2 — Bereichsspezifische Regeln:**
+- `.github/instructions/` für Frontend, Backend, Testing
+- `.vscode/launch.json` für Debug-Profile
+
+**Phase 3 — Advanced Setup:**
+- `.github/agents/` für Custom Agents
+- Shared Instructions über mehrere Repos
+
+→ Details im [Artikel, Baustein 11](docs/VS_CODE_TEAM_STANDARD_COURSE.md#baustein-11-einführungsplan-für-ein-echtes-team)
+
+---
+
+## Governance
+
+Damit der Standard nicht veraltet:
+
+1. Änderungen an `.vscode/` und `.github/` nur per PR
+2. Jede Änderung braucht eine Begründung
+3. klare Ownership: wer pflegt Settings, wer pflegt AI-Instructions
+4. Governance-Checkliste vor jedem Merge prüfen
+
+→ Details im [Artikel, Baustein 9](docs/VS_CODE_TEAM_STANDARD_COURSE.md#baustein-9-team-rollen-und-verantwortlichkeiten)
+
+---
+
+## Weitere Dokumentation
+
+| Dokument | Zweck |
+|----------|-------|
+| [VS Code Team Standard (Artikel)](docs/VS_CODE_TEAM_STANDARD_COURSE.md) | Vollständiger Leitfaden mit allen 13 Bausteinen |
+| [Getting Started](docs/GETTING_STARTED.md) | Komplettes Setup von Clone bis Running |
+| [Installation](docs/INSTALLATION.md) | Kurzanleitung |
+| [Team Setup Guide](docs/TEAM_SETUP_GUIDE.md) | Team-Workflows und Standards |
+| [Testing Instructions](instructions/test.instructions.md) | Unit-Test Best Practices (Java/TS) |
+| [Agent Usage](docs/agent-usage.md) | Nutzungshistorie und Patterns |
+
+---
+
+## Lizenz
+
+Dieses Repository ist öffentlich. Nutze es als Vorlage für dein Team.
+
+Feedback und Contributions sind willkommen.
 
 ### Q: Symlinks aren't working on Windows
 **A:** Run Git with `git config core.symlinks true` before cloning.
