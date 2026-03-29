@@ -54,6 +54,23 @@ Commit-Messages folgen dem Conventional Commits Format:
 - Neue Features dokumentieren, wenn sie für andere relevant sind.
 - Änderungen an `.vscode/` oder `.github/` im PR begründen.
 
+### Feature- / Bug-Dokumentation
+
+Am Ende jeder abgeschlossenen Aufgabe den User fragen:
+> **„Soll ich das als Feature oder Bug dokumentieren?"**
+
+Struktur: `docs/my-features/feature_<name>/` bzw. `docs/my-bugs/bug_<name>/`
+
+Jeder Ordner enthält **5 Pflicht-Dateien**:
+
+| Datei | Inhalt |
+|-------|--------|
+| `specifications.md` | Feature-Name, Ziel, Must-Have / Nice-to-Have, API-Endpunkte, Datenmodell |
+| `problem.md` | Ausgangslage, konkrete Probleme, warum das Feature nötig ist |
+| `solution.md` | Architektur, BFF/FE/DB-Änderungen, betroffene Dateien, technische Details |
+| `progress.md` | Status, erledigte [x] + offene [ ] Schritte, Branch-Namen |
+| `history.json` | JSON-Array: `{ step, date, action, details, commit, repo }` pro Schritt |
+
 ## Lokale Entwicklung
 
 - Frontend mit Mocks: `npm run dev:mock` (MSW)
