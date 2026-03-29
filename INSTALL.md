@@ -1,422 +1,329 @@
-# Shared Instructions — Schritt-für-Schritt Installation
+# Shared Instructions — Installation
 
-> **Für wen ist diese Anleitung?**
-> Für alle im Team — auch wenn du noch nie mit Git, Terminal oder VS Code gearbeitet hast.
-> Jeder Schritt ist erklärt. Nichts wird übersprungen.
-
----
-
-## Inhaltsverzeichnis
-
-1. [Was du brauchst (Voraussetzungen)](#1-was-du-brauchst-voraussetzungen)
-2. [Terminal öffnen](#2-terminal-öffnen)
-3. [Shared-Instructions klonen](#3-shared-instructions-klonen)
-4. [In dein Projekt einbinden](#4-in-dein-projekt-einbinden)
-5. [VS Code neu laden](#5-vs-code-neu-laden)
-6. [Prüfen ob alles funktioniert](#6-prüfen-ob-alles-funktioniert)
-7. [Fehlerbehebung](#7-fehlerbehebung)
+> **Null Ahnung von Terminal oder Git?** Kein Problem.
+> Diese Anleitung erklärt jeden einzelnen Klick. Lies einfach Schritt für Schritt.
 
 ---
 
-## 1. Was du brauchst (Voraussetzungen)
+## Wie es funktioniert (30 Sekunden lesen)
 
-Bevor du loslegst, stelle sicher dass diese Programme installiert sind:
+Unser Team nutzt **eine zentrale Sammlung** von Einstellungen, Regeln und AI-Agents.
+Die liegt in einem eigenen Repository namens `shared-instructions`.
 
-### ✅ VS Code
+Du klonst dieses Repo einmal auf deinen Computer.
+Dann öffnest du eine `.code-workspace`-Datei — und alles funktioniert automatisch.
 
-- Download: https://code.visualstudio.com/
-- Installiere es ganz normal (Weiter → Weiter → Fertig).
+**Kein Kopieren, kein Symlink, keine Scripts.** Nur klonen und öffnen.
 
-### ✅ Git
+---
 
-**Prüfen ob Git installiert ist:**
+## Was du brauchst
 
-Öffne ein Terminal (siehe Schritt 2) und tippe:
+Bevor du loslegst — prüfe diese 3 Dinge:
+
+### 1. VS Code installiert?
+
+Noch nicht? → https://code.visualstudio.com/ herunterladen und installieren.
+
+### 2. Git installiert?
+
+Öffne ein Terminal und tippe:
 
 ```bash
 git --version
 ```
 
-Wenn eine Versionsnummer kommt (z.B. `git version 2.43.0`), ist Git installiert. ✅
+Kommt eine Versionsnummer (z.B. `git version 2.43.0`)? → Alles gut.
 
-Wenn nicht:
-- **Linux (Ubuntu/Debian):** `sudo apt install git`
+Kommt ein Fehler?
+- **Linux:** `sudo apt install git`
 - **macOS:** `xcode-select --install`
-- **Windows:** Download von https://git-scm.com/download/win
+- **Windows:** https://git-scm.com/download/win herunterladen und installieren
 
-### ✅ GitHub Copilot Extension
+### 3. GitHub Copilot Extension installiert?
 
 1. Öffne VS Code
-2. Klicke links auf das Extensions-Symbol (vier Quadrate, eins schräg)
-3. Suche nach `GitHub Copilot`
-4. Klicke **Install** bei "GitHub Copilot" und "GitHub Copilot Chat"
+2. Links auf das **Extensions-Symbol** klicken (sieht aus wie vier Quadrate)
+3. Suche: `GitHub Copilot`
+4. **Install** klicken bei "GitHub Copilot" und "GitHub Copilot Chat"
 
-> 💡 **Tipp:** Wenn du noch keinen GitHub-Account hast, erstelle einen auf https://github.com
+> Noch keinen GitHub-Account? Erstelle einen auf https://github.com
 > Copilot braucht einen bezahlten Plan oder eine kostenlose Testversion.
 
 ---
 
-## 2. Terminal öffnen
+## Schritt 1: Terminal öffnen
 
 Das Terminal ist das schwarze Fenster, in dem du Befehle eingibst.
 
-### In VS Code (empfohlen)
+**In VS Code:**
+1. VS Code öffnen
+2. Tastenkürzel drücken:
+   - Windows/Linux: `Strg + ö`
+   - macOS: `Cmd + ö`
+3. Unten erscheint das Terminal
 
-1. Öffne VS Code
-2. Drücke `Strg + ö` (Windows/Linux) oder `Cmd + ö` (macOS)
-3. Unten öffnet sich das Terminal ✅
-
-### Außerhalb von VS Code
-
-- **Windows:** Startmenü → "PowerShell" eingeben → öffnen
-- **macOS:** Spotlight (Cmd + Leertaste) → "Terminal" eingeben → öffnen
-- **Linux:** `Strg + Alt + T`
-
-> 💡 **Tipp:** Im Terminal siehst du einen Pfad wie `~/Projects` oder `C:\Users\dein-name`.
-> Das zeigt dir, wo du gerade bist. Wie ein Ordner im Datei-Explorer.
+**Ohne VS Code:**
+- Windows: Startmenü → "PowerShell" eintippen → Enter
+- macOS: `Cmd + Leertaste` → "Terminal" eintippen → Enter
+- Linux: `Strg + Alt + T`
 
 ---
 
-## 3. Shared-Instructions klonen
+## Schritt 2: In den Projektordner navigieren
 
-"Klonen" bedeutet: Das Repository (= Ordner mit Dateien) von GitHub auf deinen Computer kopieren.
-
-### Schritt 3.1 — Navigiere zu deinem Projektordner
+Tippe im Terminal:
 
 ```bash
-# Geh in den Ordner, wo deine Projekte liegen
-# Passe den Pfad an deine Ordnerstruktur an!
-
-# Linux/macOS:
 cd ~/Projects
-
-# Windows (PowerShell):
-cd C:\Users\DEIN_NAME\Projects
 ```
 
-> 💡 **Kein "Projects"-Ordner?** Erstelle einen:
-> ```bash
-> mkdir ~/Projects
-> cd ~/Projects
+> **Windows (PowerShell):**
+> ```powershell
+> cd C:\Users\DEIN_NAME\Projects
 > ```
 
-### Schritt 3.2 — Repository klonen
+> **Kein "Projects"-Ordner?** Erstelle einen:
+> ```bash
+> mkdir ~/Projects && cd ~/Projects
+> ```
+
+---
+
+## Schritt 3: shared-instructions klonen
+
+Tippe:
 
 ```bash
-git clone git@github.com:larson-frontend/shared-instructions.git
+git clone https://github.com/larson-frontend/shared-instructions.git
 ```
 
-**Was passiert:**
-- Git lädt alle Dateien herunter
-- Es entsteht ein neuer Ordner `shared-instructions/`
-- Darin sind alle VS Code Settings, Copilot Instructions und Agents
+**Was passiert:** Git lädt den Ordner `shared-instructions/` auf deinen Computer.
+Darin sind alle Team-Settings, Copilot-Regeln und AI-Agents.
 
-> ⚠️ **Fehler: "Permission denied (publickey)"?**
-> Das bedeutet, dass dein SSH-Key nicht bei GitHub hinterlegt ist.
-> Nutze stattdessen HTTPS:
-> ```bash
-> git clone https://github.com/larson-frontend/shared-instructions.git
-> ```
+> **Fehler "Permission denied"?**
+> Du nutzt wahrscheinlich SSH. Der Befehl oben nutzt HTTPS — das funktioniert ohne SSH-Key.
 
-### Schritt 3.3 — Prüfe ob es geklappt hat
+**Prüfe ob es geklappt hat:**
 
 ```bash
 ls shared-instructions/
 ```
 
-Du solltest Dateien und Ordner sehen wie: `.vscode/`, `.github/`, `README.md`, `docs/`, `scripts/`
-
-✅ **Wenn du das siehst: Shared-Instructions ist auf deinem Computer.**
+Du siehst Ordner wie `.vscode/`, `.github/`, `scripts/`? → Perfekt.
 
 ---
 
-## 4. In dein Projekt einbinden
+## Schritt 4: Dein Projekt klonen
 
-Jetzt musst du shared-instructions mit deinem Projekt verbinden.
-Dafür gibt es drei Optionen — wähle die, die am besten passt.
-
-### Option A: Symlink (empfohlen für Linux/macOS)
-
-Ein Symlink ist wie eine Verknüpfung — dein Projekt "sieht" die Dateien aus shared-instructions, ohne sie zu kopieren.
+Falls du das Projekt noch nicht hast:
 
 ```bash
-# 1. Geh in dein Projekt
-cd ~/Projects/mein-projekt
-
-# 2. Erstelle den Symlink
-ln -s ../shared-instructions shared-instructions
+git clone https://github.com/LunjaAris/article-docs.git Docs-Article
+git clone https://github.com/LunjaAris/board-bff.git board-bff
 ```
 
-**Prüfen:**
-```bash
-ls -la shared-instructions
-```
-
-Du solltest sehen: `shared-instructions -> ../shared-instructions` ✅
-
-> 💡 **Vorteil:** Wenn jemand shared-instructions aktualisiert, hast du die Änderungen automatisch.
-
-### Option B: Dateien kopieren (für alle Betriebssysteme)
-
-Wenn Symlinks nicht funktionieren oder du es einfacher willst:
-
-```bash
-# 1. Geh in dein Projekt
-cd ~/Projects/mein-projekt
-
-# 2. Kopiere die wichtigsten Ordner
-cp -r ../shared-instructions/.vscode/ .vscode/
-cp -r ../shared-instructions/.github/ .github/
-cp ../shared-instructions/.editorconfig .editorconfig
-```
-
-**Windows (PowerShell):**
-```powershell
-cd C:\Users\DEIN_NAME\Projects\mein-projekt
-Copy-Item -Recurse ..\shared-instructions\.vscode\ .vscode\
-Copy-Item -Recurse ..\shared-instructions\.github\ .github\
-Copy-Item ..\shared-instructions\.editorconfig .editorconfig
-```
-
-> ⚠️ **Nachteil:** Updates musst du manuell erneut kopieren.
-
-### Option C: Automatisches Script
-
-Wenn du dir unsicher bist, nutze unser Bootstrap-Script:
-
-```bash
-# Linux/macOS
-cd ~/Projects/mein-projekt
-zsh ../shared-instructions/scripts/bootstrap.sh
-```
-
-```powershell
-# Windows (PowerShell)
-cd C:\Users\DEIN_NAME\Projects\mein-projekt
-powershell -ExecutionPolicy Bypass -File ..\shared-instructions\scripts\bootstrap.ps1
-```
-
-**Das Script macht automatisch:**
-- ✅ Prüft ob shared-instructions vorhanden ist
-- ✅ Erstellt den Symlink
-- ✅ Konfiguriert VS Code
-- ✅ Gibt Feedback, ob alles geklappt hat
+> Du hast die Projekte schon? Dann überspringe diesen Schritt.
 
 ---
 
-## 5. VS Code neu laden
+## Schritt 5: Workspace-Datei öffnen
 
-Damit VS Code die neuen Settings erkennt, musst du einmal neu laden:
+Im Projekt gibt es eine `.code-workspace`-Datei. Die öffnet alle Repos zusammen in VS Code.
 
-### Methode 1: Tastenkürzel (schnell)
+**Variante A — Vom Terminal:**
 
-1. Drücke `Strg + Shift + P` (Windows/Linux) oder `Cmd + Shift + P` (macOS)
-2. Es öffnet sich die **Command Palette** (ein Suchfeld oben)
-3. Tippe: `Reload Window`
-4. Drücke `Enter`
+```bash
+code Docs-Article.code-workspace
+```
 
-### Methode 2: VS Code schließen und öffnen
+> **`code` wird nicht gefunden?**
+> 1. Öffne VS Code
+> 2. `Strg + Shift + P` (oder `Cmd + Shift + P` auf macOS)
+> 3. Tippe: `Shell Command: Install 'code' command in PATH`
+> 4. Enter drücken
+> 5. Terminal neu starten, dann nochmal versuchen
 
-1. VS Code schließen (`Strg + Q`)
-2. VS Code wieder öffnen
-3. Dein Projekt öffnen: Datei → Ordner öffnen → Projekt auswählen
+**Variante B — Per Mausklick:**
 
-✅ **Fertig! VS Code nutzt jetzt die Team-Settings.**
+1. Öffne deinen Datei-Explorer
+2. Navigiere zum Projektordner (z.B. `~/Projects/organized-chaos/`)
+3. Doppelklicke auf `Docs-Article.code-workspace`
+4. VS Code öffnet sich mit allen Projekten
 
 ---
 
-## 6. Prüfen ob alles funktioniert
+## Schritt 6: Workspace vertrauen
 
-### ✅ Check 1: Settings geladen?
+Beim ersten Öffnen fragt VS Code:
 
-1. `Strg + Shift + P` → tippe `Open Settings (JSON)`
-2. Prüfe ob Einstellungen wie `"editor.formatOnSave": true` vorhanden sind
+> "Do you trust the authors of the files in this folder?"
 
-### ✅ Check 2: Empfohlene Extensions?
+Klicke **"Yes, I trust the authors"**.
 
-1. Klicke auf das Extensions-Symbol (links, vier Quadrate)
-2. Oben im Suchfeld steht ein Filter-Icon → klicke "Show Recommended Extensions"
-3. Du solltest eine Liste sehen: Prettier, ESLint, GitLens, etc.
-4. **Installiere alle empfohlenen Extensions** (Button: "Install All")
+Das ist wichtig — ohne Trust werden Settings, Tasks und Extensions blockiert.
 
-### ✅ Check 3: Copilot kennt die Instructions?
+---
 
-1. Öffne den Copilot Chat: `Strg + Shift + I` oder klicke das Copilot-Symbol in der Seitenleiste
+## Schritt 7: Empfohlene Extensions installieren
+
+VS Code zeigt rechts unten ein Popup:
+
+> "This workspace has extension recommendations."
+
+Klicke **"Install All"**.
+
+**Kein Popup gesehen?**
+1. `Strg + Shift + P` → tippe: `Extensions: Show Recommended Extensions`
+2. Klicke oben auf das Wolken-Symbol ("Install Workspace Recommended Extensions")
+
+---
+
+## Schritt 8: VS Code neu laden
+
+Damit alles greift:
+
+1. `Strg + Shift + P` (oder `Cmd + Shift + P`)
+2. Tippe: `Reload Window`
+3. Enter drücken
+
+VS Code startet kurz neu. Fertig.
+
+---
+
+## Prüfen ob alles funktioniert
+
+Mach diese 4 schnellen Checks:
+
+### Check 1: Mehrere Projekte sichtbar?
+
+Schaue links in die **Seitenleiste** (Explorer).
+Du solltest mehrere Ordner sehen:
+- Docs-Article
+- board-bff
+- shared-instructions
+- (evtl. weitere)
+
+Siehst du nur einen Ordner? → Du hast wahrscheinlich den Ordner statt die `.code-workspace`-Datei geöffnet. Geh zurück zu Schritt 5.
+
+### Check 2: Copilot kennt die Team-Regeln?
+
+1. Öffne Copilot Chat: `Strg + Shift + I`
 2. Frage: `Was sind deine Instructions?`
-3. Copilot sollte etwas über Conventional Commits, TypeScript strict, etc. antworten
+3. Copilot sollte etwas über Conventional Commits, TypeScript strict o.ä. antworten
 
-### ✅ Check 4: Agents verfügbar?
+### Check 3: Agents sichtbar?
 
-1. Im Copilot Chat, tippe `@`
-2. Du solltest Agents sehen wie: **Orchestrator**, **React Agent**, **Review Agent**
+1. Im Copilot Chat tippe `@`
+2. Du siehst Agents wie: **Orchestrator**, **React Agent**, **Review Agent**
 
-> ❌ **Siehst du keine Agents?** Dann wurde `.github/agents/` nicht korrekt eingebunden.
-> Prüfe ob der Ordner existiert: `ls .github/agents/`
+### Check 4: Format-on-Save funktioniert?
 
-### ✅ Check 5: MCP Server konfiguriert?
-
-1. `Strg + Shift + P` → tippe `MCP: List Servers`
-2. Du solltest Server sehen wie: `github`, `filesystem`
-
-> 💡 **MCP Server brauchen ggf. einen GitHub Token.** Beim ersten Start wirst du danach gefragt.
-
----
-
-## 7. Fehlerbehebung
-
-### Problem: "Permission denied" beim Klonen
-
-**Ursache:** SSH-Key nicht eingerichtet.
-
-**Lösung A** — HTTPS statt SSH nutzen:
-```bash
-git clone https://github.com/larson-frontend/shared-instructions.git
-```
-
-**Lösung B** — SSH-Key einrichten (empfohlen für langfristig):
-1. Generiere einen Key: `ssh-keygen -t ed25519 -C "deine-email@example.com"`
-2. Drücke 3x Enter (Standard-Pfad, kein Passwort)
-3. Kopiere den Key: `cat ~/.ssh/id_ed25519.pub`
-4. Gehe zu GitHub → Settings → SSH and GPG Keys → New SSH Key
-5. Füge den Key ein und speichere
-6. Versuche erneut zu klonen
-
----
-
-### Problem: Symlink funktioniert nicht (Windows)
-
-Windows unterstützt Symlinks nur eingeschränkt.
-
-**Lösung:** Nutze Option B (Dateien kopieren) oder aktiviere Symlinks:
-1. Öffne PowerShell **als Administrator**
-2. Führe aus: `fsutil behavior set SymlinkEvaluation L2L:1 R2R:1 L2R:1 R2L:1`
-3. Starte den Computer neu
-
-Oder nutze stattdessen eine Junction (funktioniert ohne Admin):
-```powershell
-cmd /c mklink /J shared-instructions ..\shared-instructions
-```
-
----
-
-### Problem: VS Code zeigt keine empfohlenen Extensions
-
-**Ursache:** `extensions.json` wurde nicht geladen.
-
-**Lösung:**
-1. Prüfe ob die Datei existiert: `ls .vscode/extensions.json`
-2. Falls nicht → Schritt 4 wiederholen
-3. Falls ja → VS Code neu laden (Schritt 5)
-
----
-
-### Problem: Copilot ignoriert die Instructions
-
-**Ursache:** Die Einstellung `useInstructionFiles` ist nicht aktiv.
-
-**Lösung:**
-1. `Strg + Shift + P` → `Open Settings (JSON)`
-2. Prüfe ob diese Zeile existiert:
-   ```json
-   "github.copilot.chat.codeGeneration.useInstructionFiles": true
-   ```
-3. Falls nicht → füge sie hinzu und speichere
-4. VS Code neu laden
-
----
-
-### Problem: "Agent not found" / Keine Agents sichtbar
-
-**Ursache:** `.github/agents/` Ordner fehlt oder ist leer.
-
-**Lösung:**
-```bash
-# Prüfe ob der Ordner existiert
-ls .github/agents/
-
-# Falls leer oder fehlend:
-cp -r ../shared-instructions/.github/agents/ .github/agents/
-```
-
----
-
-### Problem: Format-on-Save funktioniert nicht
-
-**Ursache:** Prettier Extension fehlt oder Default-Formatter nicht gesetzt.
-
-**Lösung:**
-1. Installiere Prettier: Extensions → Suche "Prettier - Code formatter" → Install
-2. Prüfe die Settings: `"editor.formatOnSave": true` muss vorhanden sein
-3. VS Code neu laden
-
----
-
-## Ordnerstruktur nach der Installation
-
-So sollte dein Projekt aussehen:
-
-```
-dein-projekt/
-├── .editorconfig                      ← Einheitliche Basis-Formatierung
-├── .vscode/
-│   ├── settings.json                  ← Team-Settings (Formatter, Linter, Copilot)
-│   ├── extensions.json                ← Empfohlene Extensions fürs Team
-│   ├── launch.json                    ← Debug-Profile (Vite, BFF, Cypress)
-│   ├── tasks.json                     ← Tasks (dev, test, build, lint, quality gate)
-│   └── mcp.json                       ← MCP Server (GitHub, Filesystem)
-├── .github/
-│   ├── copilot-instructions.md        ← Globale AI-Regeln
-│   ├── instructions/
-│   │   ├── frontend.instructions.md   ← React/TSX-Regeln
-│   │   ├── backend.instructions.md    ← API/Service-Regeln
-│   │   └── testing.instructions.md    ← Test-Konventionen
-│   └── agents/
-│       ├── orchestrator.agent.md      ← Intelligent Model Router
-│       ├── review-agent.agent.md      ← PR-Review Agent
-│       └── react-agent.agent.md       ← React UI Agent
-└── src/                               ← Euer Code
-```
+1. Öffne eine `.ts`- oder `.tsx`-Datei
+2. Mache eine kleine Änderung (z.B. Leerzeichen hinzufügen)
+3. Speichere mit `Strg + S`
+4. Die Datei wird automatisch formatiert
 
 ---
 
 ## Updates holen
 
-Wenn jemand im Team die shared-instructions aktualisiert hat:
-
-### Mit Symlink (Option A)
+Wenn jemand die shared-instructions aktualisiert hat:
 
 ```bash
 cd ~/Projects/shared-instructions
 git pull
 ```
 
-Fertig — dein Projekt hat automatisch die neuen Dateien. ✅
+Dann VS Code neu laden (`Strg + Shift + P` → `Reload Window`).
 
-### Mit kopierten Dateien (Option B)
-
-```bash
-cd ~/Projects/shared-instructions
-git pull
-
-# Dann erneut kopieren
-cp -r .vscode/ ~/Projects/mein-projekt/.vscode/
-cp -r .github/ ~/Projects/mein-projekt/.github/
-cp .editorconfig ~/Projects/mein-projekt/.editorconfig
-```
+Das war's. Die neuen Einstellungen gelten sofort für alle Projekte im Workspace.
 
 ---
 
-## Hilfe & Ansprechpartner
+## Was steckt im Workspace?
 
-Wenn etwas nicht funktioniert:
+Nach der Installation hast du dieses Setup:
+
+```
+~/Projects/
+├── shared-instructions/               ← Team-Regeln (1x klonen, nie anfassen)
+│   ├── .vscode/
+│   │   ├── settings.json              ← Editor-Settings (Format, Lint, Copilot)
+│   │   ├── extensions.json            ← Empfohlene Extensions
+│   │   ├── tasks.json                 ← Tasks (dev, test, build, lint)
+│   │   ├── launch.json                ← Debug-Profile
+│   │   └── mcp.json                   ← MCP Server (GitHub, Filesystem)
+│   └── .github/
+│       ├── copilot-instructions.md    ← Globale AI-Regeln
+│       ├── instructions/              ← Kontext-Regeln (Frontend, Backend, Tests)
+│       └── agents/                    ← Custom Agents (Orchestrator, Review, React)
+│
+├── organized-chaos/
+│   ├── Docs-Article/                  ← Frontend (React + Vite)
+│   ├── board-bff/                     ← Backend (Express + TypeScript)
+│   └── Docs-Article.code-workspace    ← Diese Datei öffnen!
+```
+
+**So funktioniert es:**
+Die `.code-workspace`-Datei listet alle Ordner als "Workspace Folders".
+VS Code lädt die `.github/copilot-instructions.md` aus **jedem** Folder automatisch.
+→ Die Regeln aus `shared-instructions` gelten für alle Projekte, ohne Kopie oder Symlink.
+
+---
+
+## Fehlerbehebung
+
+### "Permission denied" beim Klonen
+
+Nutze HTTPS statt SSH:
+```bash
+git clone https://github.com/larson-frontend/shared-instructions.git
+```
+
+Falls du SSH bevorzugst, richte einen SSH-Key ein:
+1. `ssh-keygen -t ed25519 -C "deine-email@example.com"` → 3x Enter
+2. `cat ~/.ssh/id_ed25519.pub` → Key kopieren
+3. GitHub → Settings → SSH and GPG Keys → New SSH Key → einfügen und speichern
+
+---
+
+### Copilot ignoriert die Instructions
+
+1. `Strg + Shift + P` → `Preferences: Open Settings (JSON)`
+2. Prüfe ob diese Zeile existiert:
+   ```json
+   "github.copilot.chat.codeGeneration.useInstructionFiles": true
+   ```
+3. Falls nicht → einfügen, speichern, VS Code neu laden
+
+---
+
+### Keine Agents sichtbar
+
+Prüfe ob `shared-instructions` als Workspace-Folder geladen ist (links in der Seitenleiste sichtbar).
+Falls nicht → `.code-workspace`-Datei öffnen statt den Ordner direkt.
+
+---
+
+### Format-on-Save funktioniert nicht
+
+1. Extensions → suche "Prettier - Code formatter" → Install
+2. VS Code neu laden
+
+---
+
+### "command 'code' not found"
+
+1. Öffne VS Code
+2. `Strg + Shift + P` → `Shell Command: Install 'code' command in PATH`
+3. Terminal neu starten
+
+---
+
+## Hilfe
 
 1. **Lies die Fehlermeldung** — oft steht die Lösung direkt darin
-2. **Frage Copilot** — öffne den Chat und beschreibe dein Problem
-3. **Frage im Team** — im Slack/Teams-Channel posten
-4. **Erstelle ein Issue** — auf GitHub unter `larson-frontend/shared-instructions`
-
----
-
-> **Geschafft!** 🎉
-> Du hast jetzt die gleiche Entwicklungsumgebung wie das ganze Team.
-> Alle Settings, Agents und Extensions sind konfiguriert.
+2. **Frag Copilot** — im Chat dein Problem beschreiben
+3. **Frag im Team** — Slack/Teams-Channel
+4. **GitHub Issue** — `larson-frontend/shared-instructions`
