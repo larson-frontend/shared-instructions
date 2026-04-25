@@ -54,22 +54,36 @@ Commit-Messages folgen dem Conventional Commits Format:
 - Neue Features dokumentieren, wenn sie für andere relevant sind.
 - Änderungen an `.vscode/` oder `.github/` im PR begründen.
 
-### Feature- / Bug-Dokumentation
+### Feature- / Improvement- / Defect-Dokumentation
 
 Am Ende jeder abgeschlossenen Aufgabe den User fragen:
-> **„Soll ich das als Feature oder Bug dokumentieren?"**
+> **„Soll ich das als Feature, Improvement oder Defect dokumentieren?"**
 
-Struktur: `docs/my-features/feature_<name>/` bzw. `docs/my-bugs/bug_<name>/`
+Jede Aufgabe gehört in **genau eine** der drei Kategorien:
+
+| Kategorie | Ordner | Wann verwenden? |
+|-----------|--------|-----------------|
+| **Feature** | `docs/my-features/feature_<name>/` | Neues fachliches Feature, neue UI/Endpunkt |
+| **Improvement** | `docs/my-improvements/improvement_<name>/` | Refactoring, Performance, Dependency-Hygiene, Tooling, Security-Hardening ohne Feature-Wert |
+| **Defect** | `docs/my-defects/defect_<name>/` | Bug, Regression, fehlerhaftes Verhalten |
+
+> Hinweis: `docs/my-bugs/` ist ein **Legacy-Alias** für `docs/my-defects/` und
+> wird nur noch für historische Einträge benutzt. Neue Defekte gehen nach
+> `my-defects/`.
 
 Jeder Ordner enthält **5 Pflicht-Dateien**:
 
 | Datei | Inhalt |
 |-------|--------|
-| `specifications.md` | Feature-Name, Ziel, Must-Have / Nice-to-Have, API-Endpunkte, Datenmodell |
-| `problem.md` | Ausgangslage, konkrete Probleme, warum das Feature nötig ist |
-| `solution.md` | Architektur, BFF/FE/DB-Änderungen, betroffene Dateien, technische Details |
+| `specifications.md` | Name, Ziel, Must-Have / Nice-to-Have, API-Endpunkte, Datenmodell (bei Defects: erwartetes vs. beobachtetes Verhalten) |
+| `problem.md` | Ausgangslage, konkrete Probleme, warum die Änderung nötig ist |
+| `solution.md` | Architektur, FE/BFF/DB-Änderungen, betroffene Dateien, technische Details |
 | `progress.md` | Status, erledigte [x] + offene [ ] Schritte, Branch-Namen |
 | `history.json` | JSON-Array: `{ step, date, action, details, commit, repo }` pro Schritt |
+
+Mindestens `problem.md` und `solution.md` müssen vor dem Merge vorhanden
+sein. Die übrigen drei sind dringend empfohlen, dürfen aber bei reinen
+Improvements (z. B. Dependency-Updates) auch nachgereicht werden.
 
 ## Lokale Entwicklung
 
